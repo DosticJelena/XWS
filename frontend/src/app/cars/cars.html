@@ -1,0 +1,19 @@
+<div class="cars">
+    <h2>Browse Car Models</h2>
+    <hr />
+    <filter-buttons></filter-buttons>
+    <hr style="color: rgb(39, 39, 39)" />
+    <div class="row">
+        <div *ngFor="let car of carsData" class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <div class="background">
+                <div class="carItem">
+                    <h5>{{car.makes}} | {{car.model}} ({{car.year}})</h5>
+                    <hr style="background-color: gray;" />
+                    <div style="min-height: 150px;">[slika]</div>
+                    <br />
+                    <button [routerLink]="['/car',car.id]" style="display: block;" class="btn details-btn">See details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

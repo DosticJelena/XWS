@@ -1,0 +1,20 @@
+.myHeader {
+    background-color: transparent !important;
+    border-bottom: lightgray solid 1px;
+}
+
+.navbar-brand {
+    color: lightgray;
+}
+
+.navbar-brand:hover, .navbar-brand:focus {
+    color: lightgray;
+}
+
+#navbarSupportedContent a {
+    color: gray;
+}
+
+#navbarSupportedContent a:hover {
+    color: lightgray;
+}

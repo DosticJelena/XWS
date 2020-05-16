@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light myHeader">
+    <a class="navbar-brand" [routerLink]="['/']"><h3 style="color: darkgoldenrod; display: inline;">CAR</h3>eful Rent</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/cars']">Cars <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">Companies</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <a *ngIf="authService.isAuthenticated()" [routerLink]="['/cart']" class="mr-3">Cart</a>
+        <a *ngIf="!authService.isAuthenticated()" [routerLink]="['/login']">Log In</a>
+        <a *ngIf="authService.isAuthenticated()" class="mr-3">{{authService.currentUser.firstName}}'s Profile</a>
+        <a *ngIf="authService.isAuthenticated()" (click)="logoutUser()" [routerLink]="['/']">Log Out</a>
+      </form>
+    </div>
+  </nav>

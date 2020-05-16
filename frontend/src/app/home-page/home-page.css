@@ -1,0 +1,66 @@
+.homePage {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.welcome {
+    background-color: darkgoldenrod;
+    margin-left: 0;
+    margin-top: 10vh;
+    padding: 5%;
+    padding-right: 0;
+    min-height: 60vh;
+}
+
+.grayline {
+    margin-right: 0;
+    min-height: 4px;
+    background-color: rgb(39, 39, 39);
+    border-radius: 15px 0 0 15px;
+}
+
+.welcome h1 {
+    margin-right: 30px;
+}
+
+.login {
+    background: url('../../assets/gray2.jpg');
+    background-size: cover;
+    min-height: 60vh;
+    margin-top: 10vh;
+    padding: 0;
+}
+
+.layer {
+    background-color: rgba(39, 39, 39, 0.9);
+    color: darkgoldenrod;
+    padding: 30px;
+    margin-left: 40px;
+    height: 100%;
+}
+
+.login-input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: darkgoldenrod 1px solid;
+    color: lightgray;
+}
+
+.login-btn {
+    color: lightgray;
+    background-color: rgb(39, 39, 39);
+    border: darkgoldenrod 1px solid;
+}
+
+.login-btn:hover {
+    color: rgb(39, 39, 39);
+    background-color: darkgoldenrod;
+}
+
+.light-menu {
+    min-height: 5vh;
+    background-color: gray;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}

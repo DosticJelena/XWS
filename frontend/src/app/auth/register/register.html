@@ -1,0 +1,30 @@
+<div class="register">
+    <div class="layer">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-12 register-column">
+                <h2>Register</h2>
+                <hr/>
+                <form #registerForm="ngForm" novalidate autocomplete="off" (ngSubmit)="registerRequest(registerForm.value)">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="firstName">First Name *</label>
+                            <input (ngModel)="firstName" name="firstName" type="text" class="form-control register-input" id="firstName" placeholder="First Name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="lastName">Last Name *</label>
+                            <input (ngModel)="lastName" name="lastName" type="text" class="form-control register-input" id="lastName" placeholder="Last Name">
+                        </div>
+                    </div>
+                    
+                    <div>[ostali podaci]</div>
+
+                    <br/>
+                    <a [routerLink]="['/login']" style="color:darkgoldenrod;"><small class="form-text text-muted">Already have an account?</small></a>
+                    <br/>
+                    <button type="submit" class="btn btn-warning">Sign in</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+.carDetails {
+    background: url('../../../assets/gray2.jpg');
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}
+
+.layer {
+    background-color: rgb(39, 39, 39, 0.9);
+    min-height: 60vh;
+    width: 100%;
+    color: darkgoldenrod;
+    padding: 50px;
+}
+
+.details-column {
+    border-right: lightgray 1px solid;
+}
+
+.info p {
+    color: lightgray;
+}
+
+.rent-div {
+    min-height: 20vh;
+    background-color: rgb(39, 39, 39);
+    margin-top: 20px;
+}
