@@ -1,0 +1,62 @@
+version: '3'
+services:
+
+  consul-server:
+    image: consul-server
+    build:
+      context: ./consul-server
+      dockerfile: Dockerfile
+    tty: true
+    ports: 
+      - "8500:8500"
+    networks:
+      static-network:
+        ipv4_address: 172.20.0.2
+
+  auth-service:
+    image: auth-service
+    build:
+      context: ./services/Auth-Service
+      dockerfile: Dockerfile
+    tty: true
+    networks:
+      - static-network
+    depends_on:
+      - consul-server
+
+  cart-service:
+    image: cart-service
+    build:
+      context: ./services/Cart-Service
+      dockerfile: Dockerfile
+    tty: true
+    networks:
+      - static-network
+    depends_on:
+      - consul-server
+
+  gateway:
+    image: gateway
+    build:
+      context: ./services/Gateway
+      dockerfile: Dockerfile
+    tty: true
+    ports: 
+      - "8080:8080"
+    networks:
+      - static-network
+    depends_on:
+      - consul-server
+
+
+
+
+
+
+
+
+networks:
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
