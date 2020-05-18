@@ -10,12 +10,12 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: customer
-          uri: lb://consumer
+        - id: search
+          uri: lb://search
           predicates:
-            - Path=/consumer/**
+            - Path=/search/**
           filters:
-            - RewritePath=/consumer/(?<path>.*), /$\{path}
+            - RewritePath=/search/(?<path>.*), /$\{path}
         - id: auth
           uri: lb://auth
           predicates:

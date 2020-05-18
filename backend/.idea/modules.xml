@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/services/Auth-Service/consumerservice.iml" filepath="$PROJECT_DIR$/services/Auth-Service/consumerservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/services/Gateway/gateway.iml" filepath="$PROJECT_DIR$/services/Gateway/gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/services/Cart-Service/kitchenservice.iml" filepath="$PROJECT_DIR$/services/Cart-Service/kitchenservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/services/Search-Service/searchservice.iml" filepath="$PROJECT_DIR$/services/Search-Service/searchservice.iml" />
     </modules>
   </component>
 </project>

@@ -7,10 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="consumerservice" />
-        <module name="cartservice" />
-        <module name="gateway" />
-        <module name="kitchenservice" />
         <module name="authservice" />
+        <module name="gateway" />
+        <module name="cartservice" />
+        <module name="searchservice" />
+        <module name="kitchenservice" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -19,6 +20,7 @@
       <module name="consumerservice" target="1.8" />
       <module name="gateway" target="1.8" />
       <module name="kitchenservice" target="1.8" />
+      <module name="searchservice" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -28,6 +30,7 @@
       <module name="consumerservice" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="kitchenservice" options="-parameters" />
+      <module name="searchservice" options="-parameters" />
     </option>
   </component>
 </project>
