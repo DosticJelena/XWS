@@ -47,6 +47,17 @@ services:
     depends_on:
       - consul-server
 
+  message-service:
+    image: message-service
+    build:
+      context: ./services/Message-Service
+      dockerfile: Dockerfile
+    tty: true
+    networks:
+      - static-network
+    depends_on:
+      - consul-server
+
   gateway:
     image: gateway
     build:

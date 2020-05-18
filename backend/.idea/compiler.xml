@@ -11,6 +11,7 @@
         <module name="gateway" />
         <module name="cartservice" />
         <module name="searchservice" />
+        <module name="messageservice" />
         <module name="kitchenservice" />
       </profile>
     </annotationProcessing>
@@ -20,6 +21,7 @@
       <module name="consumerservice" target="1.8" />
       <module name="gateway" target="1.8" />
       <module name="kitchenservice" target="1.8" />
+      <module name="messageservice" target="1.8" />
       <module name="searchservice" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -30,6 +32,7 @@
       <module name="consumerservice" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="kitchenservice" options="-parameters" />
+      <module name="messageservice" options="-parameters" />
       <module name="searchservice" options="-parameters" />
     </option>
   </component>

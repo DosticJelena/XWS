@@ -20,27 +20,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7195603e-6186-4c41-b877-68514d7d065a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_annotation_javax_annotation_api_1_3_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/Search-Service/.attach_pid24832" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/Search-Service/.attach_pid27089" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/Search-Service/.attach_pid9925" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/Search-Service/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/Search-Service/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/Search-Service/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/Search-Service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/Search-Service/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/Search-Service/consul-client.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/Search-Service/entrypoint.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/Search-Service/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/Search-Service/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/Search-Service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/Search-Service/src/main/java/xws/SearchServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/Search-Service/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/Search-Service/src/main/resources/bootstrap.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/Search-Service/src/test/java/xws/AuthServiceApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/Search-Service/src/test/resources/bootstrap.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Message-Service/.attach_pid24832" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Message-Service/.attach_pid27089" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Message-Service/.attach_pid9925" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Message-Service/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Message-Service/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Message-Service/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Message-Service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Message-Service/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Message-Service/consul-client.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Message-Service/entrypoint.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Message-Service/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Message-Service/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Message-Service/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Message-Service/src/main/java/xws/MessageServiceApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Message-Service/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Message-Service/src/main/resources/bootstrap.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Message-Service/src/test/java/xws/AuthServiceApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Message-Service/src/test/resources/bootstrap.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/Gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/Gateway/src/main/resources/application.yml" afterDir="false" />
@@ -310,6 +311,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MessageServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="messageservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="xws.MessageServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SearchServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="searchservice" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="xws.SearchServiceApplication" />
@@ -328,7 +336,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1589736275482</updated>
-      <workItem from="1589815859712" duration="3158000" />
+      <workItem from="1589815859712" duration="5545000" />
     </task>
     <servers />
   </component>
@@ -345,6 +353,24 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1589823639653">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1589823639653" />
+    <state width="1493" height="213" key="GridCell.Tab.0.center" timestamp="1589823639653">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1589823639653" />
+    <state width="1493" height="213" key="GridCell.Tab.0.left" timestamp="1589823639652">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1589823639652" />
+    <state width="1493" height="213" key="GridCell.Tab.0.right" timestamp="1589823639653">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1589823639653" />
   </component>
   <component name="masterDetails">
     <states>
