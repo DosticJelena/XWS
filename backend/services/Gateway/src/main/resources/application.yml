@@ -28,10 +28,9 @@ spring:
             - Path=/cart/**
           filters:
             - RewritePath=/cart/(?<path>.*), /$\{path}
-
         - id: message
-            uri: lb://message
-            predicates:
-              - Path=/message/**
-            filters:
-              - RewritePath=/message/(?<path>.*), /$\{path}
+          uri: lb://message
+          predicates:
+            - Path=/message/**
+          filters:
+            - RewritePath=/message/(?<path>.*), /$\{path}
