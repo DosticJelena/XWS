@@ -1,6 +1,5 @@
 version: '3'
 services:
-
   consul-server:
     image: consul-server
     build:
@@ -71,12 +70,8 @@ services:
     depends_on:
       - consul-server
 
-
-
-
-
-
-
+volumes:
+  sample_db: {}
 
 networks:
   static-network:

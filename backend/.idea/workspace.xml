@@ -20,6 +20,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7195603e-6186-4c41-b877-68514d7d065a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_postgresql_postgresql_42_2_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Cart-Service/src/main/java/xws/model/Cart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Cart-Service/src/main/java/xws/model/RentingRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Cart-Service/src/main/java/xws/model/RentingRequestVehicle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Cart-Service/src/main/java/xws/model/VehiclesInCart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Cart-Service/src/main/resources/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/Cart-Service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/Cart-Service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/Cart-Service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/services/Cart-Service/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/Gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/Gateway/src/main/resources/application.yml" afterDir="false" />
     </list>
@@ -28,12 +44,40 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="DefaultGradleProjectSettings">
     <option name="testRunner" value="GRADLE" />
     <option name="delegatedBuild" value="true" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
   </component>
   <component name="ProjectConfigurationFiles">
     <option name="files">
@@ -250,13 +294,20 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showModules" value="false" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="postgresql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/services" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -313,20 +364,27 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1589736275482</updated>
+
+      <workItem from="1589815859712" duration="5545000" />
+      <workItem from="1589892643157" duration="2925000" />
+      <workItem from="1589905183204" duration="2266000" />
+      <workItem from="1589910449033" duration="5458000" />
       <workItem from="1589815859712" duration="5703000" />
       <workItem from="1589879083994" duration="2046000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -334,6 +392,48 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+
+    <state x="552" y="178" key="#Assign_Data_Sources" timestamp="1589912928080">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" key="#Assign_Data_Sources/0.0.1920.1040@0.0.1920.1040" timestamp="1589912928080" />
+    <state x="552" y="178" key="#SQL_Dialects" timestamp="1589915321382">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" key="#SQL_Dialects/0.0.1920.1040@0.0.1920.1040" timestamp="1589915321382" />
+    <state x="552" y="178" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589915377076">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589915377076" />
+    <state width="1877" height="316" key="GridCell.Tab.0.bottom" timestamp="1589915621435">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1589823639653" />
+    <state width="1877" height="316" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589915621435" />
+    <state width="1877" height="316" key="GridCell.Tab.0.center" timestamp="1589915621435">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1589823639653" />
+    <state width="1877" height="316" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589915621435" />
+    <state width="1877" height="316" key="GridCell.Tab.0.left" timestamp="1589915621435">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1589823639652" />
+    <state width="1877" height="316" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589915621435" />
+    <state width="1877" height="316" key="GridCell.Tab.0.right" timestamp="1589915621435">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1589823639653" />
+    <state width="1877" height="316" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589915621435" />
+    <state x="880" y="166" key="SettingsEditor" timestamp="1589910432825">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="880" y="166" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1589910432825" />
+    <state x="656" y="118" width="607" height="804" key="find.popup" timestamp="1589910781942">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="118" width="607" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589910781942" />
+
     <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1589825425769">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

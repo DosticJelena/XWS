@@ -34,3 +34,4 @@ spring:
             - Path=/message/**
           filters:
             - RewritePath=/message/(?<path>.*), /$\{path}
+            
