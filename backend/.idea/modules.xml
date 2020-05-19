@@ -3,13 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/services/Auth-Service/authservice.iml" filepath="$PROJECT_DIR$/services/Auth-Service/authservice.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/backend.iml" filepath="$PROJECT_DIR$/.idea/backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/services/Cart-Service/cartservice.iml" filepath="$PROJECT_DIR$/services/Cart-Service/cartservice.iml" />
-      <module fileurl="file://$PROJECT_DIR$/services/Auth-Service/consumerservice.iml" filepath="$PROJECT_DIR$/services/Auth-Service/consumerservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/services/Gateway/gateway.iml" filepath="$PROJECT_DIR$/services/Gateway/gateway.iml" />
-      <module fileurl="file://$PROJECT_DIR$/services/Cart-Service/kitchenservice.iml" filepath="$PROJECT_DIR$/services/Cart-Service/kitchenservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/services/Message-Service/messageservice.iml" filepath="$PROJECT_DIR$/services/Message-Service/messageservice.iml" />
-      <module fileurl="file://$PROJECT_DIR$/services/Search-Service/searchservice.iml" filepath="$PROJECT_DIR$/services/Search-Service/searchservice.iml" />
     </modules>
   </component>
 </project>
