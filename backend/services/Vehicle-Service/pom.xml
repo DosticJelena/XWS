@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>rs.ac.uns.ftn.consumer</groupId>
-    <artifactId>messageservice</artifactId>
+    <artifactId>vehicleservice</artifactId>
     <version>1.0.0</version>
-    <name>MessageService</name>
+    <name>VehicleService</name>
     <description>Demo project for microservices</description>
 
     <properties>

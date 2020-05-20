@@ -35,10 +35,10 @@ services:
       - consul-server
 
 
-  search-service:
-    image: search-service
+  vehicle-service:
+    image: vehicle-service
     build:
-      context: ./services/Search-Service
+      context: ./services/Vehicle-Service
       dockerfile: Dockerfile
     tty: true
     networks:
@@ -50,6 +50,17 @@ services:
     image: message-service
     build:
       context: ./services/Message-Service
+      dockerfile: Dockerfile
+    tty: true
+    networks:
+      - static-network
+    depends_on:
+      - consul-server
+
+  grading-service:
+    image: grading-service
+    build:
+      context: ./services/Grading-Service
       dockerfile: Dockerfile
     tty: true
     networks:

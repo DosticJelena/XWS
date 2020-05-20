@@ -11,11 +11,11 @@ spring:
           enabled: true
       routes:
         - id: search
-          uri: lb://search
+          uri: lb://vehicle
           predicates:
-            - Path=/search/**
+            - Path=/vehicle/**
           filters:
-            - RewritePath=/search/(?<path>.*), /$\{path}
+            - RewritePath=/vehicle/(?<path>.*), /$\{path}
         - id: auth
           uri: lb://auth
           predicates:
@@ -34,4 +34,10 @@ spring:
             - Path=/message/**
           filters:
             - RewritePath=/message/(?<path>.*), /$\{path}
+        - id: grading
+          uri: lb://grading
+          predicates:
+            - Path=/grading/**
+          filters:
+            - RewritePath=/grading/(?<path>.*), /$\{path}
             

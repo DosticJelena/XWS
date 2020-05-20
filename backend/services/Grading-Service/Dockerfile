@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 COPY entrypoint.sh /entrypoint.sh
-COPY target/searchservice-1.0.0.jar searchservice-1.0.0.jar
+COPY target/gradingservice-1.0.0.jar gradingservice-1.0.0.jar
 COPY consul-client.json /consul-config/consul-client.json
 RUN apk --no-cache add \
     curl \

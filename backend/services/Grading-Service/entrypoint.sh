@@ -2,4 +2,4 @@
 
 ./consul agent -config-dir=/consul-config &
 
-java -jar searchservice-1.0.0.jar
+java -jar gradingservice-1.0.0.jar

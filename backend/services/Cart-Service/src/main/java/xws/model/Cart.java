@@ -26,6 +26,6 @@ public class Cart {
 
     @JsonBackReference
     @OneToMany(mappedBy = "cart",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    Set<VehiclesInCart> doctors = new HashSet<>();
+    Set<VehiclesInCart> vehiclesInCart = new HashSet<>();
 
 }

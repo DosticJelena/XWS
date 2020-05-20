@@ -5,7 +5,10 @@
       <module fileurl="file://$PROJECT_DIR$/services/Auth-Service/authservice.iml" filepath="$PROJECT_DIR$/services/Auth-Service/authservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/services/Cart-Service/cartservice.iml" filepath="$PROJECT_DIR$/services/Cart-Service/cartservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/services/Gateway/gateway.iml" filepath="$PROJECT_DIR$/services/Gateway/gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/services/Grading-Service/gradingservice.iml" filepath="$PROJECT_DIR$/services/Grading-Service/gradingservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/services/Message-Service/messageservice.iml" filepath="$PROJECT_DIR$/services/Message-Service/messageservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/services/Vehicle-Service/searchservice.iml" filepath="$PROJECT_DIR$/services/Vehicle-Service/searchservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/services/Vehicle-Service/vehicleservice.iml" filepath="$PROJECT_DIR$/services/Vehicle-Service/vehicleservice.iml" />
     </modules>
   </component>
 </project>
