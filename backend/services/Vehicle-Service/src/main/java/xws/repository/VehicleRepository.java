@@ -9,5 +9,6 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
 
     List<Vehicle> findAll();
     List<Vehicle> findByLocation(String location);
+    Vehicle findOneById(Long id);
 
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("vehicle")
+@RequestMapping("vehicles")
 public class VehicleController {
 
     @Autowired
@@ -27,9 +27,22 @@ public class VehicleController {
 
         return vehicleService.search( location, brand, model, fuel_type, transmission, type, price, distance, CDWStatus,childrenSeats);
     }
-    @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
+
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     public List<Vehicle> getAll() {
         return vehicleService.getAll();
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
+    public Vehicle getById(@PathVariable Long id) {
+
+
+        return vehicleService.getById(id);
+    }
+
+    @RequestMapping(value = "/new", method = RequestMethod.POST, produces = "application/json")
+    public Vehicle newVehicle(Vehicle v) {
+        return vehicleService.save(v);
     }
 
 }
