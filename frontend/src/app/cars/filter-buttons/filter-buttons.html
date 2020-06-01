@@ -1,47 +1,132 @@
 <div>
-    <div class="btn-group">
-        <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Makes
+    <div class="row">
+        <div class="btn-group">
+            <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Location
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">...</a>
+            </div>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                From
+            </button>
+            <div class="dropdown-menu">
+            </div>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                To
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">...</a>
+            </div>
+        </div>
+        <button (click)="showHideAdditional()" class="btn btn-warning btn-show">
+            {{showAdditional ? "Hide" : "More"}}
         </button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Kia</a>
-            <a class="dropdown-item" href="#">Mazda</a>
-            <a class="dropdown-item" href="#">Nissan</a>
+    </div>
+    <hr  *ngIf="showAdditional" />
+    <div class="row">
+        <div *ngIf="showAdditional" class="additional-btns">
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Brand
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">...</a>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Model
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">...</a>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Fuel Type
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">...</a>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Transmission
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">...</a>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Vehicle Type
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">...</a>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="btn-group">
-        <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Model
-        </button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">...</a>
-            <a class="dropdown-item" href="#">...</a>
-            <a class="dropdown-item" href="#">...</a>
-        </div>
-    </div>
-    <div class="btn-group">
-        <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Year
-        </button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">2019</a>
-            <a class="dropdown-item" href="#">2018</a>
-            <a class="dropdown-item" href="#">2017</a>
-        </div>
-    </div>
-    <div class="btn-group">
-        <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Price
-        </button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">___ - ___</a>
-            <a class="dropdown-item" href="#">___ - ___</a>
-            <a class="dropdown-item" href="#">___ - ___</a>
-            <a class="dropdown-item" href="#">___ - ___</a>
+    <div class="row">
+        <div *ngIf="showAdditional" class="additional-btns">
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Price
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">...</a>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Distance
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">...</a>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Distance (rent)
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">...</a>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    CDW Status
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">...</a>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Children Seats
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">...</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
