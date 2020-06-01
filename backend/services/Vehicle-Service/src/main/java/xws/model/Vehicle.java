@@ -22,7 +22,7 @@ public class Vehicle {
     private String location;
 
     @Column
-    private String fuel_type; //enum
+    private String fuel_type;
 
     @Column
     private String brand;
@@ -46,7 +46,7 @@ public class Vehicle {
     private double distancePerRent;
 
     @Column
-    private String distancePerRentStatus; //enum
+    private String distancePerRentStatus;
 
     @Column
     private double additionalPricePerKm;
@@ -57,8 +57,6 @@ public class Vehicle {
     @Column
     private int childrenSeats;
 
-    @Column
-    private String image;
 
 
 
