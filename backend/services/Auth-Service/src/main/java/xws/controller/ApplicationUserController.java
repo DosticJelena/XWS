@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import xws.dto.UpdateUserStatusDTO;
+import xws.dto.UserResponseDTO;
 import xws.model.ApplicationUser;
 import xws.service.ApplicationUserService;
 
@@ -24,13 +26,13 @@ public class ApplicationUserController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<?> getAll() {
         List<ApplicationUser> users = applicationUserService.findAll();
-        List<UserResponse> response = new ArrayList<>();
+        List<UserResponseDTO> response = new ArrayList<>();
 
         for(ApplicationUser au : users) {
             if(!au.getStatus().equals(ApplicationUser.Status.DELETED)) {
-                UserResponse ur = new UserResponse();
-                ur.username = au.getUsername();
-                ur.status = au.getStatus();
+                UserResponseDTO ur = new UserResponseDTO();
+                ur.setUsername(au.getUsername());
+                ur.setStatus(au.getStatus());
                 response.add(ur);
             }
         }
@@ -38,8 +40,18 @@ public class ApplicationUserController {
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
 
-    static class UserResponse {
-        public String username;
-        public ApplicationUser.Status status;
+    @RequestMapping(consumes = "application/json", value = "update-user-status", method = RequestMethod.POST)
+    public ResponseEntity<?> updateUserStatus(@RequestBody UpdateUserStatusDTO updateUserStatusDTO) {
+        ApplicationUser au = applicationUserService.findOneById(updateUserStatusDTO.getId());
+
+        if(au.getId() != null) {
+            applicationUserService.updateUserStatus(updateUserStatusDTO.getStatus(), updateUserStatusDTO.getId());
+            au = applicationUserService.findOneById(updateUserStatusDTO.getId());
+
+            return new ResponseEntity<>(new UserResponseDTO(au), HttpStatus.ACCEPTED);
+        }
+
+        return new ResponseEntity<>(new UserResponseDTO(), HttpStatus.BAD_REQUEST);
     }
+
 }
