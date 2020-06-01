@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: xws.AuthServiceApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.154 s - in xws.AuthServiceApplicationTests
