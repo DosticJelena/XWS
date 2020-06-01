@@ -5,3 +5,18 @@
     border: 0;
     margin: 0 10px;
 }
+
+.additional-btns {
+    margin-top: 10px;
+}
+
+.btn-show {
+    border-radius: 0;
+    background-color: transparent;
+    border: rgb(39, 39, 39) 1px solid;
+    color: rgb(39, 39, 39);
+}
+
+.btn-show:hover {
+    background-color: darkgoldenrod;
+}
