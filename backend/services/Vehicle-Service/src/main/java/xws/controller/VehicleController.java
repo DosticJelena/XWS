@@ -18,14 +18,13 @@ public class VehicleController {
 
     @RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")
     public List<Vehicle> search(@RequestParam("location") String location,@RequestParam("startDate") String startDate,
-                                            @RequestParam("endDate") String endDate,@RequestParam("brand") String brand,
-                                            @RequestParam("model") String model,@RequestParam("fuel_type") String fuel_type,
-                                            @RequestParam("transmission") String transmission,@RequestParam("type") String type,
-                                            @RequestParam("price") double price,@RequestParam("distance") double distance,
-                                            @RequestParam("CDWStatus") String CDWStatus,@RequestParam("childrenSeats") int childrenSeats) {
+                                @RequestParam("endDate") String endDate,@RequestParam("brand") String brand,
+                                @RequestParam("model") String model,@RequestParam("fuel_type") String fuel_type,
+                                @RequestParam("transmission") String transmission,@RequestParam("type") String type,
+                                @RequestParam("minPrice") double minPrice,@RequestParam("maxPrice") double maxPrice,@RequestParam("distance") double distance,
+                                @RequestParam("CDWStatus") String CDWStatus,@RequestParam("childrenSeats") int childrenSeats) {
 
-
-        return vehicleService.search( location, brand, model, fuel_type, transmission, type, price, distance, CDWStatus,childrenSeats);
+        return vehicleService.search( location,startDate,endDate, brand, model, fuel_type, transmission, type, minPrice,maxPrice, distance, CDWStatus,childrenSeats);
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")

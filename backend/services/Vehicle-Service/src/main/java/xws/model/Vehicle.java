@@ -58,6 +58,4 @@ public class Vehicle {
     private int childrenSeats;
 
 
-
-
 }

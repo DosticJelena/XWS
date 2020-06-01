@@ -2,13 +2,17 @@ package xws.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import xws.model.RentingRequestCar;
 import xws.model.Vehicle;
+import xws.repository.RentingRequestCarRepository;
 import xws.repository.VehicleRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,14 +21,47 @@ public class VehicleService {
 
     @Autowired
     VehicleRepository vehicleRepository;
+    @Autowired
+    RentingRequestCarRepository rentingRequestCarRepository;
 
-    public List<Vehicle> search(String location,String brand,
+    public List<Vehicle> search(String location,String startDate,String endDate, String brand,
                                 String model,String fuel_type,
                                 String transmission,String type,
-                                double price,double distance,String CDWStatus,
+                                double minPrice,double maxPrice,double distance,String CDWStatus,
                                 int childrenSeats){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime start = LocalDateTime.parse(startDate, formatter);
+        LocalDateTime end = LocalDateTime.parse(endDate, formatter);
+
         List<Vehicle> allVehicles = vehicleRepository.findByLocation(location);
-        return  allVehicles;
+        /*List<Vehicle> advancedSearchVehicles = new ArrayList<Vehicle>();
+        for (Vehicle v : allVehicles){
+            if(!v.getBrand().equals(brand)&&!brand.equals(""))continue;
+            if(!v.getModel().equals(model)&&!model.equals(""))continue;
+            if(!v.getFuel_type().equals(fuel_type)&&!fuel_type.equals(""))continue;
+            if(!v.getTransmission().equals(transmission)&&!transmission.equals(""))continue;
+            if(!v.getType().equals(type)&&!type.equals(""))continue;
+            if(!v.getCDWStatus().equals(CDWStatus)&&!CDWStatus.equals(""))continue;
+
+        }*/
+        List<Vehicle> ret = new ArrayList<Vehicle>();
+        for (Vehicle v : allVehicles){
+            List<RentingRequestCar> requests = rentingRequestCarRepository.findAllById(v.getId());
+            boolean forAdding = true;
+            for(RentingRequestCar r : requests) {
+                if(r.getStartDate().isBefore(end) && r.getEndDate().isAfter(end)) {
+                    forAdding = false;
+                    break;
+                }else if(r.getStartDate().isBefore(start) && r.getEndDate().isAfter(start)) {
+                    forAdding = false;
+                    break;
+                }
+            }
+            if(forAdding){
+                ret.add(v);
+            }
+        }
+        return  ret;
     }
     public List<Vehicle> getAll(){
         List<Vehicle> allVehicles = vehicleRepository.findAll();
