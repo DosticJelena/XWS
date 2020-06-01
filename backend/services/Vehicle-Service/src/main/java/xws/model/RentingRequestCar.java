@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RentingRequestVehicle {
+public class RentingRequestCar {
 
     public enum Status {
         PENDING,PAID
