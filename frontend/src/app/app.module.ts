@@ -7,6 +7,7 @@ import { appRoutes } from './routes';
 import { AuthService } from './auth/auth.service';
 import { ToastrService } from './common/toastr.service';
 import { CarsService } from './cars/cars.service';
+import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'; 
@@ -21,6 +22,7 @@ import { CarDetails } from './cars/car-details/car-details';
 import { Register } from './auth/register/register';
 import { Login } from './auth/login/login';
 import { ShooppingCart } from './shopping-cart/shopping-cart';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
 
 @NgModule({
   declarations: [
@@ -32,9 +34,11 @@ import { ShooppingCart } from './shopping-cart/shopping-cart';
     Cars,
     FilterButtons,
     CarDetails,
-    ShooppingCart
+    ShooppingCart,
+    ManageUsersComponent
   ],
   imports: [
+    NgbModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

@@ -7,12 +7,17 @@ import { CarsService } from './cars.service';
     styleUrls: ['./cars.css']
 })
 export class Cars implements OnInit {
-    carsData:any;
+    cars:any;
     constructor (private carsService:CarsService) {
 
     }
 
     ngOnInit() {
-        this.carsData = this.carsService.getCars();
+        this.carsService.getCars().subscribe(
+            (data: any) => {
+              this.cars = data;
+            }, (error) => alert(error.text)
+          );
+        console.log(this.cars);
     }
 }

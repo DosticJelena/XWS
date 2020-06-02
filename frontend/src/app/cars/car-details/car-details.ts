@@ -15,6 +15,10 @@ export class CarDetails {
     }
 
     ngOnInit(){
-        this.car = this.carsService.getCar(this.route.snapshot.params['id']);
+        this.carsService.getCar(this.route.snapshot.params['id']).subscribe(
+            (data: any) => {
+              this.car = data;
+            }, (error) => alert(error.text)
+          );
     }
 }
