@@ -21,6 +21,7 @@ import { CarDetails } from './cars/car-details/car-details';
 import { Register } from './auth/register/register';
 import { Login } from './auth/login/login';
 import { ShooppingCart } from './shopping-cart/shopping-cart';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ShooppingCart } from './shopping-cart/shopping-cart';
     Cars,
     FilterButtons,
     CarDetails,
-    ShooppingCart
+    ShooppingCart,
+    ManageUsersComponent
   ],
   imports: [
     BrowserModule,
