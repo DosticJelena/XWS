@@ -2,12 +2,12 @@ package xws.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import xws.controller.CartController;
 import xws.dto.request.AddVehicleToCartRequestDTO;
+import xws.dto.response.VehiclesInCartDTOResponse;
 import xws.model.Cart;
-import xws.model.CartVehicle;
-import xws.model.Vehicle;
+import xws.model.VehicleCart;
 import xws.repository.CartRepository;
-import xws.repository.CartVehicleRepository;
 
 @Service
 public class CartService {
@@ -17,12 +17,10 @@ public class CartService {
     @Autowired
     VehicleService vehicleService;
 
-    @Autowired
-    CartVehicleRepository cartVehicleRepository;
-
     public Cart findOneById(Long id) {
         try {
-            return this.cartRepository.findOneById(id).orElseThrow(() -> new Exception());
+            return  this.cartRepository.findOneById(id).orElseThrow(() -> new Exception());
+
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -37,12 +35,29 @@ public class CartService {
             return null;
         }
     }
-    public CartVehicle addVehicleToCart(AddVehicleToCartRequestDTO requestDTO) {
-        CartVehicle cartVehicle = new CartVehicle();
-        cartVehicle.setCart(this.findOneByUserId(requestDTO.getUserId()));
-        cartVehicle.setVehicle(this.vehicleService.findOneById(requestDTO.getCarId()));
-        return cartVehicleRepository.save(cartVehicle);
-
+    public VehiclesInCartDTOResponse addVehicleToCart(AddVehicleToCartRequestDTO requestDTO) {
+        Cart c = this.findOneByUserId(requestDTO.getUserId());
+        VehicleCart v = vehicleService.findOneById(requestDTO.getCarId());
+        c.getVehicles().add(v);
+        cartRepository.save(c);
+        VehiclesInCartDTOResponse response = new VehiclesInCartDTOResponse();
+        response.setUserId(c.getUserId());
+        response.setCartId(c.getId());
+        response.setVehicles(c.getVehicles());
+        return response;
+    }
+    public VehiclesInCartDTOResponse getAllVehicles(Long id) {
+        Cart c = this.findOneByUserId(id);
+        VehiclesInCartDTOResponse response = new VehiclesInCartDTOResponse();
+        response.setUserId(c.getUserId());
+        response.setCartId(c.getId());
+        response.setVehicles(c.getVehicles());
+        return response;
+    }
+    public Cart save(CartController.CartDTO requestDTO){
+        Cart c = new Cart();
+        c.setUserId(requestDTO.userId);
+        return cartRepository.save(c);
     }
 
 }

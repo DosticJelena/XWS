@@ -3,6 +3,7 @@ package xws.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xws.dto.request.NewVehicleRequestDTO;
 import xws.model.Vehicle;
 import xws.service.VehicleService;
 
@@ -39,9 +40,10 @@ public class VehicleController {
         return vehicleService.getById(id);
     }
 
-    @RequestMapping(value = "/new", method = RequestMethod.POST, produces = "application/json")
-    public Vehicle newVehicle(Vehicle v) {
-        return vehicleService.save(v);
+    @RequestMapping(value = "/new", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    public Vehicle newVehicle(@RequestBody NewVehicleRequestDTO request) {
+        return vehicleService.save(request);
     }
+
 
 }

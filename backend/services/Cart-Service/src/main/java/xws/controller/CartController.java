@@ -18,12 +18,19 @@ public class CartController {
 
     @RequestMapping(value = "/get/{id}",method = RequestMethod.GET,produces = "application/json")
     public ResponseEntity<?> getCart(@PathVariable Long id) {
-        return new ResponseEntity<>(cartService.findOneByUserId(id).getVehiclesInCart(), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(cartService.getAllVehicles(id), HttpStatus.ACCEPTED);
     }
 
     @RequestMapping(value = "/add",method = RequestMethod.POST,produces = "application/json",consumes = "application/json")
     public ResponseEntity<?> addVehicleToCartDTO(@RequestBody AddVehicleToCartRequestDTO requestDTO) {
         return new ResponseEntity<>(cartService.addVehicleToCart(requestDTO),HttpStatus.ACCEPTED);
+    }
+    @RequestMapping( value = "/addCart",method = RequestMethod.POST,produces = "application/json",consumes = "application/json")
+    public ResponseEntity<?> addCart(@RequestBody CartDTO requestDTO){
+        return new ResponseEntity<>(cartService.save(requestDTO),HttpStatus.CREATED);
+    }
+    public static class CartDTO {
+        public Long userId;
     }
 
 }
