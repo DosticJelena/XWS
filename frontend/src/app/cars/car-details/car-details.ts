@@ -15,6 +15,16 @@ export class CarDetails {
     }
 
     ngOnInit(){
-        this.car = this.carsService.getCar(this.route.snapshot.params['id']);
+        this.getCarFromService();
+    }
+
+    getCarFromService(){
+        this.carsService.getCar(this.route.snapshot.params['id'])
+        .subscribe(
+            (res:any) => {
+                console.log(res);
+                this.car = res
+            }, (error) => alert(error.text)
+        );
     }
 }

@@ -1,13 +1,41 @@
-import { Injectable } from '@angular/core'
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class CarsService {
+
+    constructor(private http:HttpClient){
+
+    }
+
     getCars() {
-        return cars_data;
+        console.log("getCars")
+        return this.http.get('http://localhost:8080/vehicle/vehicles')
+        .pipe(
+            map((res: any) => {
+              return res;
+            }),
+            catchError((err: any) => {
+              console.log(err);
+              return throwError(err);
+            })
+          )
     }
 
     getCar(id:number) {
-        return cars_data.find(car => car.id == id );
+        console.log("getCar")
+        return this.http.get('http://localhost:8080/vehicle/vehicles/' + id)
+        .pipe(
+            map((res: any) => {
+              return res;
+            }),
+            catchError((err: any) => {
+              console.log(err);
+              return throwError(err);
+            })
+          )
     }
 }
 
