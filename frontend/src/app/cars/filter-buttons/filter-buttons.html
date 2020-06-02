@@ -1,26 +1,19 @@
-<div>
+<!--<div>
+    
     <div class="row">
         <div class="btn-group">
             <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                Location
+                {{location}}
             </button>
-            <div class="dropdown-menu">
-                <select class="dropdown-item" [(ngModel)]="location" >NS</select>
+            <div  class="dropdown-menu" >
+                   <a class ='btn' ><i (click)="setLocation('NS')" class="la la-trash"> NS</i></a><br>
+                   <a class ='btn' ><i (click)="setLocation('BG')" class="la la-trash"> BG</i></a>
             </div>
-        </div>
-        <div class="btn-group">
-            <input class="form-control" placeholder="From" id="fromDate" name="dp" name="datum"
-                    [(ngModel)]="startDate" ngbDatepicker #d="ngbDatepicker" required>
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><img
-                            src="../../assets/images/calendar.png" alt="calendar"
-                            style="width: 1.2rem; height: 1.2rem; cursor: pointer;" />
-                    </button>
-                </div>                          
             
         </div>
         
+       
        
         <button (click)="filterCars()" class="btn btn-warning btn-show">
             Filter
@@ -29,6 +22,30 @@
         <button (click)="showHideAdditional()" class="btn btn-warning btn-show">
             {{showAdditional ? "Hide" : "More"}}
         </button>
+    </div>
+    <br>
+    <div class="row">
+    <div class="dateFrom">
+        <input class="form-control" placeholder="Start date" id="date" name="dp" name="datum"
+            [(ngModel)]="startDate" [minDate]="minDate" (click) = "changeEnd()" ngbDatepicker #d="ngbDatepicker" required>
+        
+            <button class="btn btn-outline-secondary calendar"  (click)="d.toggle()" type="button"><img
+                    src="../../assets/images/calendar.png" alt="calendar"
+                    style="width: 1.2rem; height: 1.2rem; cursor: pointer;" /></button>
+            <ngb-timepicker [(ngModel)]="timeFrom"></ngb-timepicker>
+        
+    </div>
+    
+    <div class="dateTo">
+        <input class="form-control" placeholder="End date" id="date" name="dp" name="datum"
+            [(ngModel)]="endDate" [minDate]="minDateSecond" ngbDatepicker #to="ngbDatepicker" required>
+        
+            <button class="btn btn-outline-secondary calendar" (click)="to.toggle()" type="button"><img
+                    src="../../assets/images/calendar.png" alt="calendar"
+                    style="width: 1.2rem; height: 1.2rem; cursor: pointer;" /></button>
+            <ngb-timepicker [(ngModel)]="timeTo" show-spinners="false"></ngb-timepicker>
+        
+    </div>
     </div>
     <hr  *ngIf="showAdditional" />
     <div class="row">
@@ -129,4 +146,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
