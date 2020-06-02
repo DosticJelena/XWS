@@ -8,7 +8,9 @@ import xws.service.VehicleService;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8080")
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("vehicles")
 public class VehicleController {
@@ -27,19 +29,17 @@ public class VehicleController {
         return vehicleService.search( location,startDate,endDate, brand, model, fuel_type, transmission, type, minPrice,maxPrice, distance, CDWStatus,childrenSeats);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     public List<Vehicle> getAll() {
         return vehicleService.getAll();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
-    public Vehicle getById(@PathVariable Long id) {
-
-
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
+    public Vehicle getById(@PathVariable("id") Long id) {
         return vehicleService.getById(id);
     }
 
-    @RequestMapping(value = "/new", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/new", method = RequestMethod.POST, produces = APPLICATION_JSON_VALUE)
     public Vehicle newVehicle(Vehicle v) {
         return vehicleService.save(v);
     }
