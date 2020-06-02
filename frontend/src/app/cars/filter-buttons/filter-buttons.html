@@ -6,26 +6,26 @@
                 Location
             </button>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">...</a>
+                <select class="dropdown-item" [(ngModel)]="location" >NS</select>
             </div>
         </div>
         <div class="btn-group">
-            <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                From
-            </button>
-            <div class="dropdown-menu">
-            </div>
+            <input class="form-control" placeholder="From" id="fromDate" name="dp" name="datum"
+                    [(ngModel)]="startDate" ngbDatepicker #d="ngbDatepicker" required>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><img
+                            src="../../assets/images/calendar.png" alt="calendar"
+                            style="width: 1.2rem; height: 1.2rem; cursor: pointer;" />
+                    </button>
+                </div>                          
+            
         </div>
-        <div class="btn-group">
-            <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                To
-            </button>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">...</a>
-            </div>
-        </div>
+        
+       
+        <button (click)="filterCars()" class="btn btn-warning btn-show">
+            Filter
+        </button>
+
         <button (click)="showHideAdditional()" class="btn btn-warning btn-show">
             {{showAdditional ? "Hide" : "More"}}
         </button>

@@ -7,6 +7,7 @@ import { appRoutes } from './routes';
 import { AuthService } from './auth/auth.service';
 import { ToastrService } from './common/toastr.service';
 import { CarsService } from './cars/cars.service';
+import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'; 
@@ -37,6 +38,7 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
     ManageUsersComponent
   ],
   imports: [
+    NgbModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
