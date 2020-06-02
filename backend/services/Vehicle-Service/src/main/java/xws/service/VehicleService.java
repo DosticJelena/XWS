@@ -2,6 +2,7 @@ package xws.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import xws.dto.request.NewVehicleRequestDTO;
 import xws.model.RentingRequestCar;
 import xws.model.Vehicle;
 import xws.repository.RentingRequestCarRepository;
@@ -72,7 +73,7 @@ public class VehicleService {
         return vehicleRepository.findOneById(id);
     }
 
-    public Vehicle save(Vehicle newVehicle) {
+    public Vehicle save(NewVehicleRequestDTO newVehicle) {
         Vehicle v = new Vehicle();
         v.setBrand(newVehicle.getBrand());
         v.setLocation(newVehicle.getLocation());
@@ -88,8 +89,8 @@ public class VehicleService {
         v.setDistancePerRentStatus(newVehicle.getDistancePerRentStatus());
         v.setDistancePerRent(newVehicle.getDistancePerRent());
 
-        vehicleRepository.save(v);
-        return v;
+        return vehicleRepository.save(v);
+
     }
 
 }

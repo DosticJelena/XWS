@@ -21,12 +21,17 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "user_id",nullable = false)
     private Long userId;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "cart",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private Set<CartVehicle> vehiclesInCart = new HashSet<>();
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable
+    private Set<VehicleCart> vehicles = new HashSet<>();
 
 
 }
