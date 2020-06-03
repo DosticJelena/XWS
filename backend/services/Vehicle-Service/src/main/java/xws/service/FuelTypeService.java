@@ -2,6 +2,8 @@ package xws.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import xws.model.FuelType;
 import xws.repository.FuelTypeRepository;
 
@@ -26,4 +28,14 @@ public class FuelTypeService {
     }
 
     public FuelType save(FuelType ft) { return fuelTypeRepository.save(ft); }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public int updateFuelType(String fuelType, Long id) {
+        return fuelTypeRepository.updateFuelType(fuelType, id);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public int deleteFuelType(Long id) {
+        return fuelTypeRepository.deleteFuelType(id);
+    }
 }

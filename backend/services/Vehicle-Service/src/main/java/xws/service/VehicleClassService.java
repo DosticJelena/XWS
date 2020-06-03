@@ -2,6 +2,8 @@ package xws.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import xws.model.VehicleClass;
 import xws.repository.VehicleClassRepository;
 
@@ -27,5 +29,15 @@ public class VehicleClassService {
 
     public VehicleClass save(VehicleClass vc) {
         return vehicleClassRepository.save(vc);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public int updateVehicleClass(String vehicleClass, Long id) {
+        return vehicleClassRepository.updateVehicleClass(vehicleClass, id);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public int deleteVehicleClass(Long id) {
+        return vehicleClassRepository.deleteVehicleClass(id);
     }
 }

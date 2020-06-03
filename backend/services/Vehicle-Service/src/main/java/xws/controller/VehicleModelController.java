@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import xws.model.VehicleClass;
 import xws.model.VehicleModel;
 import xws.service.VehicleModelService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -23,7 +25,15 @@ public class VehicleModelController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<?> getAll() {
-        return new ResponseEntity<>(vehicleModelService.findAll(), HttpStatus.ACCEPTED);
+        List<VehicleModel> ret = new ArrayList<>();
+
+        for(VehicleModel vm : vehicleModelService.findAll()) {
+            if(vm.getStatus().equals(VehicleModel.Status.ACTIVE)) {
+                ret.add(vm);
+            }
+        }
+
+        return new ResponseEntity<>(ret, HttpStatus.ACCEPTED);
     }
 
     @RequestMapping(value = "new", method = RequestMethod.POST, consumes = "application/json")
@@ -35,7 +45,26 @@ public class VehicleModelController {
         return new ResponseEntity<>(vehicleModelService.save(vm), HttpStatus.CREATED);
     }
 
+    @RequestMapping(value = "update", method = RequestMethod.POST, consumes = "application/json")
+    public ResponseEntity<?> updateVehicleModel(@RequestBody updateRequest request) {
+        return new ResponseEntity<>(vehicleModelService.updateVehicleModel(request.newName, request.id), HttpStatus.ACCEPTED);
+    }
+
+    @RequestMapping(value = "delete", method = RequestMethod.POST, consumes = "application/json")
+    public ResponseEntity<?> deleteVehicleModel(@RequestBody Id request) {
+        return new ResponseEntity<>(vehicleModelService.deleteVehicleModel(request.id), HttpStatus.ACCEPTED);
+    }
+
     public static class vehicleModelRequest {
         public String vehicleModelName;
+    }
+
+    public static class Id {
+        public Long id;
+    }
+
+    public static class updateRequest {
+        public String newName;
+        public Long id;
     }
 }
