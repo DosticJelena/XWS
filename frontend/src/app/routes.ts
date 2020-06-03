@@ -6,6 +6,7 @@ import { Register } from './auth/register/register';
 import { Login } from './auth/login/login';
 import { ShooppingCart } from './shopping-cart/shopping-cart';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { CodebookComponent } from './codebook/codebook.component';
 
 export const appRoutes:Routes = [
     {path: "cars", component: Cars},
@@ -14,5 +15,6 @@ export const appRoutes:Routes = [
     {path: "login", component: Login},
     {path: "manage-users", component: ManageUsersComponent},
     {path: "cart", component: ShooppingCart},
+    {path: "codebook", component: CodebookComponent},
     {path: "", component: HomePage}
 ]

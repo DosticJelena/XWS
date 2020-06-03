@@ -23,17 +23,17 @@ public class VehicleModelService {
         return vehicleModelRepository.findOneById(id);
     }
 
-    public VehicleModel findOneByVehicleModel(String vehicleModel) {
+    /*public VehicleModel findOneByVehicleModel(String vehicleModel) {
         return vehicleModelRepository.findOneByVehicleModel(vehicleModel);
-    }
+    }*/
 
     public VehicleModel save(VehicleModel vm) {
         return vehicleModelRepository.save(vm);
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public int updateVehicleModel(String vehicleModel, Long id) {
-        return vehicleModelRepository.updateVehicleModel(vehicleModel, id);
+    public int updateVehicleModel(String model, String brand, Long id) {
+        return vehicleModelRepository.updateVehicleModel(model, brand, id);
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)

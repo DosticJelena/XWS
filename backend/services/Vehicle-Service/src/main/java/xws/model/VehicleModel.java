@@ -23,7 +23,10 @@ public class VehicleModel {
     private Long id;
 
     @Column(nullable = false)
-    private String vehicleModel;
+    private String brand;
+
+    @Column(nullable = false)
+    private String model;
 
     @Column(nullable = false)
     private Status status;
