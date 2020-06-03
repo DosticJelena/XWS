@@ -26,3 +26,8 @@
     background-color: rgb(39, 39, 39);
     margin-top: 20px;
 }
+
+.details-column-1 {
+    max-height: 50vh;
+    overflow: auto;
+}

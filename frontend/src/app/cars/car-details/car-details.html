@@ -4,22 +4,33 @@
             <div class="col-lg-2 col-md-6 col-12 details-column">
                 <h1>{{car.brand}}</h1>
                 <h1><em>{{car.model}}</em></h1>
-                <h3>{{car.price}}</h3>
             </div>
             <div class="col-lg-5 col-md-6 col-12 details-column">
                 <h3 style="color:lightgray;">Details:</h3>
-                <hr/>
+                <hr />
                 <div class="info">
-                    <p>Transmission:{{car.transmission}}</p>
-                    <p>Fuel type: {{car.fuel_type}}</p>
-                    <p>Distance:{{car.distance}}</p>
-                    <p>CDWStatus 4:{{car.cdwstatus}}</p>
+                    <div class="row">
+                        <div class="col">
+                            <p>Location: {{car.location}}</p>
+                            <p>Fuel Type: {{car.fuel_type}}</p>
+                            <p>Transsmission: {{car.transmission}}</p>
+                            <p>Distance: {{car.distance}} km</p>
+                            <hr />
+                            <p>Children Seats: {{car.childrenSeats}}</p>
+                        </div>
+                        <div class="col">
+                            <p>Price: {{car.price}}</p>
+                            <p>Additional price per km: {{car.additionalPricePerKm}}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-5 col-md-6 col-12 details-column-1">
-                <p><img width="500" height="400" src="https://autorepublika.com/wp-content/uploads/2019/08/bmw-x5-protection2.jpg">]</p>
-                <p><img width="500" height="400" src="https://autorepublika.com/wp-content/uploads/2019/08/bmw-x5-protection2.jpg"></p>
-                  </div>
+                <p><img width="500" height="400"
+                        src="https://autorepublika.com/wp-content/uploads/2019/08/bmw-x5-protection2.jpg"></p>
+                <p><img width="500" height="400"
+                        src="https://autorepublika.com/wp-content/uploads/2019/08/bmw-x5-protection2.jpg"></p>
+            </div>
         </div>
     </div>
     <div class="rent-div">
