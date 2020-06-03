@@ -10,13 +10,13 @@ import lombok.Setter;
 @NoArgsConstructor
 public class NewVehicleRequestDTO {
 
-    private Long id;
+    private Long user_id;
     private String location;
     private String fuel_type;
     private String brand;
     private String model;
     private String transmission;
-    private String type; //enum
+    private String vehicle_type;
     private double price;
     private double distance;
     private double distancePerRent;
