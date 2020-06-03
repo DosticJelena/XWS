@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import xws.model.FuelType;
 import xws.service.FuelTypeService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "fuel-type", produces = MediaType.APPLICATION_JSON_VALUE)
 public class FuelTypeController {
@@ -20,7 +23,15 @@ public class FuelTypeController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<?> getAll() {
-        return new ResponseEntity<>(fuelTypeService.findAll(), HttpStatus.ACCEPTED);
+        List<FuelType> ret = new ArrayList<>();
+
+        for(FuelType ft : fuelTypeService.findAll()) {
+            if(ft.getStatus().equals(FuelType.Status.ACTIVE)) {
+                ret.add(ft);
+            }
+        }
+
+        return new ResponseEntity<>(ret, HttpStatus.ACCEPTED);
     }
 
     @RequestMapping(value = "new", method = RequestMethod.POST, consumes = "application/json")
@@ -32,7 +43,26 @@ public class FuelTypeController {
         return new ResponseEntity<>(fuelTypeService.save(ft), HttpStatus.CREATED);
     }
 
+    @RequestMapping(value = "update", method = RequestMethod.POST, consumes = "application/json")
+    public ResponseEntity<?> updateVehicleModel(@RequestBody updateRequest request) {
+        return new ResponseEntity<>(fuelTypeService.updateFuelType(request.newName, request.id), HttpStatus.ACCEPTED);
+    }
+
+    @RequestMapping(value = "delete", method = RequestMethod.POST, consumes = "application/json")
+    public ResponseEntity<?> deleteVehicleModel(@RequestBody Id request) {
+        return new ResponseEntity<>(fuelTypeService.deleteFuelType(request.id), HttpStatus.ACCEPTED);
+    }
+
+    public static class Id {
+        public Long id;
+    }
+
     public static class fuelTypeRequest {
         public String fuelTypeName;
+    }
+
+    public static class updateRequest {
+        public String newName;
+        public Long id;
     }
 }
