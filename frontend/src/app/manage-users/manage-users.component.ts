@@ -26,4 +26,33 @@ export class ManageUsersComponent implements OnInit {
       );
   }
 
+  clickActivate(id) {
+    this.authService.changeUserStatus(id, 0)
+      .subscribe(
+        (data: any) => {
+          console.log('User activated!');
+          this.getUsers();
+        }, (error) => alert(error.text)
+      );
+  }
+
+  clickBlock(id) {
+    this.authService.changeUserStatus(id, 2)
+      .subscribe(
+        (data: any) => {
+          console.log('User blocked!');
+          this.getUsers();
+        }, (error) => alert(error.text)
+      );
+  }
+
+  clickDelete(id) {
+    this.authService.changeUserStatus(id, 1)
+      .subscribe(
+        (data: any) => {
+          console.log('User deleted!');
+          this.getUsers();
+        }, (error) => alert(error.text)
+      );
+  }
 }

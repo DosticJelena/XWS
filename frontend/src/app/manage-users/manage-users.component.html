@@ -1,3 +1,6 @@
 <div class="users" *ngFor="let user of users">
     {{user.username}}
+    <button *ngIf="user.status !== 'ACTIVE'" class="btn btn-success btn-sm" (click)="clickActivate(user.id)">Activate</button>
+    <button *ngIf="user.status !== 'BLOCKED'" class="btn btn-dark btn-sm" (click)="clickBlock(user.id)">Block</button>
+    <button class="btn btn-danger btn-sm" (click)="clickDelete(user.id)">Delete</button>
 </div>

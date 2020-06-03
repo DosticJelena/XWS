@@ -13,9 +13,11 @@ import xws.model.ApplicationUser;
 public class UserResponseDTO {
     private String username;
     private ApplicationUser.Status status;
+    private Long id;
 
     public UserResponseDTO(ApplicationUser au) {
         this.username = au.getUsername();
         this.status = au.getStatus();
+        this.id = au.getId();
     }
 }

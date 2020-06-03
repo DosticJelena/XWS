@@ -13,7 +13,6 @@ import xws.service.ApplicationUserService;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "users", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ApplicationUserController {
