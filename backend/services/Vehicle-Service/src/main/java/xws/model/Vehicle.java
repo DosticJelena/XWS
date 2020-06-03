@@ -19,6 +19,9 @@ public class Vehicle {
     private Long id;
 
     @Column
+    private Long user_id;
+
+    @Column
     private String location;
 
     @Column
@@ -34,7 +37,7 @@ public class Vehicle {
     private String transmission;
 
     @Column
-    private String type; //enum
+    private String vehicle_type;
 
     @Column
     private double price;
