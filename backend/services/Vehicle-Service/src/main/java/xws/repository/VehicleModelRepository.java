@@ -13,13 +13,13 @@ public interface VehicleModelRepository extends JpaRepository<VehicleModel, Long
 
     List<VehicleModel> findAll();
     VehicleModel findOneById(Long id);
-    VehicleModel findOneByVehicleModel(String vehicleModel);
+    //VehicleModel findOneByVehicleModel(String vehicleModel);
     VehicleModel save(VehicleModel vm);
 
     @Modifying
     @Transactional
-    @Query("update VehicleModel vm set vm.vehicleModel = :vehicleModel where vm.id = :id")
-    int updateVehicleModel(@Param("vehicleModel") String vehicleModel, @Param("id") Long id);
+    @Query("update VehicleModel vm set vm.model = :model, vm.brand = :brand where vm.id = :id")
+    int updateVehicleModel(@Param("model") String model, @Param("brand") String brand, @Param("id") Long id);
 
     @Modifying
     @Transactional

@@ -23,6 +23,7 @@ import { Register } from './auth/register/register';
 import { Login } from './auth/login/login';
 import { ShooppingCart } from './shopping-cart/shopping-cart';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { CodebookComponent } from './codebook/codebook.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
     FilterButtons,
     CarDetails,
     ShooppingCart,
-    ManageUsersComponent
+    ManageUsersComponent,
+    CodebookComponent
   ],
   imports: [
     NgbModule,

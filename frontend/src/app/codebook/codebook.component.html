@@ -1,0 +1,13 @@
+<div class="content">
+    <div class="fuel-types" *ngFor="let fuelType of fuelTypes">
+        {{fuelType.fuelType}}
+    </div>
+
+    <div class="vehicle-classes" *ngFor="let vehicleClass of vehicleClasses">
+        {{vehicleClass.vehicleClass}}
+    </div>
+
+    <div class="vehicle-models" *ngFor="let vehicleModel of vehicleModels">
+        {{vehicleModel.brand}} {{vehicleModel.model}}
+    </div>
+</div>
