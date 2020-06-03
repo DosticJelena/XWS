@@ -5,3 +5,5 @@ INSERT INTO public.vehicle(user_id, cdwstatus, additional_price_per_km, brand, c
 INSERT INTO public.vehicle(user_id, cdwstatus, additional_price_per_km, brand, children_seats, distance, distance_per_rent, distance_per_rent_status, fuel_type, location, model, price, transmission, vehicle_type)
 	VALUES (1, 'No', 10, '', 1,100, 20, 'Yes', 'ben', 'Novi Sad', '125', 130, 'Manual', 'C');
 
+INSERT INTO public.picture(url, vehicle_id)	VALUES ('https://autorepublika.com/wp-content/uploads/2019/08/bmw-x5-protection2.jpg', 1);
+INSERT INTO public.picture(url, vehicle_id)	VALUES ('https://autorepublika.com/wp-content/uploads/2019/10/20.jpg', 1);

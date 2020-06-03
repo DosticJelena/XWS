@@ -64,6 +64,7 @@ export class Cars implements OnInit {
           alert("You have to reserve car for at least one day");
           return;
         }
+        
         var startMonth;var startDay;var endMonth;var endDay;
         var startHour;var startMin;var endHour;var endMin;
 
