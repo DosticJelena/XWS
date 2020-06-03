@@ -75,12 +75,14 @@ public class VehicleService {
 
     public Vehicle save(NewVehicleRequestDTO newVehicle) {
         Vehicle v = new Vehicle();
+        v.setUser_id(newVehicle.getUser_id());
         v.setBrand(newVehicle.getBrand());
         v.setLocation(newVehicle.getLocation());
         v.setModel(newVehicle.getModel());
         v.setFuel_type(newVehicle.getFuel_type());
         v.setTransmission(newVehicle.getTransmission());
         v.setPrice(newVehicle.getPrice());
+        v.setVehicle_type(newVehicle.getVehicle_type());
 
         v.setAdditionalPricePerKm(newVehicle.getAdditionalPricePerKm());
         v.setCDWStatus(newVehicle.getCDWStatus());
