@@ -5,6 +5,7 @@ import xws.model.RentingRequest;
 
 import java.util.List;
 
-public interface RentingRequestRepository extends JpaRepository<Long, RentingRequest> {
-    public List<RentingRequest> findAllByUserId(Long id);
+public interface RentingRequestRepository extends JpaRepository<RentingRequest,Long> {
+
+    List<RentingRequest> findByUserId(Long id);
 }
