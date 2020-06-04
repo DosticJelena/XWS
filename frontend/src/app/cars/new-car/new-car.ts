@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core'
 import { CarsService } from '../cars.service';
-import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'new-car',
@@ -60,7 +59,13 @@ export class NewCar implements OnInit {
             CDWStatus: this.CDWStatus
         }
 
-        this.carsService.addNewVehicle(newValues);
+        this.carsService.addNewVehicle(newValues)
+        .subscribe(
+            (data: any) => {
+              console.log('Added new vehicle.');
+              console.log(data);
+            }, (error) => alert(error.text)
+          );;
     }
 
     setDprStatus() {
