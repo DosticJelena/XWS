@@ -17,12 +17,12 @@ import { Header } from './header/header';
 import { HomePage } from './home-page/home-page';
 import { RouterModule } from '@angular/router';
 import { Cars } from './cars/cars';
-import { FilterButtons } from './cars/filter-buttons/filter-buttons';
 import { CarDetails } from './cars/car-details/car-details';
 import { Register } from './auth/register/register';
 import { Login } from './auth/login/login';
 import { ShooppingCart } from './shopping-cart/shopping-cart';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { NewCar } from './cars/new-car/new-car';
 
 @NgModule({
   declarations: [
@@ -31,8 +31,8 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
     Login, 
     Header,
     HomePage,
+    NewCar,
     Cars,
-    FilterButtons,
     CarDetails,
     ShooppingCart,
     ManageUsersComponent
