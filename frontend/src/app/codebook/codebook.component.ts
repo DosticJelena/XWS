@@ -10,6 +10,9 @@ export class CodebookComponent implements OnInit {
   fuelTypes = [];
   vehicleClasses = [];
   vehicleModels = [];
+  newFT = "";
+  newVC = "";
+  newVM = "";
 
   constructor(private codebookService: CodebookService) { }
 
@@ -47,5 +50,65 @@ export class CodebookComponent implements OnInit {
           this.vehicleModels = Object.assign([], (data));
         }, (error) => alert(error.text)
       )
+  }
+
+  addFuelType() {
+    this.codebookService.newFuelType(this.newFT)
+      .subscribe(
+        (data: any) => {
+          console.log('Fuel type added');
+          this.getFuelTypes();
+        }, (error) => alert(error.text)
+      );
+  }
+
+  addVehicleClass() {
+    this.codebookService.newVehicleClass(this.newVC)
+      .subscribe(
+        (data: any) => {
+          console.log('Vehicle class added');
+          this.getVehicleClasses();
+        }, (error) => alert(error.text)
+      );
+  }
+
+  addVehicleModel() {
+    this.codebookService.newVehicleModel(this.newVM)
+      .subscribe(
+        (data: any) => {
+          console.log('Vehicle model added');
+          this.getVehicleModels();
+        }, (error) => alert(error.text)
+      );
+  }
+
+  deleteFuelType(id: number) {
+    this.codebookService.deleteFuelType(id)
+      .subscribe(
+        (data: any) => {
+          console.log('Fuel type deleted');
+          this.getFuelTypes();
+        }, (error) => alert(error.text)
+      );
+  }
+
+  deleteVehicleClass(id: number) {
+    this.codebookService.deleteVehicleClass(id)
+      .subscribe(
+        (data: any) => {
+          console.log('Vehicle class deleted');
+          this.getVehicleClasses();
+        }, (error) => alert(error.text)
+      );
+  }
+
+  deleteVehicleModel(id: number) {
+    this.codebookService.deleteVehicleModel(id)
+      .subscribe(
+        (data: any) => {
+          console.log('Vehicle model deleted');
+          this.getVehicleModels();
+        }, (error) => alert(error.text)
+      );
   }
 }

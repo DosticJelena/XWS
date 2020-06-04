@@ -1,13 +1,19 @@
 <div class="content">
     <div class="fuel-types" *ngFor="let fuelType of fuelTypes">
-        {{fuelType.fuelType}}
+        {{fuelType.fuelType}} <button class="btn btn-danger btn-sm" (click)="deleteFuelType(fuelType.id)">Delete</button>
     </div>
 
     <div class="vehicle-classes" *ngFor="let vehicleClass of vehicleClasses">
-        {{vehicleClass.vehicleClass}}
+        {{vehicleClass.vehicleClass}} <button class="btn btn-danger btn-sm" (click)="deleteVehicleClass(vehicleClass.id)">Delete</button>
     </div>
 
     <div class="vehicle-models" *ngFor="let vehicleModel of vehicleModels">
-        {{vehicleModel.brand}} {{vehicleModel.model}}
+        {{vehicleModel.brand}} {{vehicleModel.model}} <button class="btn btn-danger btn-sm" (click)="deleteVehicleModel(vehicleModel.id)">Delete</button>
     </div>
+</div>
+
+<div class="add-new">
+    New Fuel Type: <input type="text" [(ngModel)]="newFT" /> <button class="btn btn-success btn-sm" (click)="addFuelType()">Add Fuel Type</button>
+    New Vehicle Class: <input type="text" [(ngModel)]="newVC" /> <button class="btn btn-success btn-sm" (click)="addVehicleClass()">Add Vehicle Class</button>
+    New Vehicle Model: <input type="text" [(ngModel)]="newVM" /> <button class="btn btn-success btn-sm" (click)="addVehicleModel()">Add Vehicle Model</button>
 </div>
