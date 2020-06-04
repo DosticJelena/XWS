@@ -21,7 +21,7 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id",nullable = false)
+    @Column(nullable = false)
     private Long userId;
 
     @JsonBackReference

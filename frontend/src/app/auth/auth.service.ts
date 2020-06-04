@@ -78,10 +78,10 @@ export class AuthService {
             )
     }
 
-    changeUserStatus(id:number, status:number) {
+    changeUserStatus(id: number, status: number) {
         return this.http.post("http://localhost:8080/auth/users/update-user-status", {
-            id:id,
-            status:status
+            id: id,
+            status: status
         })
             .pipe(
                 map((res: any) => {

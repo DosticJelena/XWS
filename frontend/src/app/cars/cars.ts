@@ -43,7 +43,7 @@ export class Cars implements OnInit {
           );
           
         this.today = this.calendar.getToday();
-        this.cars = this.carsService.getCars();
+        //this.cars = this.carsService.getCars();
         this.location = "Choose location";
         this.minDate = new NgbDate(this.today.year,this.today.month,this.today.day+2);
         this.minDateSecond = new NgbDate(this.today.year,this.today.month,this.today.day+2);
@@ -64,6 +64,7 @@ export class Cars implements OnInit {
           alert("You have to reserve car for at least one day");
           return;
         }
+        
         var startMonth;var startDay;var endMonth;var endDay;
         var startHour;var startMin;var endHour;var endMin;
 

@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import xws.model.VehicleClass;
 import xws.model.VehicleModel;
 import xws.service.VehicleModelService;
@@ -39,7 +36,8 @@ public class VehicleModelController {
     @RequestMapping(value = "new", method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<?> addVehicleModel(@RequestBody vehicleModelRequest request) {
         VehicleModel vm = new VehicleModel();
-        vm.setVehicleModel(request.vehicleModelName);
+        vm.setModel(request.model);
+        vm.setBrand(request.brand);
         vm.setStatus(VehicleModel.Status.ACTIVE);
 
         return new ResponseEntity<>(vehicleModelService.save(vm), HttpStatus.CREATED);
@@ -47,7 +45,7 @@ public class VehicleModelController {
 
     @RequestMapping(value = "update", method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<?> updateVehicleModel(@RequestBody updateRequest request) {
-        return new ResponseEntity<>(vehicleModelService.updateVehicleModel(request.newName, request.id), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(vehicleModelService.updateVehicleModel(request.newModel, request.newBrand, request.id), HttpStatus.ACCEPTED);
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.POST, consumes = "application/json")
@@ -56,7 +54,8 @@ public class VehicleModelController {
     }
 
     public static class vehicleModelRequest {
-        public String vehicleModelName;
+        public String model;
+        public String brand;
     }
 
     public static class Id {
@@ -64,7 +63,8 @@ public class VehicleModelController {
     }
 
     public static class updateRequest {
-        public String newName;
+        public String newModel;
+        public String newBrand;
         public Long id;
     }
 }

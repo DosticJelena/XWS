@@ -1,14 +1,22 @@
 package xws.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 public class RentingRequest {
+
+    //treba dodati prave statuse
+    public enum Status {
+        ACTIVE,PENDING
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,4 +24,11 @@ public class RentingRequest {
 
     @Column(nullable = false)
     private Long userId;
+
+    @Column
+    private Status status;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "rentingRequest",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    Set<RentingRequestVehicle> vehicles = new HashSet<>();
 }

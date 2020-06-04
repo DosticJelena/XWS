@@ -6,37 +6,45 @@ import { throwError } from 'rxjs';
 @Injectable()
 export class CarsService {
 
-  constructor(private http: HttpClient) { }
-  cars: any;
+    constructor(private http: HttpClient) { }
+    cars : any;
 
-  getCars() {
-    return this.http.get("http://localhost:8080/vehicle/vehicles", {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    })
+    getCars() {
+        return this.http.get(`http://localhost:8080/vehicle/vehicles`)
+        .pipe(
+          map((response: any) => {
+            this.cars = response.data;
+            const cars_data = response;
+            console.log(cars_data);
+            return cars_data;
+          }),
+          catchError((err: any) => {
+            return throwError(err);
+          })
+        )
+    }
+
+    getCar(id:number) {
+        return this.http.get(`http://localhost:8080/vehicle/vehicles/`+id)
+        .pipe(
+          map((response: any) => {
+            const cars_data = response;
+            return cars_data;
+          }),
+          catchError((err: any) => {
+            console.log(err);
+            return throwError(err);
+          })
+        )
+    }
+    getImages(id:number) {
+      return this.http.get(`http://localhost:8080/vehicle/pictures/`+id)
       .pipe(
         map((response: any) => {
-          this.cars = response.data;
-          const cars_data = response;
-          console.log(cars_data);
-          return cars_data;
+          const images = response;
+          return images;
         }),
         catchError((err: any) => {
-          return throwError(err);
-        })
-      )
-  }
-
-  getCar(id: number) {
-    return this.http.get(`http://localhost:8080/vehicle/vehicles/` + id)
-      .pipe(
-        map((response: any) => {
-          const cars_data = response;
-          return cars_data;
-        }),
-        catchError((err: any) => {
-          console.log(err);
           return throwError(err);
         })
       )

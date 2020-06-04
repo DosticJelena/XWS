@@ -8,7 +8,8 @@ import { CarsService } from '../cars.service';
     styleUrls: ['./car-details.css']
 })
 export class CarDetails {
-    car:any
+    car:any;
+    images:any;
 
     constructor(private route:ActivatedRoute, private carsService:CarsService){
 
@@ -20,5 +21,10 @@ export class CarDetails {
               this.car = data;
             }, (error) => alert(error.text)
           );
+        this.carsService.getImages(this.route.snapshot.params['id']).subscribe(
+          (data: any) => {
+            this.images = data;
+          }, (error) => alert(error.text)
+        );
     }
 }
