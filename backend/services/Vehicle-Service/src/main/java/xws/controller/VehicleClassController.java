@@ -11,7 +11,6 @@ import xws.service.VehicleClassService;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "vehicle-class", produces = MediaType.APPLICATION_JSON_VALUE)
 public class VehicleClassController {

@@ -9,3 +9,4 @@ public interface RentingRequestRepository extends JpaRepository<RentingRequest,L
 
     List<RentingRequest> findByUserId(Long id);
 }
+

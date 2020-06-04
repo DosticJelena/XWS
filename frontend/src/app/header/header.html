@@ -14,6 +14,7 @@
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
+        <a *ngIf="authService.isAuthenticated()" [routerLink]="['/new']" class="mr-3">New Ad</a>
         <a *ngIf="authService.isAuthenticated()" [routerLink]="['/cart']" class="mr-3">Cart</a>
         <a *ngIf="!authService.isAuthenticated()" [routerLink]="['/login']">Log In</a>
         <a *ngIf="authService.isAuthenticated()" class="mr-3">{{authService.currentUser.firstName}}'s Profile</a>
