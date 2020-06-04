@@ -84,9 +84,10 @@ export class CodebookService {
       )
   }
 
-  newVehicleModel(vehicleModelName: string) {
+  newVehicleModel(model: string, brand: string) {
     return this.http.post("http://localhost:8080/vehicle/vehicle-model/new", {
-      vehicleModelName: vehicleModelName
+      model: model,
+      brand: brand
     })
       .pipe(
         map((res: any) => {
@@ -134,9 +135,10 @@ export class CodebookService {
       )
   }
 
-  updateVehicleModel(newName: string, id: number) {
+  updateVehicleModel(newModel: string, newBrand: string, id: number) {
     return this.http.post("http://localhost:8080/vehicle/vehicle-model/update", {
-      newName: newName,
+      newModel: newModel,
+      newBrand: newBrand,
       id: id
     })
       .pipe(

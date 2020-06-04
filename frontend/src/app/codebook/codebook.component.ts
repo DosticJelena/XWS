@@ -12,7 +12,8 @@ export class CodebookComponent implements OnInit {
   vehicleModels = [];
   newFT = "";
   newVC = "";
-  newVM = "";
+  newVMM = "";
+  newVMB = "";
 
   constructor(private codebookService: CodebookService) { }
 
@@ -73,7 +74,7 @@ export class CodebookComponent implements OnInit {
   }
 
   addVehicleModel() {
-    this.codebookService.newVehicleModel(this.newVM)
+    this.codebookService.newVehicleModel(this.newVMM, this.newVMB)
       .subscribe(
         (data: any) => {
           console.log('Vehicle model added');

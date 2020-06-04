@@ -11,7 +11,6 @@ import xws.service.FuelTypeService;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "fuel-type", produces = MediaType.APPLICATION_JSON_VALUE)
 public class FuelTypeController {
