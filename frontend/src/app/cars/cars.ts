@@ -43,7 +43,7 @@ export class Cars implements OnInit {
           );
           
         this.today = this.calendar.getToday();
-        this.cars = this.carsService.getCars();
+        //this.cars = this.carsService.getCars();
         this.location = "Choose location";
         this.minDate = new NgbDate(this.today.year,this.today.month,this.today.day+2);
         this.minDateSecond = new NgbDate(this.today.year,this.today.month,this.today.day+2);
