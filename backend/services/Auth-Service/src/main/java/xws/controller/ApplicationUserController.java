@@ -30,6 +30,7 @@ public class ApplicationUserController {
                 UserResponseDTO ur = new UserResponseDTO();
                 ur.setUsername(au.getUsername());
                 ur.setStatus(au.getStatus());
+                ur.setId(au.getId());
                 response.add(ur);
             }
         }
