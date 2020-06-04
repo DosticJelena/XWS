@@ -1,0 +1,121 @@
+<div class="register">
+    <div class="layer">
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-12 register-column">
+                <h2>Create New Vehicle Ad</h2>
+                <hr />
+                <form #newCar="ngForm" novalidate autocomplete="off" (ngSubmit)="newVehicleRequest(newCar.value)">
+                    <div class="row">
+                        <div class="col-9">
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="brand">Brand</label>
+                                    <input (ngModel)="brand" name="brand" type="text"
+                                        class="form-control register-input" id="brand" placeholder="Brand">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="model">Model</label>
+                                    <input (ngModel)="model" name="model" type="text"
+                                        class="form-control register-input" id="model" placeholder="Model">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="location">Location</label>
+                                    <input (ngModel)="location" name="location" type="text"
+                                        class="form-control register-input" id="location" placeholder="Location">
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="fuelType">Fuel Type</label>
+                                    <input (ngModel)="fuelType" name="fuelType" type="text"
+                                        class="form-control register-input" id="brand" placeholder="Fuel Type">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="transmission">Transmission</label>
+                                    <input (ngModel)="transmission" name="transmission" type="text"
+                                        class="form-control register-input" id="transmission"
+                                        placeholder="Transmission">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="vehicleType">Vehicle Type</label>
+                                    <input (ngModel)="vehicleType" name="vehicleType" type="text"
+                                        class="form-control register-input" id="vehicleType" placeholder="Vehicle Type">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="distance">Distance</label>
+                                    <input (ngModel)="distance" name="distance" type="number"
+                                        class="form-control register-input" id="distance" placeholder="0.00">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="distancePerRent">
+                                        <div class="dpr-status custom-control custom-checkbox">
+                                            <input (ngModel)="distancePerRentStatus" type="checkbox"
+                                                (change)="setDprStatus()" class="custom-control-input"
+                                                id="distancePerRentStatus">
+                                            <label class="custom-control-label" for="distancePerRentStatus"></label>
+                                        </div>
+                                        Distance Per Rent
+                                    </label>
+                                    <input (ngModel)="distancePerRent" *ngIf="distancePerRentStatus"
+                                        name="distancePerRent" type="number" class="form-control register-input"
+                                        id="distancePerRent" placeholder="0.00">
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="price">Price</label>
+                                    <input (ngModel)="price" name="price" type="text"
+                                        class="form-control register-input" id="price" placeholder="Price">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="additionalPrice">Additional Price Per Km</label>
+                                    <input (ngModel)="additionalPrice" name="additionalPrice" type="text"
+                                        class="form-control register-input" id="additionalPrice"
+                                        placeholder="Additional Price">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="childrenSeats">Children Seats</label>
+                                    <input (ngModel)="childrenSeats" name="childrenSeats" type="number"
+                                        class="form-control register-input" id="childrenSeats" placeholder="0">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <div class="dropdown">
+                                        <label for="CDWStatus">CDW</label>
+                                        <button (ngModel)="CDWStatus" class="cdw-btn btn btn-secondary dropdown-toggle"
+                                            type="button" id="CDWStatus" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            {{CDWStatus}}
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="CDWStatus">
+                                            <a class="dropdown-item" (click)="changeCDW('Yes')">Yes</a>
+                                            <a class="dropdown-item" (click)="changeCDW('No')">No</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <h4>Images</h4>
+                            <button class="btn img-btn">Add</button>
+                            <div class="images-div">
+                                <div class="single-img">
+                                    <p>img1.png</p>
+                                    <p>img2.png</p>
+                                    <p>img3.png</p>
+                                    <p>img4.png</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <button type="submit" class="btn btn-warning">Create</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
