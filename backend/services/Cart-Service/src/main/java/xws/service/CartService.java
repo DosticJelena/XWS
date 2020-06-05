@@ -37,7 +37,7 @@ public class CartService {
     }
     public VehiclesInCartDTOResponse addVehicleToCart(AddVehicleToCartRequestDTO requestDTO) {
         Cart c = this.findOneByUserId(requestDTO.getUserId());
-        VehicleCart v = vehicleService.findOneById(requestDTO.getCarId());
+        VehicleCart v = vehicleService.findOneById(requestDTO.getVehicleId());
         c.getVehicles().add(v);
         cartRepository.save(c);
         VehiclesInCartDTOResponse response = new VehiclesInCartDTOResponse();

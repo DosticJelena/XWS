@@ -15,14 +15,14 @@ public class RentingRequest {
 
     //treba dodati prave statuse
     public enum Status {
-        ACTIVE,PENDING
+        ACTIVE,PENDING,ACCEPTED,DECLINED
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column
     private Long userId;
 
     @Column

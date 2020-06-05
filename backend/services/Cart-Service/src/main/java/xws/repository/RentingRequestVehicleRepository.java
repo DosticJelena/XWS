@@ -3,6 +3,9 @@ package xws.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import xws.model.RentingRequestVehicle;
 
-public interface RentingRequestVehicleRepository extends JpaRepository<RentingRequestVehicle, RentingRequestVehicle.RentingRequestVehicleId> {
+import java.time.LocalDateTime;
+import java.util.List;
 
+public interface RentingRequestVehicleRepository extends JpaRepository<RentingRequestVehicle, RentingRequestVehicle.RentingRequestVehicleId> {
+    List<RentingRequestVehicle> findByVehicleId(Long id);
 }
