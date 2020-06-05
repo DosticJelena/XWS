@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { CarsService } from '../cars.service';
+import { Router } from '@angular/router';
+import { NotifierService } from "angular-notifier";
 
 @Component({
     selector: 'new-car',
@@ -7,6 +9,9 @@ import { CarsService } from '../cars.service';
     styleUrls: ['./new-car.css']
 })
 export class NewCar implements OnInit {
+    showInput: any = false;
+    imageURL: any = "";
+
     location: any;
     brand: any;
     model: any;
@@ -22,8 +27,9 @@ export class NewCar implements OnInit {
     distancePerRentStatus: any = false;
     CDWStatus: any = "No";
     childrenSeats: any = 0;
+    images: any = [];
 
-    constructor(private carsService: CarsService) {
+    constructor(private carsService: CarsService, private router: Router, private notifierService: NotifierService) {
 
     }
 
@@ -35,6 +41,9 @@ export class NewCar implements OnInit {
         let DPRstatus: any;
         // validacija...
         this.location = formValues.location;
+        this.transmission = formValues.transmission;
+        this.fuelType = formValues.fuelType;
+        this.vehicleType = formValues.vehicleType;
         this.brand = formValues.brand;
         this.model = formValues.model;
         this.distance = formValues.distance;
@@ -43,7 +52,7 @@ export class NewCar implements OnInit {
         this.price = formValues.price;
         this.additionalPrice = formValues.additionalPrice;
         this.childrenSeats = formValues.childrenSeats;
-        // srediti
+        
         let newValues = {
             brand: this.brand,
             model: this.model,
@@ -56,16 +65,21 @@ export class NewCar implements OnInit {
             DPRstatus: DPRstatus,
             additionalPrice: this.additionalPrice,
             childrenSeats: this.childrenSeats,
-            CDWStatus: this.CDWStatus
+            CDWStatus: this.CDWStatus,
+            pictures: this.images
         }
 
         this.carsService.addNewVehicle(newValues)
-        .subscribe(
-            (data: any) => {
-              console.log('Added new vehicle.');
-              console.log(data);
-            }, (error) => alert(error.text)
-          );;
+            .subscribe(
+                (data: any) => {
+                    console.log(data);
+                    //this.notifierService.notify("Success!","New Vehicle added.");
+                    this.router.navigate(['car/' + data.id]);
+                }, (error) => {
+                    console.log(error.text);
+                    this.notifierService.notify("Error!", error.text);
+                }
+            );;
     }
 
     setDprStatus() {
@@ -79,4 +93,23 @@ export class NewCar implements OnInit {
     changeCDW(yesNo: String) {
         this.CDWStatus = yesNo;
     }
+
+    showInputField() {
+        this.showInput = true;
+    }
+
+    hideInputField() {
+        this.showInput = false;
+    }
+
+    onKey(event) {
+        this.imageURL = event.target.value;
+    }
+
+    addImage() {
+        this.images.push(this.imageURL);
+        this.imageURL = "";
+        this.hideInputField();
+    }
+
 }

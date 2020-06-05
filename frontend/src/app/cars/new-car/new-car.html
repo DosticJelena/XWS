@@ -100,13 +100,15 @@
                         </div>
                         <div class="col-3">
                             <h4>Images</h4>
-                            <button class="btn img-btn">Add</button>
+                            <a (click)="showInputField()" class="btn img-btn">Add</a>
                             <div class="images-div">
                                 <div class="single-img">
-                                    <p>img1.png</p>
-                                    <p>img2.png</p>
-                                    <p>img3.png</p>
-                                    <p>img4.png</p>
+                                    <div *ngFor="let img of images">
+                                        <p>{{img}}</p>
+                                    </div>
+                                    <input (change)="onKey($event)" *ngIf="showInput" type="text" class="form-control register-input" placeholder="Image URL">
+                                    <a (click)="addImage()" *ngIf="showInput" class="btn btn-ok">OK</a>
+                                    <a (click)="hideInputField()" *ngIf="showInput" class="btn btn-ok">Close</a>
                                 </div>
                             </div>
                         </div>
