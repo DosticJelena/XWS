@@ -7,3 +7,11 @@ INSERT INTO public.vehicle(user_id, cdwstatus, additional_price_per_km, brand, c
 
 INSERT INTO public.picture(url, vehicle_id)	VALUES ('https://autorepublika.com/wp-content/uploads/2019/08/bmw-x5-protection2.jpg', 1);
 INSERT INTO public.picture(url, vehicle_id)	VALUES ('https://autorepublika.com/wp-content/uploads/2019/10/20.jpg', 1);
+
+INSERT INTO public.fuel_type(fuel_type, status) VALUES ('Diesel', 0);
+INSERT INTO public.fuel_type(fuel_type, status) VALUES ('Petrol', 0);
+
+INSERT INTO public.vehicle_class(vehicle_class, status) VALUES ('Limousine', 0);
+
+INSERT INTO public.vehicle_model(brand, model, status) VALUES ('AUDI', 'A3', 0);
+INSERT INTO public.vehicle_model(brand, model, status) VALUES ('AUDI', 'A4', 0);

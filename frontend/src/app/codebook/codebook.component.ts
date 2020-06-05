@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CodebookService } from '../services/codebook.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { NewFuelTypeComponent } from '../new-fuel-type/new-fuel-type.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-codebook',
@@ -14,8 +17,13 @@ export class CodebookComponent implements OnInit {
   newVC = "";
   newVMM = "";
   newVMB = "";
+  activeInputFT = [];
+  activeInputVC = [];
+  activeInputVM = [];
 
-  constructor(private codebookService: CodebookService) { }
+  constructor(public dialog: MatDialog,
+    private modalService: NgbModal,
+    private codebookService: CodebookService) { }
 
   ngOnInit(): void {
     this.getFuelTypes();
@@ -29,6 +37,13 @@ export class CodebookComponent implements OnInit {
         (data: any) => {
           console.log('Got fuel types.');
           this.fuelTypes = Object.assign([], (data));
+
+          this.activeInputFT = [];
+          for(let i=0;i<this.fuelTypes.length;i++) {
+            this.activeInputFT.push(false);
+          }
+
+          console.log(this.activeInputFT);
         }, (error) => alert(error.text)
       )
   }
@@ -39,6 +54,13 @@ export class CodebookComponent implements OnInit {
         (data: any) => {
           console.log('Got vehicle classes.');
           this.vehicleClasses = Object.assign([], (data));
+
+          this.activeInputVC = [];
+          for(let i=0;i<this.vehicleClasses.length;i++) {
+            this.activeInputVC.push(false);
+          }
+
+          console.log(this.activeInputVC);
         }, (error) => alert(error.text)
       )
   }
@@ -49,6 +71,13 @@ export class CodebookComponent implements OnInit {
         (data: any) => {
           console.log('Got vehicle models.');
           this.vehicleModels = Object.assign([], (data));
+
+          this.activeInputVM = [];
+          for(let i=0;i<this.vehicleModels.length;i++) {
+            this.activeInputVM.push(false);
+          }
+
+          console.log(this.activeInputVM);
         }, (error) => alert(error.text)
       )
   }
@@ -111,5 +140,9 @@ export class CodebookComponent implements OnInit {
           this.getVehicleModels();
         }, (error) => alert(error.text)
       );
+  }
+
+  aaa() {
+    const dialogRef = this.dialog.open(NewFuelTypeComponent);
   }
 }

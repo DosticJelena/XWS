@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
 import { appRoutes } from './routes';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AuthService } from './auth/auth.service';
 import { ToastrService } from './common/toastr.service';
@@ -24,6 +26,7 @@ import { ShooppingCart } from './shopping-cart/shopping-cart';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { NewCar } from './cars/new-car/new-car';
 import { CodebookComponent } from './codebook/codebook.component';
+import { NewFuelTypeComponent } from './new-fuel-type/new-fuel-type.component';
 import { NotifierModule } from "angular-notifier";
 
 @NgModule({
@@ -38,7 +41,8 @@ import { NotifierModule } from "angular-notifier";
     CarDetails,
     ShooppingCart,
     ManageUsersComponent,
-    CodebookComponent
+    CodebookComponent,
+    NewFuelTypeComponent
   ],
   imports: [
     NgbModule,
@@ -46,6 +50,9 @@ import { NotifierModule } from "angular-notifier";
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    MatDialogModule,
     NotifierModule,
     RouterModule.forRoot(appRoutes)
   ],
