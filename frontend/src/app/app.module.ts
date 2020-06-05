@@ -24,6 +24,7 @@ import { ShooppingCart } from './shopping-cart/shopping-cart';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { NewCar } from './cars/new-car/new-car';
 import { CodebookComponent } from './codebook/codebook.component';
+import { NotifierModule } from "angular-notifier";
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { CodebookComponent } from './codebook/codebook.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NotifierModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
