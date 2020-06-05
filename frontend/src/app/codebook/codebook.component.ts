@@ -19,7 +19,12 @@ export class CodebookComponent implements OnInit {
   newVMB = "";
   activeInputFT = [];
   activeInputVC = [];
-  activeInputVM = [];
+  activeInputVMM = [];
+  activeInputVMB = [];
+  fuelTypeNames = [];
+  vehicleClassNames = [];
+  vehicleBrands = [];
+  vehicleModelNames = [];
 
   constructor(public dialog: MatDialog,
     private modalService: NgbModal,
@@ -39,11 +44,14 @@ export class CodebookComponent implements OnInit {
           this.fuelTypes = Object.assign([], (data));
 
           this.activeInputFT = [];
-          for(let i=0;i<this.fuelTypes.length;i++) {
-            this.activeInputFT.push(false);
+          this.fuelTypeNames = [];
+          for (let i = 0; i < this.fuelTypes.length; i++) {
+            this.activeInputFT.push(true);
+            this.fuelTypeNames.push(this.fuelTypes[i].fuelType);
           }
 
           console.log(this.activeInputFT);
+          console.log(this.fuelTypeNames);
         }, (error) => alert(error.text)
       )
   }
@@ -56,11 +64,14 @@ export class CodebookComponent implements OnInit {
           this.vehicleClasses = Object.assign([], (data));
 
           this.activeInputVC = [];
-          for(let i=0;i<this.vehicleClasses.length;i++) {
-            this.activeInputVC.push(false);
+          this.vehicleClassNames = [];
+          for (let i = 0; i < this.vehicleClasses.length; i++) {
+            this.activeInputVC.push(true);
+            this.vehicleClassNames.push(this.vehicleClasses[i].vehicleClass);
           }
 
           console.log(this.activeInputVC);
+          console.log(this.vehicleClassNames);
         }, (error) => alert(error.text)
       )
   }
@@ -72,12 +83,21 @@ export class CodebookComponent implements OnInit {
           console.log('Got vehicle models.');
           this.vehicleModels = Object.assign([], (data));
 
-          this.activeInputVM = [];
-          for(let i=0;i<this.vehicleModels.length;i++) {
-            this.activeInputVM.push(false);
+          this.activeInputVMM = [];
+          this.activeInputVMB = [];
+          this.vehicleBrands = [];
+          this.vehicleModelNames = [];
+          for (let i = 0; i < this.vehicleModels.length; i++) {
+            this.activeInputVMM.push(true);
+            this.activeInputVMB.push(true);
+            this.vehicleBrands.push(this.vehicleModels[i].brand);
+            this.vehicleModelNames.push(this.vehicleModels[i].model);
           }
 
-          console.log(this.activeInputVM);
+          console.log(this.activeInputVMM);
+          console.log(this.activeInputVMB);
+          console.log(this.vehicleBrands);
+          console.log(this.vehicleModelNames);
         }, (error) => alert(error.text)
       )
   }
@@ -142,7 +162,63 @@ export class CodebookComponent implements OnInit {
       );
   }
 
-  aaa() {
-    const dialogRef = this.dialog.open(NewFuelTypeComponent);
+  editFT(i: any) {
+    this.activeInputFT[i] = !this.activeInputFT[i];
+  }
+
+  editVC(i: any) {
+    this.activeInputVC[i] = !this.activeInputVC[i];
+  }
+
+  editVMB(i: any) {
+    this.activeInputVMB[i] = !this.activeInputVMB[i];
+  }
+
+  editVMM(i: any) {
+    this.activeInputVMM[i] = !this.activeInputVMM[i];
+  }
+
+  updateFT(i: any, id: number) {
+    this.activeInputFT[i] = !this.activeInputFT[i];
+    this.codebookService.updateFuelType(this.fuelTypeNames[i], id)
+      .subscribe(
+        (data: any) => {
+          console.log('Fuel type updated');
+          this.getFuelTypes();
+        }, (error) => alert(error.text)
+      );
+  }
+
+  updateVC(i: any, id: number) {
+    this.activeInputVC[i] = !this.activeInputVC[i];
+    this.codebookService.updateVehicleClass(this.vehicleClassNames[i], id)
+      .subscribe(
+        (data: any) => {
+          console.log('Vehicle class updated');
+          this.getVehicleClasses();
+        }, (error) => alert(error.text)
+      );
+  }
+
+  updateVMB(i: any, id: number) {
+    this.activeInputVMB[i] = !this.activeInputVMB[i];
+    this.codebookService.updateVehicleModel(this.vehicleModelNames[i], this.vehicleBrands[i], id)
+      .subscribe(
+        (data: any) => {
+          console.log('Vehicle brand updated');
+          this.getVehicleModels();
+        }, (error) => alert(error.text)
+      );
+  }
+
+  updateVMM(i: any, id: number) {
+    this.activeInputVMM[i] = !this.activeInputVMM[i];
+    this.codebookService.updateVehicleModel(this.vehicleModelNames[i], this.vehicleBrands[i], id)
+      .subscribe(
+        (data: any) => {
+          console.log('Vehicle model updated');
+          this.getVehicleModels();
+        }, (error) => alert(error.text)
+      );
   }
 }
