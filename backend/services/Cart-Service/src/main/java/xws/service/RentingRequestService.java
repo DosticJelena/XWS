@@ -2,7 +2,9 @@ package xws.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import rx.schedulers.Schedulers;
 import xws.dto.request.CreateRentingRequestRequestDTO;
+import xws.dto.request.ManuallyReserveVehicleRequestDTO;
 import xws.dto.response.RentingRequestResponseDTO;
 import xws.model.Cart;
 import xws.model.RentingRequest;
@@ -27,6 +29,9 @@ public class RentingRequestService {
 
     @Autowired
     private RentingRequestVehicleRepository rentingRequestVehicleRepository;
+
+    @Autowired
+    private VehicleService vehicleService;
 
     public List<RentingRequestResponseDTO> findAllById(Long id) {
         List<RentingRequest> rentingRequests = rentingRequestRepository.findByUserId(id);
@@ -97,5 +102,37 @@ public class RentingRequestService {
         cart.setVehicles(new HashSet<>());
         cartService.save(cart);
         return response;
+    }
+    public RentingRequest manualyReserveVehicle(ManuallyReserveVehicleRequestDTO requestDTO) {
+        VehicleCart v = vehicleService.findOneById(requestDTO.getVehicleId());
+        RentingRequest r = new RentingRequest();
+        r.setStatus(RentingRequest.Status.ACCEPTED);
+        RentingRequestVehicle rrv = new RentingRequestVehicle();
+        rrv.setId(new RentingRequestVehicle.RentingRequestVehicleId(r.getId(),v.getId()));
+        rrv.setRentingRequest(r);
+        rrv.setVehicle(v);
+        LocalDateTime startDate = LocalDateTime.of(2020,1,10,0,0);
+        LocalDateTime endDate = LocalDateTime.of(2020,1,20,0,0);
+        rrv.setStartDate(startDate);
+        rrv.setEndDate(endDate);
+
+
+        List<RentingRequestVehicle> rentingRequestVehicles = rentingRequestVehicleRepository.findByVehicleId(v.getId());
+        for(RentingRequestVehicle rentingRequestVehicle : rentingRequestVehicles){
+            if(rentingRequestVehicle.getRentingRequest().getStatus().equals(RentingRequest.Status.PENDING) &&
+                    (((rentingRequestVehicle.getStartDate().isAfter(startDate) || startDate.isEqual(startDate)) && rentingRequestVehicle.getStartDate().isBefore(endDate)) ||
+                    (rentingRequestVehicle.getEndDate().isAfter(startDate) && (rentingRequestVehicle.getEndDate().isBefore(endDate) || rentingRequestVehicle.getEndDate().isEqual(endDate))) ||
+                    ((rentingRequestVehicle.getStartDate().isAfter(startDate) || rentingRequestVehicle.getStartDate().isEqual(startDate)) && (rentingRequestVehicle.getEndDate().isBefore(endDate) || rentingRequestVehicle.getEndDate().isEqual(endDate))))){
+                rentingRequestVehicle.getRentingRequest().setStatus(RentingRequest.Status.DECLINED);
+                rentingRequestVehicleRepository.save(rentingRequestVehicle);
+            }
+        }
+        rentingRequestRepository.save(r);
+        rentingRequestVehicleRepository.save(rrv);
+
+
+        return r;
+
+
     }
 }

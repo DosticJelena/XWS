@@ -1,6 +1,5 @@
 package xws.dto.request;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,9 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-public class AddVehicleToCartRequestDTO {
-    private Long userId;
+public class ManuallyReserveVehicleRequestDTO {
     private Long vehicleId;
+    private String startDate;
+    private String endDate;
 
 }
