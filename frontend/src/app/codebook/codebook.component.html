@@ -1,19 +1,62 @@
 <div class="content">
-    <div class="fuel-types" *ngFor="let fuelType of fuelTypes; let i = index">
-        <input type="text" [attr.disabled]="activeInputFT[i] ? '' : null" [(ngModel)]="fuelTypeNames[i]"/> <button class="btn btn-primary btn-sm" *ngIf="activeInputFT[i]" (click)="editFT(i)">Edit</button> <button class="btn btn-success btn-sm" *ngIf="!activeInputFT[i]" (click)="updateFT(i, fuelType.id)">Confirm</button> <button class="btn btn-danger btn-sm" (click)="deleteFuelType(fuelType.id)">Delete</button>
+    <h2>Codebook</h2>
+    <hr />
+    <div class="row">
+        <div class="col-6">
+            <h4>Fuel Types</h4>
+            <div class="fuel-types" *ngFor="let fuelType of fuelTypes; let i = index">
+                <input type="text" [attr.disabled]="activeInputFT[i] ? '' : null" [(ngModel)]="fuelTypeNames[i]" />
+                <button class="btn btn-primary btn-sm btn-edit" *ngIf="activeInputFT[i]"
+                    (click)="editFT(i)">Edit</button>
+                <button class="btn btn-success btn-sm btn-confirm" *ngIf="!activeInputFT[i]"
+                    (click)="updateFT(i, fuelType.id)">Confirm</button>
+                <button class="btn btn-danger btn-sm btn-delete" (click)="deleteFuelType(fuelType.id)">Delete</button>
+            </div>
+            <br />
+            <label>New Fuel Type:</label>
+            <input type="text" [(ngModel)]="newFT" placeholder="Fuel Type" />
+            <button class="btn btn-success btn-sm btn-confirm" (click)="addFuelType()">Add Fuel Type</button>
+        </div>
+        <div class="col-6">
+            <h4>Vehicle Classes</h4>
+            <div class="vehicle-classes" *ngFor="let vehicleClass of vehicleClasses; let i = index">
+                <input type="text" [attr.disabled]="activeInputVC[i] ? '' : null" [(ngModel)]="vehicleClassNames[i]" />
+                <button class="btn btn-primary btn-sm btn-edit" *ngIf="activeInputVC[i]"
+                    (click)="editVC(i)">Edit</button>
+                <button class="btn btn-success btn-sm btn-confirm" *ngIf="!activeInputVC[i]"
+                    (click)="updateVC(i, vehicleClass.id)">Confirm</button>
+                <button class="btn btn-danger btn-sm btn-delete"
+                    (click)="deleteVehicleClass(vehicleClass.id)">Delete</button>
+            </div>
+            <br />
+            <label>New Vehicle Class:</label>
+            <input type="text" [(ngModel)]="newVC" placeholder="Vehicle Class" />
+            <button class="btn btn-success btn-sm btn-confirm" (click)="addVehicleClass()">Add Vehicle Class</button>
+        </div>
     </div>
-
-    <div class="vehicle-classes" *ngFor="let vehicleClass of vehicleClasses; let i = index">
-        <input type="text" [attr.disabled]="activeInputVC[i] ? '' : null" [(ngModel)]="vehicleClassNames[i]"/> <button class="btn btn-primary btn-sm" *ngIf="activeInputVC[i]" (click)="editVC(i)">Edit</button> <button class="btn btn-success btn-sm" *ngIf="!activeInputVC[i]" (click)="updateVC(i, vehicleClass.id)">Confirm</button> <button class="btn btn-danger btn-sm" (click)="deleteVehicleClass(vehicleClass.id)">Delete</button>
+    <hr />
+    <div class="row">
+        <div class="col-12">
+            <h4>Vehicle Models</h4>
+            <div class="vehicle-models" *ngFor="let vehicleModel of vehicleModels; let i = index">
+                <input type="text" [attr.disabled]="activeInputVMB[i] ? '' : null" [(ngModel)]="vehicleBrands[i]" />
+                <input type="text" [attr.disabled]="activeInputVMM[i] ? '' : null" [(ngModel)]="vehicleModelNames[i]" />
+                <button class="btn btn-primary btn-sm btn-edit" *ngIf="activeInputVMB[i]" (click)="editVMB(i)">Edit
+                    Brand</button>
+                <button class="btn btn-success btn-sm btn-confirm" *ngIf="!activeInputVMB[i]"
+                    (click)="updateVMB(i, vehicleModel.id)">Confirm Brand</button>
+                <button class="btn btn-primary btn-sm btn-edit" *ngIf="activeInputVMM[i]" (click)="editVMM(i)">Edit
+                    Model</button>
+                <button class="btn btn-success btn-sm btn-confirm" *ngIf="!activeInputVMM[i]"
+                    (click)="updateVMM(i, vehicleModel.id)">Confirm Model</button>
+                <button class="btn btn-danger btn-sm btn-delete"
+                    (click)="deleteVehicleModel(vehicleModel.id)">Delete</button>
+            </div>
+            <br />
+            <label>New Vehicle Model:</label>
+            <input type="text" [(ngModel)]="newVMB" placeholder="Brand" />
+            <input type="text" [(ngModel)]="newVMM" placeholder="Model" />
+            <button class="btn btn-success btn-sm btn-confirm" (click)="addVehicleModel()">Add Vehicle Model</button>
+        </div>
     </div>
-
-    <div class="vehicle-models" *ngFor="let vehicleModel of vehicleModels; let i = index">
-        <input type="text" [attr.disabled]="activeInputVMB[i] ? '' : null" [(ngModel)]="vehicleBrands[i]"/> <input type="text" [attr.disabled]="activeInputVMM[i] ? '' : null" [(ngModel)]="vehicleModelNames[i]"/> <button class="btn btn-primary btn-sm" *ngIf="activeInputVMB[i]" (click)="editVMB(i)">Edit Brand</button> <button class="btn btn-success btn-sm" *ngIf="!activeInputVMB[i]" (click)="updateVMB(i, vehicleModel.id)">Confirm Brand</button> <button class="btn btn-primary btn-sm" *ngIf="activeInputVMM[i]" (click)="editVMM(i)">Edit Model</button> <button class="btn btn-success btn-sm" *ngIf="!activeInputVMM[i]" (click)="updateVMM(i, vehicleModel.id)">Confirm Model</button> <button class="btn btn-danger btn-sm" (click)="deleteVehicleModel(vehicleModel.id)">Delete</button>
-    </div>
-</div>
-
-<div class="add-new">
-    New Fuel Type: <input type="text" [(ngModel)]="newFT" /> <button class="btn btn-success btn-sm" (click)="addFuelType()">Add Fuel Type</button>
-    New Vehicle Class: <input type="text" [(ngModel)]="newVC" /> <button class="btn btn-success btn-sm" (click)="addVehicleClass()">Add Vehicle Class</button>
-    New Vehicle Model: <input type="text" [(ngModel)]="newVMB" /> <input type="text" [(ngModel)]="newVMM" /> <button class="btn btn-success btn-sm" (click)="addVehicleModel()">Add Vehicle Model</button>
 </div>

@@ -1,3 +1,60 @@
 .content {
     color: darkgoldenrod;
+    margin: 50px 80px;
+    padding: 0 60px;
+    border-left: silver 1px solid; 
+    border-right: silver 1px solid; 
+}
+
+.content hr {
+    background-color: silver;
+}
+
+.content .row {
+    padding: 20px;
+    max-height: 30vh;
+    overflow: auto;
+}
+
+.content label {
+    display: block;
+}
+
+.content input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: darkgoldenrod 1px solid;
+    color: lightgray;
+    margin-bottom: 8px;
+    margin-right: 7px;
+}
+
+.btn-edit {
+    background-color: transparent;
+    border: 1px solid darkgoldenrod;
+    margin: 0 7px;
+}
+
+.btn-edit:hover {
+    background-color: darkgoldenrod;
+}
+
+.btn-delete {
+    background-color: transparent;
+    border: 1px solid rgb(180, 10, 10);
+    margin: 0 7px;
+}
+
+.btn-delete:hover {
+    background-color: rgb(180, 10, 10);
+}
+
+.btn-confirm {
+    background-color: transparent;
+    border: 1px solid rgb(15, 92, 15);
+    margin: 0 7px;
+}
+
+.btn-confirm:hover {
+    background-color: rgb(15, 92, 15);
 }
