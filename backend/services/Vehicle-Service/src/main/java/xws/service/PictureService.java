@@ -23,4 +23,8 @@ public class PictureService {
         }
         return ret;
     }
+
+    public List<Picture> getAll() {
+        return pictureRepository.findAll();
+    }
 }

@@ -1,58 +1,57 @@
 <div class="cars">
     <h2>Browse Car Models</h2>
-    <hr />
-    <filter-buttons></filter-buttons>
     <hr style="color: rgb(39, 39, 39)" />
     <div>
-    
+
         <div class="row">
-            <div class="btn-group">
-                <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    {{location}}
-                </button>
-                <div  class="dropdown-menu" >
-                       <a class ='btn' ><i (click)="setLocation('NS')" class="la la-trash"> NS</i></a><br>
-                       <a class ='btn' ><i (click)="setLocation('BG')" class="la la-trash"> BG</i></a>
+            <div class="col-2">
+                <div class="dateFrom">
+                    <input class="form-control" placeholder="Start date" id="date" name="dp" name="datum"
+                        [(ngModel)]="startDate" [minDate]="minDate" ngbDatepicker #d="ngbDatepicker" required>
+    
+                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><img
+                            src="../../assets/images/calendar.png" alt="calendar"
+                            style="width: 1.2rem; height: 1.2rem; cursor: pointer;" /></button>
+                    <ngb-timepicker [(ngModel)]="timeFrom"></ngb-timepicker>
+    
                 </div>
-                
             </div>
-            
-           
-           
-            <button (click)="filterCars()" class="btn btn-warning btn-show">
-                Filter
-            </button>
+            <div class="col-2">
+                <div class="dateTo">
+                    <input class="form-control" placeholder="End date" id="date" name="dp" name="datum"
+                        [(ngModel)]="endDate" [minDate]="minDateSecond" ngbDatepicker #to="ngbDatepicker" required>
     
-            <button (click)="showHideAdditional()" class="btn btn-warning btn-show">
-                {{showAdditional ? "Hide" : "More"}}
-            </button>
-        </div>
-        <br>
-        <div class="row">
-        <div class="dateFrom">
-            <input class="form-control" placeholder="Start date" id="date" name="dp" name="datum"
-                [(ngModel)]="startDate" [minDate]="minDate" ngbDatepicker #d="ngbDatepicker" required>
-            
-                <button class="btn btn-outline-secondary calendar"  (click)="d.toggle()" type="button"><img
-                        src="../../assets/images/calendar.png" alt="calendar"
-                        style="width: 1.2rem; height: 1.2rem; cursor: pointer;" /></button>
-                <ngb-timepicker [(ngModel)]="timeFrom"></ngb-timepicker>
+                    <button class="btn btn-outline-secondary calendar" (click)="to.toggle()" type="button"><img
+                            src="../../assets/images/calendar.png" alt="calendar"
+                            style="width: 1.2rem; height: 1.2rem; cursor: pointer;" /></button>
+                    <ngb-timepicker [(ngModel)]="timeTo" show-spinners="false"></ngb-timepicker>
+    
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        {{location}}
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class='btn'><i (click)="setLocation('Novi Sad')" class="la la-trash">Novi Sad</i></a><br>
+                        <a class='btn'><i (click)="setLocation('Beograd')" class="la la-trash">Beograd</i></a>
+                    </div>
+                </div>
+                <button (click)="showHideAdditional()" class="btn btn-warning btn-show">
+                    {{showAdditional ? "Hide" : "More Filters"}}
+                </button>
+            </div>
+            <div class="col-2">
+                <button (click)="filterCars()" class="btn btn-warning btn-filter-click">
+                    Filter
+                </button>
+            </div>
             
         </div>
         
-        <div class="dateTo">
-            <input class="form-control" placeholder="End date" id="date" name="dp" name="datum"
-                [(ngModel)]="endDate" [minDate]="minDateSecond" ngbDatepicker #to="ngbDatepicker" required>
-            
-                <button class="btn btn-outline-secondary calendar" (click)="to.toggle()" type="button"><img
-                        src="../../assets/images/calendar.png" alt="calendar"
-                        style="width: 1.2rem; height: 1.2rem; cursor: pointer;" /></button>
-                <ngb-timepicker [(ngModel)]="timeTo" show-spinners="false"></ngb-timepicker>
-            
-        </div>
-        </div>
-        <hr  *ngIf="showAdditional" />
+        <hr *ngIf="showAdditional" />
         <div class="row">
             <div *ngIf="showAdditional" class="additional-btns">
                 <div class="btn-group">
@@ -151,6 +150,8 @@
                 </div>
             </div>
         </div>
+        <hr />
+
     </div>
     <div class="row">
         <div *ngFor="let car of cars" class="col-lg-4 col-md-6 col-sm-6 col-12">
@@ -158,9 +159,11 @@
                 <div class="carItem">
                     <h5>{{car.brand}} | {{car.model}} ({{car.price}})</h5>
                     <hr style="background-color: gray;" />
-                    <div style="min-height: 150px;"><img width="500" height="400" src="https://autorepublika.com/wp-content/uploads/2019/08/bmw-x5-protection2.jpg"></div>
+                    <div style="max-height: 150px;"><img height="150" widht="250"
+                            src="https://autorepublika.com/wp-content/uploads/2019/08/bmw-x5-protection2.jpg"></div>
                     <br />
-                    <button [routerLink]="['/car',car.id]" style="display: block;" class="btn details-btn">See details</button>
+                    <button [routerLink]="['/car',car.id]" style="display: block;" class="btn details-btn">See
+                        details</button>
                 </div>
             </div>
         </div>

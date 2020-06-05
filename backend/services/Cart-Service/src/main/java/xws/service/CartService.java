@@ -59,5 +59,8 @@ public class CartService {
         c.setUserId(requestDTO.userId);
         return cartRepository.save(c);
     }
+    public Cart save(Cart cart) {
+        return cartRepository.save(cart);
+    }
 
 }
