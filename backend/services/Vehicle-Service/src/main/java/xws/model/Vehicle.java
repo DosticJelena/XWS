@@ -1,11 +1,15 @@
 package xws.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -59,6 +63,10 @@ public class Vehicle {
 
     @Column
     private int childrenSeats;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "vehicle",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private Set<Picture> pictures = new HashSet<>();
 
 
 }

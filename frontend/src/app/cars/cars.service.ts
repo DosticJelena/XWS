@@ -81,7 +81,8 @@ export class CarsService {
             distancePerRentStatus: values.DPRstatus,
             additionalPricePerKm: values.additionalPrice,
             childrenSeats: values.childrenSeats,
-            cdwstatus: values.CDWStatus
+            cdwstatus: values.CDWStatus,
+            pictures: values.pictures
         })
             .pipe(
                 map((res: any) => {

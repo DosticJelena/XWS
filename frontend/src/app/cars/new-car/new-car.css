@@ -45,6 +45,18 @@
     color:white;
 }
 
+.btn-ok {
+    margin-top: 7px;
+    background-color: darkgoldenrod;
+    border-color: darkgoldenrod;
+    color:white;
+    margin-right: 10px;
+}
+
+.img-btn:hover, .btn-ok:hover {
+    color: rgb(39, 39, 39);
+}
+
 .images-div {
     overflow: auto;
     padding: 10px;

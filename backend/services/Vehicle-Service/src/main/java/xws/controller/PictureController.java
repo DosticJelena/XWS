@@ -18,6 +18,11 @@ public class PictureController {
     @Autowired
     PictureService pictureService;
 
+    @RequestMapping(value = "/", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
+    public List<Picture> getAll() {
+        return pictureService.getAll();
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     public List<String> getById(@PathVariable("id") Long id) {
         System.out.println("EVO GA "+id);

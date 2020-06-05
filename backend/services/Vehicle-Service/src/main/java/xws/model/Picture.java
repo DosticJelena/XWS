@@ -1,5 +1,6 @@
 package xws.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ public class Picture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(nullable = false)
     private Vehicle vehicle;

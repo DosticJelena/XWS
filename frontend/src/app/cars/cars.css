@@ -8,7 +8,7 @@
     background-color: darkgoldenrod;
     color: rgb(39, 39, 39);
     border: 0;
-    margin: 0 20px;
+    margin-right: 20px;
 }
 
 .background {
@@ -16,6 +16,19 @@
     background-size: cover;
     position: relative;
     border-radius: 10px 0 0 10px;
+}
+
+.btn-show {
+    margin-right: 20px;
+    margin-top: 20px;
+    background-color: transparent;
+    border: 2px solid darkgoldenrod;
+    color: rgb(39, 39, 39);
+}
+
+.btn-filter-click {
+    background-color: darkgoldenrod;
+    border-color: darkgoldenrod;
 }
 
 .carItem {
@@ -40,4 +53,9 @@
 .details-btn:hover {
     color: rgb(39, 39, 39);
     background-color: darkgoldenrod;
+}
+
+.additional-btns {
+    margin-bottom: 15px;
+    margin-left: 20px;
 }
