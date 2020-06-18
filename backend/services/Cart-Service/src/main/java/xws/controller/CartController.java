@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import xws.dto.request.AddVehicleToCartRequestDTO;
+import xws.dto.request.CartRequestDTO;
 import xws.model.Cart;
 import xws.service.CartService;
 
@@ -20,7 +21,7 @@ public class CartController {
       * @param id
      * @return
      */
-    @RequestMapping(value = "/get/{id}",method = RequestMethod.GET,produces = "application/json")
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET,produces = "application/json")
     public ResponseEntity<?> getCart(@PathVariable Long id) {
         return new ResponseEntity<>(cartService.getAllVehicles(id), HttpStatus.ACCEPTED);
     }
@@ -30,7 +31,7 @@ public class CartController {
      * @param requestDTO
      * @return
      */
-    @RequestMapping(value = "/add",method = RequestMethod.POST,produces = "application/json",consumes = "application/json")
+    @RequestMapping(value = "/vehicle",method = RequestMethod.POST,produces = "application/json",consumes = "application/json")
     public ResponseEntity<?> addVehicleToCartDTO(@RequestBody AddVehicleToCartRequestDTO requestDTO) {
         return new ResponseEntity<>(cartService.addVehicleToCart(requestDTO),HttpStatus.ACCEPTED);
     }
@@ -40,12 +41,9 @@ public class CartController {
      * @param requestDTO
      * @return
      */
-    @RequestMapping( value = "/addCart",method = RequestMethod.POST,produces = "application/json",consumes = "application/json")
-    public ResponseEntity<?> addCart(@RequestBody CartDTO requestDTO){
+    @RequestMapping(method = RequestMethod.POST,produces = "application/json",consumes = "application/json")
+    public ResponseEntity<?> addCart(@RequestBody CartRequestDTO requestDTO){
         return new ResponseEntity<>(cartService.save(requestDTO),HttpStatus.CREATED);
-    }
-    public static class CartDTO {
-        public Long userId;
     }
 
 }
