@@ -76,7 +76,7 @@ public class VehicleService {
 
     public Vehicle save(NewVehicleRequestDTO newVehicle) {
         Vehicle v = new Vehicle();
-        v.setUser_id(newVehicle.getUser_id());
+        v.setOwner_id(newVehicle.getOwner_id());
         v.setBrand(newVehicle.getBrand());
         v.setLocation(newVehicle.getLocation());
         v.setModel(newVehicle.getModel());

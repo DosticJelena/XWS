@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 public class NewVehicleRequestDTO {
 
-    private Long user_id;
+    private Long owner_id;
     private String location;
     private String fuel_type;
     private String brand;
