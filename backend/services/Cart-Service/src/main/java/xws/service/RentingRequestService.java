@@ -33,7 +33,7 @@ public class RentingRequestService {
     @Autowired
     private VehicleService vehicleService;
 
-    public List<RentingRequestResponseDTO> findAllById(Long id) {
+    public List<RentingRequestResponseDTO> findAllByUserId(Long id) {
         List<RentingRequest> rentingRequests = rentingRequestRepository.findByUserId(id);
         List<RentingRequestResponseDTO> response = new ArrayList<>();
         for(RentingRequest r : rentingRequests){
