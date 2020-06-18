@@ -10,7 +10,7 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: search
+        - id: vehicle
           uri: lb://vehicle
           predicates:
             - Path=/vehicle/**
