@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xws.controller.CartController;
 import xws.dto.request.AddVehicleToCartRequestDTO;
+import xws.dto.request.CartRequestDTO;
 import xws.dto.response.VehiclesInCartDTOResponse;
 import xws.model.Cart;
 import xws.model.VehicleCart;
@@ -54,9 +55,9 @@ public class CartService {
         response.setVehicles(c.getVehicles());
         return response;
     }
-    public Cart save(CartController.CartDTO requestDTO){
+    public Cart save(CartRequestDTO requestDTO){
         Cart c = new Cart();
-        c.setUserId(requestDTO.userId);
+        c.setUserId(requestDTO.getUserId());
         return cartRepository.save(c);
     }
     public Cart save(Cart cart) {
