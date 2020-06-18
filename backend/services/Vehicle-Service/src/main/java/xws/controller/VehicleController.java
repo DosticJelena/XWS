@@ -2,11 +2,14 @@ package xws.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import xws.dto.request.NewVehicleRequestDTO;
 import xws.model.Vehicle;
 import xws.service.VehicleService;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -43,6 +46,10 @@ public class VehicleController {
     public Vehicle newVehicle(@RequestBody NewVehicleRequestDTO request) {
         return vehicleService.save(request);
 
+    }
+    @RequestMapping(value = "test/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> test(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(vehicleService.getById(id), HttpStatus.ACCEPTED);
     }
 
 
