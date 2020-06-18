@@ -1,7 +1,5 @@
 package xws.controller;
 
-import org.apache.http.protocol.HTTP;
-import org.bouncycastle.cert.ocsp.Req;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,17 +20,16 @@ public class RentingRequestController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/get/{id}",method = RequestMethod.GET,produces = "application/json")
-    public ResponseEntity<?> getCart(@PathVariable Long id) {
-        return new ResponseEntity<>(rentingRequestService.findAllById(id), HttpStatus.ACCEPTED);
+    @RequestMapping(value = "/user/{id}",method = RequestMethod.GET,produces = "application/json")
+    public ResponseEntity<?> getAllByUserId(@PathVariable Long id) {
+        return new ResponseEntity<>(rentingRequestService.findAllByUserId(id),HttpStatus.ACCEPTED);
     }
-
     /**
      * Pravljenje pojedinacnog zahveta za svako vozilo iz korpe,koristi se id korpe,pocetni i krajnji datum svih zahveta
      * @param requestDTO
      * @return
      */
-    @RequestMapping(value = "/create-one-per-vehicle",method = RequestMethod.POST,produces = "application/json",consumes = "application/json")
+    @RequestMapping(value = "/separate",method = RequestMethod.POST,produces = "application/json",consumes = "application/json")
     public ResponseEntity<?> createOnePerVehicle(@RequestBody CreateRentingRequestRequestDTO requestDTO) {
         return new ResponseEntity<>(rentingRequestService.createOneRequestPerVehicle(requestDTO), HttpStatus.CREATED);
     }
@@ -41,17 +38,16 @@ public class RentingRequestController {
      * @param requestDTO
      * @return
      */
-    @RequestMapping(value = "/create-bundle-per-owner",method = RequestMethod.POST,produces = "application/json",consumes = "application/json")
+    @RequestMapping(value = "/bundle",method = RequestMethod.POST,produces = "application/json",consumes = "application/json")
     public ResponseEntity<?> createBundlePerOwner(@RequestBody CreateRentingRequestRequestDTO requestDTO) {
         return new ResponseEntity<>(rentingRequestService.createBundlePerOwner(requestDTO), HttpStatus.CREATED);
     }
-
     /**
      * U slucaju da lice dodje na lice mesta i izvrsi iznajmljivanje vozila,ovom funkcijom se manualno iznajmljuje vozilo i svi ostali zahtevi za to vozilo,kao u bundlovi prelaze u status odbijeni.
      * @param requestDTO
      * @return
      */
-    @RequestMapping(value = "manualy-reserve-vehicle",method = RequestMethod.POST,produces = "application/json",consumes = "application/json")
+    @RequestMapping(value = "/status",method = RequestMethod.PUT,produces = "application/json",consumes = "application/json")
     public ResponseEntity<?> manualyReserveVehicle(@RequestBody ManuallyReserveVehicleRequestDTO requestDTO) {
         return new ResponseEntity<>(rentingRequestService.manualyReserveVehicle(requestDTO),HttpStatus.CREATED);
     }

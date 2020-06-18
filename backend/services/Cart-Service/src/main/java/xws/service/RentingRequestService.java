@@ -33,7 +33,7 @@ public class RentingRequestService {
     @Autowired
     private VehicleService vehicleService;
 
-    public List<RentingRequestResponseDTO> findAllById(Long id) {
+    public List<RentingRequestResponseDTO> findAllByUserId(Long id) {
         List<RentingRequest> rentingRequests = rentingRequestRepository.findByUserId(id);
         List<RentingRequestResponseDTO> response = new ArrayList<>();
         for(RentingRequest r : rentingRequests){
@@ -106,7 +106,7 @@ public class RentingRequestService {
     public RentingRequest manualyReserveVehicle(ManuallyReserveVehicleRequestDTO requestDTO) {
         VehicleCart v = vehicleService.findOneById(requestDTO.getVehicleId());
         RentingRequest r = new RentingRequest();
-        r.setStatus(RentingRequest.Status.ACCEPTED);
+        r.setStatus(RentingRequest.Status.PAID);
         RentingRequestVehicle rrv = new RentingRequestVehicle();
         rrv.setId(new RentingRequestVehicle.RentingRequestVehicleId(r.getId(),v.getId()));
         rrv.setRentingRequest(r);

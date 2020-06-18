@@ -15,7 +15,7 @@ public class RentingRequest {
 
     //treba dodati prave statuse
     public enum Status {
-        ACTIVE,PENDING,ACCEPTED,DECLINED
+        ACTIVE,PENDING,PAID,DECLINED
     }
 
     @Id
