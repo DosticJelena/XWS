@@ -1,0 +1,19 @@
+<table class="table">
+    <caption>Pending comments</caption>
+    <thead>
+        <tr>
+            <th scope="col">Text</th>            
+            <th scope="col">Reject</th>
+            <th scope="col">Approve</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let com of comments; let i = index">
+            <tr>
+                <td>{{com.text}}</td>
+                <td><button class="btn btn-danger btn-sm" (click)="reject(com.id)">Reject</button></td>
+                <td><button class="btn btn-success btn-sm" (click)="approve(com.id)">Approve</button></td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>

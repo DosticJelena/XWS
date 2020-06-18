@@ -28,6 +28,8 @@ import { NewCar } from './cars/new-car/new-car';
 import { CodebookComponent } from './codebook/codebook.component';
 import { NewFuelTypeComponent } from './new-fuel-type/new-fuel-type.component';
 import { NotifierModule } from "angular-notifier";
+import { ManageCommentsComponent } from './manage-comments/manage-comments.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { NotifierModule } from "angular-notifier";
     ShooppingCart,
     ManageUsersComponent,
     CodebookComponent,
-    NewFuelTypeComponent
+    NewFuelTypeComponent,
+    ManageCommentsComponent,
+    MessageComponent
   ],
   imports: [
     NgbModule,
