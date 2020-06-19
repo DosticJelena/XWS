@@ -13,4 +13,37 @@
             </div>
         </div>
     </div>
+    <div class="rent-div">
+        <div class="col-2">
+            <div class="dateFrom">
+                <input class="form-control" placeholder="Start date" id="date" name="dp" name="datum"
+                    [(ngModel)]="startDate" [minDate]="minDate" ngbDatepicker #d="ngbDatepicker" required>
+
+                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><img
+                        src="../../assets/images/calendar.png" alt="calendar"
+                        style="width: 1.2rem; height: 1.2rem; cursor: pointer;" /></button>
+
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="dateTo">
+                <input class="form-control" placeholder="End date" id="date" name="dp" name="datum"
+                    [(ngModel)]="endDate" [minDate]="minDateSecond" ngbDatepicker #to="ngbDatepicker" required>
+
+                <button class="btn btn-outline-secondary calendar" (click)="to.toggle()" type="button"><img
+                        src="../../assets/images/calendar.png" alt="calendar"
+                        style="width: 1.2rem; height: 1.2rem; cursor: pointer;" /></button>
+
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: column;">
+            <button style="width: 200px; height: 50px;" class="btn details-btn" (click)="reserveCars()">Add to
+                cart</button>
+            <span>
+                <input class="checkbox-input" type="checkbox" id="vehicle1" name="vehicle1" (change)="onChange($event.target.checked)">
+                <label for="vehicle1" class="checkbox"> Create bundle per owner </label><br>
+            </span>
+
+        </div>
+    </div>
 </div>

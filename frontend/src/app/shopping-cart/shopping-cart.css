@@ -4,12 +4,33 @@
     padding: 30px;
 }
 
+.filter-btn {
+    background-color: darkgoldenrod;
+    color: rgb(39, 39, 39);
+    border: 0;
+    margin-right: 20px;
+}
+
 .background {
     background:url('../../assets/gray2.jpg');
     background-size: cover;
     position: relative;
     border-radius: 10px 0 0 10px;
 }
+
+.btn-show {
+    margin-right: 20px;
+    margin-top: 20px;
+    background-color: transparent;
+    border: 2px solid darkgoldenrod;
+    color: rgb(39, 39, 39);
+}
+
+.btn-filter-click {
+    background-color: darkgoldenrod;
+    border-color: darkgoldenrod;
+}
+
 .carItem {
     background-color: rgba(39, 39, 39, 0.9);
     color: darkgoldenrod;
@@ -21,4 +42,36 @@
 }
 .carItem:hover {
     width: 95%;
+}
+
+.details-btn {
+    color: lightgray;
+    background-color: rgb(39, 39, 39);
+    border: darkgoldenrod 1px solid;
+}
+
+.details-btn:hover {
+    color: rgb(39, 39, 39);
+    background-color: darkgoldenrod;
+}
+
+.additional-btns {
+    margin-bottom: 15px;
+    margin-left: 20px;
+}
+
+.rent-div {
+    min-height: 20vh;
+    background-color: rgb(39, 39, 39);
+    margin-top: 20px;
+    padding: 1em;
+    display: flex;
+}
+
+.checkbox {
+    color : darkgoldenrod;
+}
+
+.checkbox-input {
+    size: 10px;
 }

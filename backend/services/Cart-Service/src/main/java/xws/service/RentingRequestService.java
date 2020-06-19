@@ -13,6 +13,7 @@ import xws.model.VehicleCart;
 import xws.repository.RentingRequestRepository;
 import xws.repository.RentingRequestVehicleRepository;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -47,7 +48,7 @@ public class RentingRequestService {
         return response;
     }
     public List<RentingRequest> createOneRequestPerVehicle(CreateRentingRequestRequestDTO requestDTO) {
-        Cart cart = cartService.findOneById(requestDTO.getCartId());
+        Cart cart = cartService.findOneByUserId(requestDTO.getUserId());
         List<RentingRequest> response = new ArrayList<>();
         for(VehicleCart v : cart.getVehicles()){
             RentingRequest r = new RentingRequest();
@@ -58,8 +59,11 @@ public class RentingRequestService {
             rrv.setId(new RentingRequestVehicle.RentingRequestVehicleId(r.getId(),v.getId()));
             rrv.setRentingRequest(r);
             rrv.setVehicle(v);
-            rrv.setStartDate(LocalDateTime.of(2020,10,10,0,0));
-            rrv.setEndDate(LocalDateTime.of(2020,11,10,0,0));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            LocalDateTime start = LocalDateTime.parse(requestDTO.getStartDate(), formatter);
+            LocalDateTime end = LocalDateTime.parse(requestDTO.getEndDate(), formatter);
+            rrv.setStartDate(start);
+            rrv.setEndDate(end);
             rentingRequestRepository.save(r);
             rentingRequestVehicleRepository.save(rrv);
             response.add(r);
@@ -70,7 +74,7 @@ public class RentingRequestService {
 
     }
     public List<RentingRequest> createBundlePerOwner(CreateRentingRequestRequestDTO requestDTO) {
-        Cart cart = cartService.findOneById(requestDTO.getCartId());
+        Cart cart = cartService.findOneByUserId(requestDTO.getUserId());
         HashMap<Long,ArrayList<VehicleCart>> hashMap = new HashMap<>();
         List<RentingRequest> response = new ArrayList<>();
         for(VehicleCart v : cart.getVehicles()) {
@@ -90,8 +94,11 @@ public class RentingRequestService {
                 rrv.setId(new RentingRequestVehicle.RentingRequestVehicleId(r.getId(),v.getId()));
                 rrv.setRentingRequest(r);
                 rrv.setVehicle(v);
-                rrv.setStartDate(LocalDateTime.of(2020,10,10,0,0));
-                rrv.setEndDate(LocalDateTime.of(2020,11,10,0,0));
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                LocalDateTime start = LocalDateTime.parse(requestDTO.getStartDate(), formatter);
+                LocalDateTime end = LocalDateTime.parse(requestDTO.getEndDate(), formatter);
+                rrv.setStartDate(start);
+                rrv.setEndDate(end);
 
                 rentingRequestVehicleRepository.save(rrv);
 
