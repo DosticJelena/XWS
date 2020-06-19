@@ -1,6 +1,7 @@
 package xws.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import xws.controller.CartController;
@@ -60,7 +61,12 @@ public class CartService {
         for(VehicleCart vc : c.getVehicles()) {
             vehicleIds.add(vc.getId());
         }
-        return vehicleServiceProxy.getAllvehiclesWithId(vehicleIds);
+        if(vehicleIds.size() > 0) {
+            return vehicleServiceProxy.getAllvehiclesWithId(vehicleIds);
+        }else {
+            return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
+        }
+
     }
     public Cart save(CartRequestDTO requestDTO){
         Cart c = new Cart();
