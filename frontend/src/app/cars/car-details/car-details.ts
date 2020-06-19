@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CarsService } from '../cars.service';
+import { CartService } from 'src/app/services/cart/cart.service';
+import { CloseScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
     selector: 'car-details',
@@ -11,7 +13,9 @@ export class CarDetails {
     car:any;
     images:any;
 
-    constructor(private route:ActivatedRoute, private carsService:CarsService){
+    constructor(private route:ActivatedRoute, 
+      private carsService:CarsService,
+      private cartService : CartService){
 
     }
 
@@ -26,5 +30,15 @@ export class CarDetails {
             this.images = data;
           }, (error) => alert(error.text)
         );
+    }
+    addToCart() {
+      this.cartService.addToCart(JSON.parse(localStorage.getItem('loggedUser')).id,this.car.id).subscribe(
+        (data : any) => {
+          console.log(data);
+
+        },(error : any) => {
+          console.log(error);
+        })
+
     }
 }

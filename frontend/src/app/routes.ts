@@ -18,5 +18,5 @@ export const appRoutes:Routes = [
     {path: "manage-users", component: ManageUsersComponent},
     {path: "cart", component: ShooppingCart},
     {path: "codebook", component: CodebookComponent},
-    {path: "", component: HomePage}
+    {path: "", component: HomePage},
 ]

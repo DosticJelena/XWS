@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CartService } from 'src/app/services/cart/cart.service';
+import { CarsService } from '../cars/cars.service';
 
 @Component({
   selector: 'shopping-cart',
@@ -7,5 +10,17 @@ import { Component } from '@angular/core';
 })
 export class ShooppingCart {
 
-  
+  cars: any;
+
+  constructor(private route: ActivatedRoute,
+    private carsService: CarsService,
+    private cartService: CartService) {
+
+  }
+  ngOnInit(){
+    
+}
+
+
+
 }
