@@ -2,8 +2,16 @@ package xml.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import xml.dto.request.ManuallyReserveVehicleRequestDTO;
 import xml.model.RentingRequest;
+import xml.model.RentingRequestVehicle;
+import xml.model.Vehicle;
 import xml.model.VehicleCart;
+import xml.repository.RentingRequestRepository;
+import xml.repository.RentingRequestVehicleRepository;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class RentingRequestService {
@@ -11,10 +19,16 @@ public class RentingRequestService {
     @Autowired
     private VehicleService vehicleService;
 
+    @Autowired
+    private RentingRequestVehicleRepository rentingRequestVehicleRepository;
 
+    @Autowired
+    private RentingRequestRepository rentingRequestRepository;
 
     public RentingRequest manuallyReserveVehicle(ManuallyReserveVehicleRequestDTO requestDTO) {
-        VehicleCart v = vehicleService.findOneById(requestDTO.getVehicleId());
+        Vehicle vc = vehicleService.findOneById(requestDTO.getVehicleId());
+        VehicleCart v = new VehicleCart();
+        v.setOwnerId(vc.getOwner_id());
         RentingRequest r = new RentingRequest();
         r.setStatus(RentingRequest.Status.PAID);
         RentingRequestVehicle rrv = new RentingRequestVehicle();

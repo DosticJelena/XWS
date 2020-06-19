@@ -66,4 +66,6 @@ public class Vehicle {
     @JsonBackReference
     @OneToMany(mappedBy = "vehicle",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Picture> pictures = new HashSet<>();
+
+
 }

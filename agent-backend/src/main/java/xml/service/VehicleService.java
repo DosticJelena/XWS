@@ -28,13 +28,8 @@ public class VehicleService {
     @Autowired
     RentingRequestCarRepository rentingRequestCarRepository;
 
-    public VehicleCart findOneById(Long id) {
-        try {
-            return this.vehicleRepository.findOneById(id).orElseThrow(() -> new Exception());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+    public Vehicle findOneById(Long id) {
+        return this.vehicleRepository.findOneById(id);
     }
 
     public List<Vehicle> search(String location, String startDate, String endDate, String brand,
@@ -104,7 +99,7 @@ public class VehicleService {
 
         for (String pictureUrl: newVehicle.getPictures()) {
             Picture p = new Picture();
-            p.setVehicle(v); // suvisno...error?
+           // p.setVehicle(v); // suvisno...error?
             p.setUrl(pictureUrl);
             v.getPictures().add(p);
         }
