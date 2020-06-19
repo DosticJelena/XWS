@@ -6,6 +6,7 @@ import xml.dto.request.NewVehicleRequestDTO;
 import xml.model.Picture;
 import xml.model.RentingRequestCar;
 import xml.model.Vehicle;
+import xml.model.VehicleCart;
 import xml.repository.RentingRequestCarRepository;
 import xml.repository.VehicleRepository;
 
@@ -26,6 +27,15 @@ public class VehicleService {
 
     @Autowired
     RentingRequestCarRepository rentingRequestCarRepository;
+
+    public VehicleCart findOneById(Long id) {
+        try {
+            return this.vehicleRepository.findOneById(id).orElseThrow(() -> new Exception());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public List<Vehicle> search(String location, String startDate, String endDate, String brand,
                                 String model, String fuel_type,
