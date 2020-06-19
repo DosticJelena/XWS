@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CodebookService } from '../services/codebook.service';
+import { CodebookService } from '../services/codebook/codebook.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NewFuelTypeComponent } from '../new-fuel-type/new-fuel-type.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';

@@ -8,15 +8,19 @@ import { ShooppingCart } from './shopping-cart/shopping-cart';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { NewCar } from './cars/new-car/new-car';
 import { CodebookComponent } from './codebook/codebook.component';
+import {ManageCommentsComponent} from './manage-comments/manage-comments.component'
+import {MessageComponent} from './message/message.component'
 
 export const appRoutes:Routes = [
     {path: "cars", component: Cars},
     {path: "car/:id", component: CarDetails},
+    {path: "message", component: MessageComponent},
     {path: "new", component: NewCar},
     {path: "register", component: Register},
     {path: "login", component: Login},
     {path: "manage-users", component: ManageUsersComponent},
     {path: "cart", component: ShooppingCart},
     {path: "codebook", component: CodebookComponent},
+    {path: "manage-comments", component: ManageCommentsComponent},
     {path: "", component: HomePage}
 ]
