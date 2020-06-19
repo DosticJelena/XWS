@@ -40,4 +40,38 @@ export class CartService {
         })
       )
   }
+  createRequestPerVehicle(userId : any,startDate : any,endDate : any) {
+    return this.http.post(`${environment.baseUrl}/cart/rentingRequest/separate`,{
+      userId : userId,
+      startDate : startDate,
+      endDate : endDate
+    }).pipe(
+      map((res : any) => {
+        const data = res;
+        return data;
+      }),
+      catchError((err : any) => {
+        console.log(err);
+        return throwError(err);
+      })
+    )
+  } 
+  createBundlePerOwner(userId : any,startDate : any,endDate : any) {
+    return this.http.post(`${environment.baseUrl}/cart/rentingRequest/bundle`,{
+      userId : userId,
+      startDate : startDate,
+      endDate : endDate
+    })
+    .pipe(
+      map((res : any) => {
+        const data = res;
+        return data;
+      }),
+      catchError((err : any) => {
+        console.log(err);
+        return throwError(err);
+      })
+    )
+  } 
+
 }

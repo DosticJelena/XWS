@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CreateRentingRequestRequestDTO {
-    private Long cartId;
+    private Long userId;
     private String startDate;
     private String endDate;
 }
