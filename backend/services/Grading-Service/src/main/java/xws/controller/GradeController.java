@@ -18,7 +18,7 @@ public class GradeController {
         return new ResponseEntity<>(carGradeService.getGrades(carId), HttpStatus.OK);
     }
     @RequestMapping(value = "",method = RequestMethod.POST,consumes = "application/json",produces = "application/json")
-    public CarGrade postComment(@RequestBody CarGrade c) {
+    public CarGrade makeGrade(@RequestBody CarGrade c) {
         return carGradeService.insertGrade(c);
     }
 

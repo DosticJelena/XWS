@@ -24,4 +24,7 @@ public class CarGrade {
     @Column
     private Long carId;
 
+    @Column
+    private int value;
+
 }
