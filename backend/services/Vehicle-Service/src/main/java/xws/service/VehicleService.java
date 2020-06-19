@@ -3,6 +3,7 @@ package xws.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xws.dto.request.NewVehicleRequestDTO;
+import xws.dto.response.VehicleForCartDTOResponse;
 import xws.model.Picture;
 import xws.model.RentingRequestCar;
 import xws.model.Vehicle;
@@ -68,6 +69,10 @@ public class VehicleService {
     public List<Vehicle> getAll(){
         List<Vehicle> allVehicles = vehicleRepository.findAll();
         return  allVehicles;
+    }
+
+    public List<Vehicle> findAllByIds(ArrayList<Long> ids) {
+        return vehicleRepository.findAllById(ids);
     }
 
     public Vehicle getById(Long id) {

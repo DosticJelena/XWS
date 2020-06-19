@@ -42,7 +42,7 @@ public class RentingRequestController {
     public ResponseEntity<?> createBundlePerOwner(@RequestBody CreateRentingRequestRequestDTO requestDTO) {
         return new ResponseEntity<>(rentingRequestService.createBundlePerOwner(requestDTO), HttpStatus.CREATED);
     }
-    /**
+        /**
      * U slucaju da lice dodje na lice mesta i izvrsi iznajmljivanje vozila,ovom funkcijom se manualno iznajmljuje vozilo i svi ostali zahtevi za to vozilo,kao u bundlovi prelaze u status odbijeni.
      * @param requestDTO
      * @return

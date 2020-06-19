@@ -28,9 +28,9 @@ public class CartController {
       * @param id
      * @return
      */
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET,produces = "application/json")
+    @RequestMapping(value = "vehicles/{id}",method = RequestMethod.GET,produces = "application/json")
     public ResponseEntity<?> getCart(@PathVariable Long id) {
-        return new ResponseEntity<>(cartService.getAllVehicles(id), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(cartService.getAllVehicles(id).getBody(), HttpStatus.ACCEPTED);
     }
 
     /**
@@ -53,9 +53,5 @@ public class CartController {
         return new ResponseEntity<>(cartService.save(requestDTO),HttpStatus.CREATED);
     }
 
-    @RequestMapping(method = RequestMethod.GET,value = "/test",produces = "application/json")
-    public ResponseEntity<?> test() {
-        return new ResponseEntity<>(vehicleServiceProxy.test(1L).getBody(), HttpStatus.ACCEPTED);
-    }
 
 }

@@ -10,6 +10,7 @@ import xws.model.Vehicle;
 import xws.service.VehicleService;
 
 import java.awt.print.Pageable;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -50,6 +51,11 @@ public class VehicleController {
     @RequestMapping(value = "test/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> test(@PathVariable("id") Long id) {
         return new ResponseEntity<>(vehicleService.getById(id), HttpStatus.ACCEPTED);
+    }
+
+    @RequestMapping(value = "/all/{ids}",method = RequestMethod.GET,produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getAllvehiclesWithId(@PathVariable("ids") ArrayList<Long> ids) {
+        return new ResponseEntity<>(vehicleService.findAllByIds(ids),HttpStatus.ACCEPTED);
     }
 
 
