@@ -1,0 +1,48 @@
+.carDetails {
+    background: url('../../../assets/gray2.jpg');
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}
+
+.layer {
+    background-color: rgb(39, 39, 39, 0.9);
+    min-height: 60vh;
+    width: 100%;
+    color: darkgoldenrod;
+    padding: 50px;
+}
+
+.details-column {
+    border-right: lightgray 1px solid;
+}
+
+.info p {
+    color: lightgray;
+}
+
+.rent-div {
+    min-height: 20vh;
+    background-color: rgb(39, 39, 39);
+    margin-top: 20px;
+    padding: 1em;
+}
+
+.details-column-1 {
+    max-height: 50vh;
+    overflow: auto;
+}
+
+.details-btn {
+    width: 20em;
+    height: 5em;
+    margin: 1em;
+    color: lightgray;
+    background-color: rgb(39, 39, 39);
+    border: darkgoldenrod 1px solid;
+}
+
+.details-btn:hover {
+    color: rgb(39, 39, 39);
+    background-color: darkgoldenrod;
+}
