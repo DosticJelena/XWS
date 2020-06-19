@@ -1,0 +1,16 @@
+<div class="cars">
+    <div class="row">
+        <div *ngFor="let car of cars" class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <div class="background">
+                <div class="carItem">
+                    <h5>{{car.brand}} | {{car.model}} ({{car.price}})</h5>
+                    <h5>{{car.owner_name}}</h5>
+                    <hr style="background-color: gray;" />
+                    <div style="max-height: 150px;"><img height="150" widht="250"
+                            src="https://autorepublika.com/wp-content/uploads/2019/08/bmw-x5-protection2.jpg"></div>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

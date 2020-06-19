@@ -1,0 +1,24 @@
+.cars {
+    background-color: lightgray;
+    min-height: 90vh;
+    padding: 30px;
+}
+
+.background {
+    background:url('../../assets/gray2.jpg');
+    background-size: cover;
+    position: relative;
+    border-radius: 10px 0 0 10px;
+}
+.carItem {
+    background-color: rgba(39, 39, 39, 0.9);
+    color: darkgoldenrod;
+    margin-bottom: 20px;
+    padding: 30px;
+    width: 100%;
+    transition: width 1s;
+    border-radius: 10px 0 0 10px;
+}
+.carItem:hover {
+    width: 95%;
+}
