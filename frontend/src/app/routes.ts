@@ -8,6 +8,7 @@ import { ShooppingCart } from './shopping-cart/shopping-cart';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { NewCar } from './cars/new-car/new-car';
 import { CodebookComponent } from './codebook/codebook.component';
+import {ManageCommentsComponent} from './manage-comments/manage-comments.component'
 
 export const appRoutes:Routes = [
     {path: "cars", component: Cars},
@@ -18,5 +19,6 @@ export const appRoutes:Routes = [
     {path: "manage-users", component: ManageUsersComponent},
     {path: "cart", component: ShooppingCart},
     {path: "codebook", component: CodebookComponent},
-    {path: "", component: HomePage},
+    {path: "manage-comments", component: ManageCommentsComponent},
+    {path: "", component: HomePage}
 ]
