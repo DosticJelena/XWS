@@ -1,6 +1,7 @@
 package xws.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import rx.schedulers.Schedulers;
 import xws.dto.request.CreateRentingRequestRequestDTO;
@@ -34,6 +35,7 @@ public class RentingRequestService {
     @Autowired
     private VehicleService vehicleService;
 
+    public List<RentingRequest> findAll() { return rentingRequestRepository.findAll(); }
     public List<RentingRequestResponseDTO> findAllByUserId(Long id) {
         List<RentingRequest> rentingRequests = rentingRequestRepository.findByUserId(id);
         List<RentingRequestResponseDTO> response = new ArrayList<>();
