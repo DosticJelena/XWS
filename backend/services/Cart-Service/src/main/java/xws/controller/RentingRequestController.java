@@ -3,10 +3,16 @@ package xws.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 import xws.dto.request.CreateRentingRequestRequestDTO;
 import xws.dto.request.ManuallyReserveVehicleRequestDTO;
+import xws.model.RentingRequest;
+import xws.model.RentingRequestVehicle;
 import xws.service.RentingRequestService;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/rentingRequest")
@@ -14,6 +20,8 @@ public class RentingRequestController {
 
     @Autowired
     private RentingRequestService rentingRequestService;
+
+
 
     /**
      * Pronalazenje svih rentingRequest za jednog user-a koristeci njegov id
@@ -50,5 +58,25 @@ public class RentingRequestController {
     @RequestMapping(value = "/status",method = RequestMethod.PUT,produces = "application/json",consumes = "application/json")
     public ResponseEntity<?> manualyReserveVehicle(@RequestBody ManuallyReserveVehicleRequestDTO requestDTO) {
         return new ResponseEntity<>(rentingRequestService.manualyReserveVehicle(requestDTO),HttpStatus.CREATED);
+    }
+
+    //@Scheduled(fixedRate = 5000)
+    //todo: resiti problem lazy inicijalizacije
+    public void scheduleFixedRateTask() {
+        List<RentingRequest> rentingRequests = rentingRequestService.findAll();
+        for(RentingRequest rentingRequest : rentingRequests) {
+            if(rentingRequest.getStatus().equals(RentingRequest.Status.PENDING) && rentingRequest.getCreatedAt().isBefore(LocalDateTime.now().minusDays(1L))) {
+                rentingRequest.setStatus(RentingRequest.Status.DECLINED);
+                System.out.println("scheduled: stavljam status na declined");
+            }else if(rentingRequest.getStatus().equals(RentingRequest.Status.PAID)) {
+                for(RentingRequestVehicle rentingRequestVehicle : rentingRequest.getVehicles()){
+                    if(rentingRequestVehicle.getEndDate().isAfter(LocalDateTime.now())){
+                        rentingRequest.setStatus(RentingRequest.Status.FINISHED);
+                        System.out.println("scheduled: stavljam status na finished");
+                        break;
+                    }
+                }
+            }
+        }
     }
 }
