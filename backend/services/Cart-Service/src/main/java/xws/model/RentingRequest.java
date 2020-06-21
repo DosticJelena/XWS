@@ -33,6 +33,6 @@ public class RentingRequest {
     private LocalDateTime createdAt;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "rentingRequest",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "rentingRequest",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     Set<RentingRequestVehicle> vehicles = new HashSet<>();
 }
