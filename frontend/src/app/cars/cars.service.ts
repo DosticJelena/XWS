@@ -69,7 +69,7 @@ export class CarsService {
   addNewVehicle(values: any){
     console.log(values);
     return this.http.post("http://localhost:8080/vehicle/new", {
-            user_id: 1,
+            owner_id: 1,
             brand: values.brand,
             model: values.model,
             location: values.location,
