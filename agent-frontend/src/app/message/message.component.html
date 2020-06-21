@@ -1,20 +1,23 @@
-<table class="table" id = "PENDING">
-    <caption>Pending reservations</caption>
+<table class="table">
+    <caption>Messages</caption>
     <thead>
         <tr>
-            <th scope="col">Owner</th>         
-            <th scope="col">Status</th>
+            <th scope="col">Receiver</th>         
+            <th scope="col">Sender</th>         
+            <th scope="col">Content</th>
         </tr>
     </thead>
     <tbody>
-        <ng-container *ngFor="let res of reservations;let i = index;">
-            <tr *ngIf="res.vehicles[0].rentingRequest.status === 'PENDING'">
-                <td>{{map.get(res.vehicles[0].vehicle.ownerId)}}</td>
-                <td>{{res.vehicles[0].rentingRequest.status}}</td>
+        <ng-container *ngFor="let mess of messages;let i = index;">
+            <tr>
+                <td>{{mess.receiverId}}</td>
+                <td>{{mess.senderId}}</td>
+                <td>{{mess.content}}</td>
             </tr>
         </ng-container>
     </tbody>
 </table>
+
 <table class="table" >
     <caption>Reserved reservations</caption>
     <thead>

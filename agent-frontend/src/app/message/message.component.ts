@@ -11,6 +11,7 @@ import {GradeAndCommentService} from '../services/grade-and-comment/grade-and-co
 export class MessageComponent implements OnInit {
 
   reservations = [];
+  messages = [];
   usernames =[];
   map = new Map<number, string>();
   counter = 0;
@@ -23,6 +24,7 @@ export class MessageComponent implements OnInit {
   ngOnInit(): void {
     this.reloadReservations();
     this.getUsernames();
+    this.reloadMessages();
     
   }
   onItemChange(carId:number,value){
@@ -63,7 +65,14 @@ export class MessageComponent implements OnInit {
         }, (error) => alert(error.text)
       );
   }
- 
+  reloadMessages(){
+    this.MessageService.getAllMessages(1)
+      .subscribe(
+        (data: any) => {
+          this.messages =  Object.assign([], (data));;
+        }, (error) => alert(error.text)
+      );
+  }
   sendMess(receiver,i) {
     this.MessageService.sendMess(1,receiver,(<HTMLInputElement>document.getElementById(i)).value)
       .subscribe(
