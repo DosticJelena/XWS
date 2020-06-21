@@ -12,7 +12,7 @@ export class CartService {
   constructor(private http: HttpClient) { }
 
   addToCart(userId : any,vehicleId : any) {
-    return this.http.post(`${environment.baseUrl}/cart/cart/vehicle`,{
+    return this.http.post(`${environment.baseUrl}/cart/vehicle`,{
       userId : userId,
       vehicleId : vehicleId
     })
@@ -28,7 +28,7 @@ export class CartService {
       )
   }
   getCarsInCart(userId : any) {
-    return this.http.get(`${environment.baseUrl}/cart/cart/vehicles/${userId}`)
+    return this.http.get(`${environment.baseUrl}/cart/vehicles/${userId}`)
       .pipe(
         map((res : any) => {
           const data = res;

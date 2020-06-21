@@ -102,7 +102,7 @@ export class CodebookService {
   }
 
   updateFuelType(newName: string, id: number) {
-    return this.http.post("http://localhost:8080/vehicle/fuel-type/update", {
+    return this.http.put("http://localhost:8080/vehicle/fuel-type/update", {
       newName: newName,
       id: id
     })
@@ -119,7 +119,7 @@ export class CodebookService {
   }
 
   updateVehicleClass(newName: string, id: number) {
-    return this.http.post("http://localhost:8080/vehicle/vehicle-class/update", {
+    return this.http.put("http://localhost:8080/vehicle/vehicle-class/update", {
       newName: newName,
       id: id
     })
@@ -136,7 +136,7 @@ export class CodebookService {
   }
 
   updateVehicleModel(newModel: string, newBrand: string, id: number) {
-    return this.http.post("http://localhost:8080/vehicle/vehicle-model/update", {
+    return this.http.put("http://localhost:8080/vehicle/vehicle-model/update", {
       newModel: newModel,
       newBrand: newBrand,
       id: id

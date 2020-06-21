@@ -14,13 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "users", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ApplicationUserController {
 
     @Autowired
     private ApplicationUserService applicationUserService;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "users", method = RequestMethod.GET)
     public ResponseEntity<?> getAll() {
         List<ApplicationUser> users = applicationUserService.findAll();
         List<UserResponseDTO> response = new ArrayList<>();
@@ -38,7 +38,7 @@ public class ApplicationUserController {
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
 
-    @RequestMapping(consumes = "application/json", value = "update-user-status", method = RequestMethod.POST)
+    @RequestMapping(consumes = "application/json", value = "user/status", method = RequestMethod.PUT)
     public ResponseEntity<?> updateUserStatus(@RequestBody UpdateUserStatusDTO updateUserStatusDTO) {
         ApplicationUser au = applicationUserService.findOneById(updateUserStatusDTO.getId());
 

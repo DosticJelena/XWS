@@ -28,7 +28,7 @@ public class RentingRequestController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/user/{id}",method = RequestMethod.GET,produces = "application/json")
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET,produces = "application/json")
     public ResponseEntity<?> getAllByUserId(@PathVariable Long id) {
         return new ResponseEntity<>(rentingRequestService.findAllByUserId(id),HttpStatus.ACCEPTED);
     }

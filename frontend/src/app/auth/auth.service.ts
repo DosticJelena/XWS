@@ -79,7 +79,7 @@ export class AuthService {
     }
 
     changeUserStatus(id: number, status: number) {
-        return this.http.post("http://localhost:8080/auth/users/update-user-status", {
+        return this.http.put("http://localhost:8080/auth/user/status", {
             id: id,
             status: status
         })

@@ -11,7 +11,7 @@ export class MessageService {
 
   constructor(private router: Router, private http: HttpClient) { }
   reload(id:number) {
-    return this.http.get("http://localhost:8080/cart/rentingRequest/user/"+id)
+    return this.http.get("http://localhost:8080/cart/rentingRequest/"+id)
         .pipe(
             map((res: any) => {
                 const data = res;
@@ -25,7 +25,7 @@ export class MessageService {
 }
 
   sendMess(receiverId: number,senderId: number,content: string ) {
-    return this.http.post("http://localhost:8080/message/message", {
+    return this.http.post("http://localhost:8080/message/", {
       receiverId : receiverId,
       senderId: senderId,
       content: content

@@ -18,7 +18,7 @@ public class PictureController {
     @Autowired
     PictureService pictureService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     public List<Picture> getAll() {
         return pictureService.getAll();
     }

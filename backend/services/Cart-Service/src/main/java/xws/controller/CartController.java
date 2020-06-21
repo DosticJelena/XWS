@@ -14,7 +14,7 @@ import xws.service.CartService;
 import java.awt.print.Pageable;
 
 @RestController
-@RequestMapping(value = "/cart")
+@RequestMapping(value = "")
 public class CartController {
 
     @Autowired
