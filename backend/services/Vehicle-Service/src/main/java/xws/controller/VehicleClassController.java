@@ -40,7 +40,7 @@ public class VehicleClassController {
         return new ResponseEntity<>(vehicleClassService.save(vc), HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "update", method = RequestMethod.POST, consumes = "application/json")
+    @RequestMapping(value = "update", method = RequestMethod.PUT, consumes = "application/json")
     public ResponseEntity<?> updateVehicleClass(@RequestBody updateRequest request) {
         return new ResponseEntity<>(vehicleClassService.updateVehicleClass(request.newName, request.id), HttpStatus.ACCEPTED);
     }
