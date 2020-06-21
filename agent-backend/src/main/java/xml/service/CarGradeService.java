@@ -13,7 +13,7 @@ public class CarGradeService {
     @Autowired
     private CarGradeRepository carGradeRepository;
 
-    public List<CarGrade> getGrades(Long l){return carGradeRepository.findByCarId(l);}
+    public List<CarGrade> getGrades(Long l){return carGradeRepository.findAllByCarId(l);}
 
     public CarGrade insertGrade(CarGrade c){return carGradeRepository.save(c);}
 }

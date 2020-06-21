@@ -20,7 +20,7 @@ public class CommentService {
         return commentRepository.getAllByUserId(l);
     }
     public List<Comment> getByCar(Long l){
-        return commentRepository.getAllByCarId(l);
+        return commentRepository.findAllByCarId(l);
     }
     public Comment approve(Comment c){
         Comment upDate = commentRepository.findOneById(c.getId());
