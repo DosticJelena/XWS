@@ -65,7 +65,7 @@ export class AuthService {
     }
 
     getUsers() {
-        return this.http.get("http://localhost:8080/auth/users")
+        return this.http.get("http://localhost:8090/auth/users")
             .pipe(
                 map((res: any) => {
                     const data = res;
@@ -79,7 +79,7 @@ export class AuthService {
     }
 
     changeUserStatus(id: number, status: number) {
-        return this.http.post("http://localhost:8080/auth/users/update-user-status", {
+        return this.http.post("http://localhost:8090/auth/users/update-user-status", {
             id: id,
             status: status
         })
