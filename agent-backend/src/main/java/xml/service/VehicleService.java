@@ -32,7 +32,7 @@ public class VehicleService {
         return this.vehicleRepository.findOneById(id);
     }
 
-    public List<Vehicle> findAllByOwner_id(Long id) { return this.vehicleRepository.findAllByOwner_id(id); }
+    public List<Vehicle> findAllByOwner_id(Long id) { return this.vehicleRepository.findAllByOwner(id); }
 
     public List<Vehicle> search(String location, String startDate, String endDate, String brand,
                                 String model, String fuel_type,
@@ -83,7 +83,7 @@ public class VehicleService {
 
     public Vehicle save(NewVehicleRequestDTO newVehicle) {
         Vehicle v = new Vehicle();
-        v.setOwner_id(newVehicle.getOwner_id());
+        v.setOwner(newVehicle.getOwner_id());
         v.setBrand(newVehicle.getBrand());
         v.setLocation(newVehicle.getLocation());
         v.setModel(newVehicle.getModel());
