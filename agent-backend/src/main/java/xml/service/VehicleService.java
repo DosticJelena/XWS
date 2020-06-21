@@ -32,6 +32,8 @@ public class VehicleService {
         return this.vehicleRepository.findOneById(id);
     }
 
+    public List<Vehicle> findAllByOwner_id(Long id) { return this.vehicleRepository.findAllByOwner_id(id); }
+
     public List<Vehicle> search(String location, String startDate, String endDate, String brand,
                                 String model, String fuel_type,
                                 String transmission, String type,
