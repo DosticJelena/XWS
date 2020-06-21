@@ -36,6 +36,17 @@ public class RentingRequestController {
     public ResponseEntity<?> getAllByUserId(@PathVariable Long id) {
         return new ResponseEntity<>(rentingRequestService.findAllByUserId(id),HttpStatus.ACCEPTED);
     }
+
+    /**
+     * Pronalazenje svih RentingRequest za jednog ownerna
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "owner/{id}",method = RequestMethod.GET,produces = "application/json")
+    public ResponseEntity<?> getAllByVehicleOwnerId(@PathVariable Long id){
+        return new ResponseEntity<>(rentingRequestService.getAllByVehicleOwnerId(id),HttpStatus.ACCEPTED);
+    }
+
     /**
      * Pravljenje pojedinacnog zahveta za svako vozilo iz korpe,koristi se id korpe,pocetni i krajnji datum svih zahveta
      * @param requestDTO

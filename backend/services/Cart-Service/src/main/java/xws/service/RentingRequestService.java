@@ -143,4 +143,17 @@ public class RentingRequestService {
     public RentingRequest save(RentingRequest r) {
         return rentingRequestRepository.save(r);
     }
+    public List<RentingRequest> getAllByVehicleOwnerId(Long id) {
+        List<RentingRequest> rentingRequests = rentingRequestRepository.findAll();
+        List<RentingRequest> response = new ArrayList<>();
+        for(RentingRequest r : rentingRequests) {
+            for(RentingRequestVehicle vc : r.getVehicles()) {
+                if(vc.getVehicle().getOwnerId().equals(id) && r.getStatus().equals(RentingRequest.Status.PENDING)){
+                    response.add(r);
+                    break;
+                }
+            }
+        }
+        return response;
+    }
 }
