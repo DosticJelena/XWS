@@ -40,7 +40,7 @@ public class FuelTypeController {
         return new ResponseEntity<>(fuelTypeService.save(ft), HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "update", method = RequestMethod.POST, consumes = "application/json")
+    @RequestMapping(value = "update", method = RequestMethod.PUT, consumes = "application/json")
     public ResponseEntity<?> updateVehicleModel(@RequestBody updateRequest request) {
         return new ResponseEntity<>(fuelTypeService.updateFuelType(request.newName, request.id), HttpStatus.ACCEPTED);
     }
