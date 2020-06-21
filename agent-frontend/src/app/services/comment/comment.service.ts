@@ -12,7 +12,7 @@ export class CommentsService {
   constructor(private router: Router, private http: HttpClient) { }
 
   getPendingComments() {
-    return this.http.get("http://localhost:8080/grading/comment/status?status=PENDING")
+    return this.http.get("http://localhost:8090/comment/status?status=PENDING")
         .pipe(
             map((res: any) => {
                 const data = res;
@@ -26,7 +26,7 @@ export class CommentsService {
 }
 
   reject(id: number) {
-    return this.http.put("http://localhost:8080/grading/comment/reject", {
+    return this.http.put("http://localhost:8090/comment/reject", {
       id: id
   })
         .pipe(
@@ -41,7 +41,7 @@ export class CommentsService {
         )
 }
 approve(id:number) {
-  return this.http.put("http://localhost:8080/grading/comment/approve", {
+  return this.http.put("http://localhost:8090/comment/approve", {
     id:id
 })
       .pipe(

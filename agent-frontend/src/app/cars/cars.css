@@ -5,8 +5,8 @@
 }
 
 .filter-btn {
-    background-color: darkgoldenrod;
-    color: rgb(39, 39, 39);
+    background-color: darkslategray;
+    color: lightgray;
     border: 0;
     margin-right: 20px;
 }
@@ -22,18 +22,19 @@
     margin-right: 20px;
     margin-top: 20px;
     background-color: transparent;
-    border: 2px solid darkgoldenrod;
+    border: 2px solid darkslategray;
     color: rgb(39, 39, 39);
 }
 
 .btn-filter-click {
-    background-color: darkgoldenrod;
-    border-color: darkgoldenrod;
+    background-color: darkslategray;
+    border-color: darkslategray;
+    color:lightgray;
 }
 
 .carItem {
     background-color: rgba(39, 39, 39, 0.9);
-    color: darkgoldenrod;
+    color: darkslategray;
     margin-bottom: 20px;
     padding: 30px;
     width: 100%;
@@ -47,12 +48,12 @@
 .details-btn {
     color: lightgray;
     background-color: rgb(39, 39, 39);
-    border: darkgoldenrod 1px solid;
+    border: darkslategray 1px solid;
 }
 
 .details-btn:hover {
     color: rgb(39, 39, 39);
-    background-color: darkgoldenrod;
+    background-color: darkslategray;
 }
 
 .additional-btns {
