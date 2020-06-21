@@ -138,10 +138,9 @@ public class RentingRequestService {
         }
         rentingRequestRepository.save(r);
         rentingRequestVehicleRepository.save(rrv);
-
-
         return r;
-
-
+    }
+    public RentingRequest save(RentingRequest r) {
+        return rentingRequestRepository.save(r);
     }
 }

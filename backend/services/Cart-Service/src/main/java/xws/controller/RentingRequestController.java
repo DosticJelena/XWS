@@ -1,5 +1,7 @@
 package xws.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,8 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/rentingRequest")
 public class RentingRequestController {
+
+    Logger logger = LoggerFactory.getLogger(RentingRequestController.class);
 
     @Autowired
     private RentingRequestService rentingRequestService;
@@ -60,19 +64,20 @@ public class RentingRequestController {
         return new ResponseEntity<>(rentingRequestService.manualyReserveVehicle(requestDTO),HttpStatus.CREATED);
     }
 
-    //@Scheduled(fixedRate = 5000)
-    //todo: resiti problem lazy inicijalizacije
+    @Scheduled(fixedRate = 5000)
     public void scheduleFixedRateTask() {
         List<RentingRequest> rentingRequests = rentingRequestService.findAll();
         for(RentingRequest rentingRequest : rentingRequests) {
             if(rentingRequest.getStatus().equals(RentingRequest.Status.PENDING) && rentingRequest.getCreatedAt().isBefore(LocalDateTime.now().minusDays(1L))) {
                 rentingRequest.setStatus(RentingRequest.Status.DECLINED);
-                System.out.println("scheduled: stavljam status na declined");
+                rentingRequestService.save(rentingRequest);
+                logger.info("scheduled: stavljam status na declined");
             }else if(rentingRequest.getStatus().equals(RentingRequest.Status.PAID)) {
                 for(RentingRequestVehicle rentingRequestVehicle : rentingRequest.getVehicles()){
-                    if(rentingRequestVehicle.getEndDate().isAfter(LocalDateTime.now())){
+                    if(rentingRequestVehicle.getEndDate().isBefore(LocalDateTime.now())){
                         rentingRequest.setStatus(RentingRequest.Status.FINISHED);
-                        System.out.println("scheduled: stavljam status na finished");
+                        rentingRequestService.save(rentingRequest);
+                        logger.info("scheduled: stavljam status na finished");
                         break;
                     }
                 }
