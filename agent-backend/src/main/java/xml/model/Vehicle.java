@@ -22,7 +22,7 @@ public class Vehicle {
     private Long id;
 
     @Column
-    private Long owner_id;
+    private Long owner;
 
     @Column
     private String location;

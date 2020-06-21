@@ -42,6 +42,20 @@ public class RentingRequestVehicle {
     @Column
     private String additionalInfo;
 
+    @Override
+    public String toString() {
+        return "RentingRequestVehicle{" +
+                "id=" + id +
+                ", vehicle=" + vehicle +
+                ", rentingRequest=" + rentingRequest +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", price=" + price +
+                ", distance=" + distance +
+                ", additionalInfo='" + additionalInfo + '\'' +
+                '}';
+    }
+
     @Embeddable
     @Getter
     @Setter

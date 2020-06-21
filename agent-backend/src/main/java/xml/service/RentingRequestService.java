@@ -28,7 +28,7 @@ public class RentingRequestService {
     public RentingRequest manuallyReserveVehicle(ManuallyReserveVehicleRequestDTO requestDTO) {
         Vehicle vc = vehicleService.findOneById(requestDTO.getVehicleId());
         VehicleCart v = new VehicleCart();
-        v.setOwnerId(vc.getOwner_id());
+        v.setOwnerId(vc.getOwner());
         RentingRequest r = new RentingRequest();
         r.setStatus(RentingRequest.Status.PAID);
         RentingRequestVehicle rrv = new RentingRequestVehicle();

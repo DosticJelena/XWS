@@ -1,10 +1,7 @@
 package xml.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import xml.dto.request.NewVehicleRequestDTO;
 import xml.model.CarGrade;
 import xml.model.Comment;
@@ -16,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "vehicle")
+@RequestMapping(value = "/vehicle")
 public class VehicleController {
 
     @Autowired
@@ -42,9 +39,9 @@ public class VehicleController {
 
     }
 
-    @RequestMapping(value = "/most-distance", method = RequestMethod.GET, produces = "application/json")
-    public Vehicle mostDistance(@RequestBody Id id) {
-        List<Vehicle> all = vehicleService.findAllByOwner_id(id.id);
+    @RequestMapping(value = "/most-distance/{id}", method = RequestMethod.GET, produces = "application/json")
+    public Vehicle mostDistance(@PathVariable Long id) {
+        List<Vehicle> all = vehicleService.findAllByOwner_id(id);
         if(all.size() == 0) {
             return null;
         }
@@ -62,9 +59,9 @@ public class VehicleController {
         return ret;
     }
 
-    @RequestMapping(value = "/most-comments", method = RequestMethod.GET, produces = "application/json")
-    public Vehicle mostComments(@RequestBody Id id) {
-        List<Vehicle> all = vehicleService.findAllByOwner_id(id.id);
+    @RequestMapping(value = "/most-comments/{id}", method = RequestMethod.GET, produces = "application/json")
+    public Vehicle mostComments(@PathVariable Long id) {
+        List<Vehicle> all = vehicleService.findAllByOwner_id(id);
         if(all.size() == 0) {
             return null;
         }
@@ -90,9 +87,9 @@ public class VehicleController {
         return ret;
     }
 
-    @RequestMapping(value = "/best-grade", method = RequestMethod.GET, produces = "application/json")
-    public Vehicle bestGrade(@RequestBody Id id) {
-        List<Vehicle> all = vehicleService.findAllByOwner_id(id.id);
+    @RequestMapping(value = "/best-grade/{id}", method = RequestMethod.GET, produces = "application/json")
+    public Vehicle bestGrade(@PathVariable Long id) {
+        List<Vehicle> all = vehicleService.findAllByOwner_id(id);
         if(all.size() == 0) {
             return null;
         }

@@ -38,15 +38,28 @@ public class RentingRequestController {
 
     @RequestMapping(value = "/report", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
     public RentingRequestVehicle report(@RequestBody ReportRequestDTO request) {
-        RentingRequestVehicle rrv = rentingRequestVehicleRepository.findOneByVehicleIdAndRentingRequestId(request.getVId(), request.getRId());
+        List<RentingRequestVehicle> lista = rentingRequestVehicleRepository.findAll();
+
+        RentingRequestVehicle rrv = null;
+
+        for(RentingRequestVehicle a:lista) {
+            System.out.println(request.getVid() + "    " + request.getRid());
+            if(a.getId().getVehicle_id() == request.getVid() && a.getId().getRenting_request_id() == request.getRid()) {
+                System.out.println("usao");
+                rrv = a;
+                break;
+            }
+        }
+
         rrv.setDistance(request.getDistance());
         rrv.setAdditionalInfo(request.getAdditionalInfo());
+
         return rentingRequestVehicleRepository.save(rrv);
     }
 
-    @RequestMapping(value = "/finished", method = RequestMethod.GET, produces = "application/json")
-    public List<RentingRequestVehicle> getFinished(@RequestBody Id id) {
-        List<Vehicle> vehicles = vehicleService.findAllByOwner_id(id.id);
+    @RequestMapping(value = "/finished/{id}", method = RequestMethod.GET, produces = "application/json")
+    public List<RentingRequestVehicle> getFinished(@PathVariable Long id) {
+        List<Vehicle> vehicles = vehicleService.findAllByOwner_id(id);
 
         ArrayList<List<RentingRequestVehicle>> lista = new ArrayList<List<RentingRequestVehicle>>();
         for(Vehicle v : vehicles) {
