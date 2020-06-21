@@ -39,6 +39,9 @@ public class RentingRequestVehicle {
     @Column
     private double distance;
 
+    @Column
+    private String additionalInfo;
+
     @Embeddable
     @Getter
     @Setter

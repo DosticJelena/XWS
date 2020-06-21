@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface RentingRequestVehicleRepository extends JpaRepository<RentingRequestVehicle, RentingRequestVehicle.RentingRequestVehicleId> {
     List<RentingRequestVehicle> findByVehicleId(Long id);
+    RentingRequestVehicle findOneByVehicleIdAndRentingRequestId(Long vId, Long rId);
 }

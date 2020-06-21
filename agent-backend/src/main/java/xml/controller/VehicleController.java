@@ -9,6 +9,8 @@ import xml.dto.request.NewVehicleRequestDTO;
 import xml.model.Vehicle;
 import xml.service.VehicleService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "vehicle")
 public class VehicleController {
@@ -22,4 +24,27 @@ public class VehicleController {
 
     }
 
+    @RequestMapping(value = "/most-distance", method = RequestMethod.GET, produces = "application/json")
+    public Vehicle mostDistance(@RequestBody Id id) {
+        List<Vehicle> all = vehicleService.findAllByOwner_id(id.id);
+        if(all.size() == 0) {
+            return null;
+        }
+
+        double max = all.get(0).getDistance();
+        Vehicle ret = all.get(0);
+
+        for(Vehicle v : all) {
+            if(v.getDistance() > max) {
+                max = v.getDistance();
+                ret = v;
+            }
+        }
+
+        return ret;
+    }
+
+    public static class Id {
+        public Long id;
+    }
 }
