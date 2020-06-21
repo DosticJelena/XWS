@@ -39,10 +39,10 @@
     margin: 1em;
     color: lightgray;
     background-color: rgb(39, 39, 39);
-    border: darkgoldenrod 1px solid;
+    border: darkslategray 1px solid;
 }
 
 .details-btn:hover {
     color: rgb(39, 39, 39);
-    background-color: darkgoldenrod;
+    background-color: darkslategray;
 }

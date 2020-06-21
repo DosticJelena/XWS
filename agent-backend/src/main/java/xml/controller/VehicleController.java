@@ -1,10 +1,7 @@
 package xml.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import xml.dto.request.NewVehicleRequestDTO;
 import xml.model.Vehicle;
 import xml.service.VehicleService;
@@ -21,6 +18,12 @@ public class VehicleController {
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     public List<Vehicle> allVehicles() {
         return vehicleService.getAll();
+
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
+    public Vehicle getById(@PathVariable Long id) {
+        return vehicleService.getById(id);
 
     }
 

@@ -38,7 +38,7 @@ export class CarsService {
         )
     }
     getImages(id:number) {
-      return this.http.get(`http://localhost:8080/vehicle/pictures/`+id)
+      return this.http.get(`http://localhost:8090/pictures/`+id)
       .pipe(
         map((response: any) => {
           const images = response;
@@ -69,7 +69,7 @@ export class CarsService {
   addNewVehicle(values: any){
     console.log(values);
     return this.http.post("http://localhost:8090/vehicle/new", {
-            user_id: 1,
+            owner_id: 1,
             brand: values.brand,
             model: values.model,
             location: values.location,
