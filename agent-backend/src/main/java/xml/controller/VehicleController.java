@@ -9,12 +9,20 @@ import xml.dto.request.NewVehicleRequestDTO;
 import xml.model.Vehicle;
 import xml.service.VehicleService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "vehicle")
 public class VehicleController {
 
     @Autowired
     VehicleService vehicleService;
+
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
+    public List<Vehicle> allVehicles() {
+        return vehicleService.getAll();
+
+    }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public Vehicle newVehicle(@RequestBody NewVehicleRequestDTO request) {
