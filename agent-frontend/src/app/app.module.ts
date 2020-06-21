@@ -27,6 +27,11 @@ import { NotifierModule } from "angular-notifier";
 import { ManageCommentsComponent } from './manage-comments/manage-comments.component';
 import { MessageComponent } from './message/message.component';
 import { GradesAndCommentsComponent } from './grades-and-comments/grades-and-comments.component';
+import { Statistics } from './statistics/statistics';
+import { RentingRequests } from './renting-requests/renting-requests';
+import { StatisticsService } from './services/statistics/statistics.service';
+import { RentingRequestsService } from './services/renting-requests/renting-requests.service';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +45,9 @@ import { GradesAndCommentsComponent } from './grades-and-comments/grades-and-com
     CarDetails,
     ManageCommentsComponent,
     MessageComponent,
-    GradesAndCommentsComponent
+    GradesAndCommentsComponent,
+    Statistics,
+    RentingRequests
   ],
   imports: [
     NgbModule,
@@ -57,7 +64,9 @@ import { GradesAndCommentsComponent } from './grades-and-comments/grades-and-com
   providers: [
     AuthService,
     ToastrService,
-    CarsService
+    CarsService,
+    RentingRequestsService,
+    StatisticsService
   ],
   bootstrap: [AppComponent]
 })

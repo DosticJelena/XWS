@@ -1,0 +1,21 @@
+<table class="table">
+    <caption>Report</caption>
+    <thead>
+        <tr>
+            <th scope="col">CarId</th>         
+            <th scope="col">Distance</th>       
+            <th scope="col">Additional Info</th>
+            <th scope="col">Send</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let req of rrVehicleList;let i = index;">
+            <tr>
+                <td>{{req.vehicle.id}}</td>
+                <td><input type="number" id="{{i}}" name="text"  placeholder="Distance" required></td>
+                <td><input type="text" id="r{{i}}" name="text"  placeholder="Additional info" required></td>
+                <td><button class="btn btn-success" (click)="sendReport(req.vehicle.id,i)">Send</button></td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>

@@ -26,6 +26,12 @@ public class VehicleController {
 
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
+    public Vehicle getById(@PathVariable Long id) {
+        return vehicleService.getById(id);
+
+    }
+
     @Autowired
     CarGradeRepository carGradeRepository;
 

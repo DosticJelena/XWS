@@ -7,6 +7,8 @@ import { Login } from './auth/login/login';
 import { NewCar } from './cars/new-car/new-car';
 import {ManageCommentsComponent} from './manage-comments/manage-comments.component'
 import {MessageComponent} from './message/message.component'
+import { Statistics } from './statistics/statistics';
+import { RentingRequests } from './renting-requests/renting-requests';
 
 export const appRoutes:Routes = [
     {path: "cars", component: Cars},
@@ -16,5 +18,7 @@ export const appRoutes:Routes = [
     {path: "register", component: Register},
     {path: "login", component: Login},
     {path: "manage-comments", component: ManageCommentsComponent},
+    {path: "statistics", component: Statistics},
+    {path: "renting-requests", component: RentingRequests},
     {path: "", component: HomePage}
 ]
