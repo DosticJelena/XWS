@@ -12,7 +12,6 @@ import xml.model.Vehicle;
 import xml.repository.CarGradeRepository;
 import xml.repository.CommentRepository;
 import xml.service.VehicleService;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,11 +22,19 @@ public class VehicleController {
     @Autowired
     VehicleService vehicleService;
 
+
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
+    public List<Vehicle> allVehicles() {
+        return vehicleService.getAll();
+
+    }
+
     @Autowired
     CarGradeRepository carGradeRepository;
 
     @Autowired
     CommentRepository commentRepository;
+
 
     @RequestMapping(value = "/new", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public Vehicle newVehicle(@RequestBody NewVehicleRequestDTO request) {

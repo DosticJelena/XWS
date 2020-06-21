@@ -11,7 +11,7 @@ export class GradeAndCommentService {
 
   constructor(private router: Router, private http: HttpClient) { }
   makeGrade(car: number,senderId: number,value: number ) {
-    return this.http.post("http://localhost:8080/grading/grade", {
+    return this.http.post("http://localhost:8090/grade", {
       carId : car,
       userId: senderId,
       value: value
@@ -28,7 +28,7 @@ export class GradeAndCommentService {
         )
 }
 postComment(car: number,senderId: number,text: string ) {
-  return this.http.post("http://localhost:8080/grading/comment", {
+  return this.http.post("http://localhost:8090/comment", {
     carId : car,
     userId: senderId,
     text: text

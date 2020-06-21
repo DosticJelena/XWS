@@ -5,7 +5,7 @@
 }
 
 .welcome {
-    background-color: darkgoldenrod;
+    background-color: darkslategray;
     margin-left: 0;
     margin-top: 10vh;
     padding: 5%;
@@ -16,12 +16,13 @@
 .grayline {
     margin-right: 0;
     min-height: 4px;
-    background-color: rgb(39, 39, 39);
+    background-color: lightgray;
     border-radius: 15px 0 0 15px;
 }
 
 .welcome h1 {
     margin-right: 30px;
+    color: lightgray;
 }
 
 .login {
@@ -34,7 +35,7 @@
 
 .layer {
     background-color: rgba(39, 39, 39, 0.9);
-    color: darkgoldenrod;
+    color: white;
     padding: 30px;
     margin-left: 40px;
     height: 100%;
@@ -43,19 +44,18 @@
 .login-input {
     background-color: transparent;
     border: 0;
-    border-bottom: darkgoldenrod 1px solid;
+    border-bottom: darkslategray 1px solid;
     color: lightgray;
 }
 
 .login-btn {
     color: lightgray;
     background-color: rgb(39, 39, 39);
-    border: darkgoldenrod 1px solid;
+    border: darkslategray 1px solid;
 }
 
 .login-btn:hover {
-    color: rgb(39, 39, 39);
-    background-color: darkgoldenrod;
+    background-color: darkslategray;
 }
 
 .light-menu {

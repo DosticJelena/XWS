@@ -9,7 +9,7 @@
     background-color: rgb(39, 39, 39, 0.9);
     height: 100%;
     width: 100%;
-    color: darkgoldenrod;
+    color: lightgray;
     padding: 50px;
 }
 
@@ -23,7 +23,7 @@
 .register-input {
     background-color: transparent;
     border: 0;
-    border-bottom: darkgoldenrod 1px solid;
+    border-bottom: darkslategray 1px solid;
     color: lightgray;
 }
 
@@ -33,28 +33,28 @@
 
 .cdw-btn {
     display: block;
-    background-color: darkgoldenrod;
-    border-color: darkgoldenrod;
+    background-color: darkslategray;
+    border-color: darkslategray;
     color:white;
 }
 
 .img-btn {
     display: inline;
-    background-color: darkgoldenrod;
-    border-color: darkgoldenrod;
+    background-color: darkslategray;
+    border-color: darkslategray;
     color:white;
 }
 
 .btn-ok {
     margin-top: 7px;
-    background-color: darkgoldenrod;
-    border-color: darkgoldenrod;
+    background-color: darkslategray;
+    border-color: darkslategray;
     color:white;
     margin-right: 10px;
 }
 
 .img-btn:hover, .btn-ok:hover {
-    color: rgb(39, 39, 39);
+    color: lightgray;
 }
 
 .images-div {
@@ -62,7 +62,7 @@
     padding: 10px;
     height: 250px;
     margin-top: 20px;
-    background-color: rgb(184, 134, 11, 0.2);
+    background-color: rgb(47, 79, 79, 0.2);
 }
 
 .single-img {
