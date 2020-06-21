@@ -1,12 +1,15 @@
 package xml.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import xml.dto.request.NewVehicleRequestDTO;
 import xml.dto.request.ReportRequestDTO;
 import xml.model.RentingRequest;
 import xml.model.RentingRequestVehicle;
 import xml.model.Vehicle;
+import xml.repository.RentingRequestRepository;
 import xml.repository.RentingRequestVehicleRepository;
 import xml.service.RentingRequestService;
 import xml.service.VehicleService;
@@ -23,7 +26,15 @@ public class RentingRequestController {
     private RentingRequestVehicleRepository rentingRequestVehicleRepository;
 
     @Autowired
+    private RentingRequestRepository rentingRequestRepository;
+
+    @Autowired
     private VehicleService vehicleService;
+
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET,produces = "application/json")
+    public ResponseEntity<?> getAllByUserId(@PathVariable Long id) {
+        return new ResponseEntity<>(rentingRequestRepository.findByUserId(id), HttpStatus.ACCEPTED);
+    }
 
     @RequestMapping(value = "/report", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
     public RentingRequestVehicle report(@RequestBody ReportRequestDTO request) {
