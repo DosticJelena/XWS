@@ -23,7 +23,19 @@ export class MessageService {
             })
         )
 }
-
+getAllMessages(i) {
+  return this.http.get("http://localhost:8090/message?user="+i)
+      .pipe(
+          map((res: any) => {
+              const data = res;
+              return data;
+          }),
+          catchError((err: any) => {
+              console.log(err);
+              return throwError(err);
+          })
+      )
+}
   sendMess(receiverId: number,senderId: number,content: string ) {
     return this.http.post("http://localhost:8090/message", {
       receiverId : receiverId,
