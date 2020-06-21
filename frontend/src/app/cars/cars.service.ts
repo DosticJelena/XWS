@@ -10,7 +10,7 @@ export class CarsService {
     cars : any;
 
     getCars() {
-        return this.http.get(`http://localhost:8080/vehicle/vehicles`)
+        return this.http.get(`http://localhost:8080/vehicle/`)
         .pipe(
           map((response: any) => {
             this.cars = response.data;
@@ -25,7 +25,7 @@ export class CarsService {
     }
 
     getCar(id:number) {
-        return this.http.get(`http://localhost:8080/vehicle/vehicles/`+id)
+        return this.http.get(`http://localhost:8080/vehicle/`+id)
         .pipe(
           map((response: any) => {
             const cars_data = response;
@@ -51,7 +51,7 @@ export class CarsService {
   }
 
   filter(location: string, startDate: string, endDate: string) {
-    let url = "http://localhost:8080/vehicle/vehicles/search?location=" + location +
+    let url = "http://localhost:8080/vehicle/search?location=" + location +
       "&startDate=" + startDate + "&endDate=" + endDate + "&&brand&model&fuel_type&transmission&type&price=0&distance=0&minPrice=0&maxPrice=0&CDWStatus&childrenSeats=1";
     console.log(url);
     return this.http.get(url)
@@ -68,7 +68,7 @@ export class CarsService {
 
   addNewVehicle(values: any){
     console.log(values);
-    return this.http.post("http://localhost:8080/vehicle/vehicles/new", {
+    return this.http.post("http://localhost:8080/vehicle/new", {
             user_id: 1,
             brand: values.brand,
             model: values.model,
