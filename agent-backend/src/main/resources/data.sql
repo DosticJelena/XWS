@@ -32,3 +32,6 @@ insert into comment(user_id, car_id, text, status) values(1,2,'asdsa','asdsadasd
 insert into car_grade(user_id, car_id, value) values(1,1,3);
 insert into car_grade(user_id, car_id, value) values(1,2,4);
 insert into car_grade(user_id, car_id, value) values(1,2,5);
+
+insert into message(receiver_id,sender_id,content) values(1,1,"pozz");
+insert into message(receiver_id,sender_id,content) values(1,1,"Kolega Stefane, pozdravljam!");
