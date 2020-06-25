@@ -54,11 +54,11 @@ public class ApplicationUserController {
         return new ResponseEntity<>(new UserResponseDTO(), HttpStatus.BAD_REQUEST);
     }
 
-    @RequestMapping(consumes = "application/json", produces= "application/json", value = "login", method = RequestMethod.GET)
+    @RequestMapping(consumes = "application/json", produces= "application/json", value = "login", method = RequestMethod.POST)
     public ResponseEntity<?> loginUser(@RequestBody LoginDTO loginDto) {
         ApplicationUser au = applicationUserService.findOneByUsername(loginDto.getUsername());
 
-        if(au.getId() != null) {
+        if(au != null) {
             if (!au.getPassword().equals(loginDto.getPassword())){
                 return new ResponseEntity<>(new UserResponseDTO(), HttpStatus.BAD_REQUEST);
             }

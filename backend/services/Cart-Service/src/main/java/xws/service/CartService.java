@@ -68,9 +68,10 @@ public class CartService {
         }
 
     }
-    public Cart save(CartRequestDTO requestDTO){
+    public Cart save(Long id){
         Cart c = new Cart();
-        c.setUserId(requestDTO.getUserId());
+        c.setUserId(id);
+        System.out.println("Kreirana korpa: " + id);
         return cartRepository.save(c);
     }
     public Cart save(Cart cart) {

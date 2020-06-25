@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import xws.dto.RegisterDTO;
+import xws.feignClients.CartServiceProxy;
 import xws.model.ApplicationUser;
 import xws.model.Person;
 import xws.repository.ApplicationUserRepository;
@@ -16,6 +17,9 @@ public class ApplicationUserService {
 
     @Autowired
     private ApplicationUserRepository applicationUserRepository;
+
+    @Autowired
+    private CartServiceProxy cartServiceProxy;
 
     public List<ApplicationUser> findAll() { return applicationUserRepository.findAll(); }
 
@@ -33,7 +37,11 @@ public class ApplicationUserService {
         person.setFirstName(dto.getFirstName());
         person.setLastName(dto.getLastName());
 
-        return applicationUserRepository.save(person);
+        ApplicationUser createdUser = applicationUserRepository.save(person);
+
+        cartServiceProxy.addCart(createdUser.getId());
+
+        return createdUser;
 
     }
 
