@@ -1,8 +1,6 @@
 .table {
-    margin: 5em auto;
     max-width: 1000px;
     border: 2px solid #333333;
-    box-shadow: 2px 2px 2px #444444;
     color: white;
 }
 .rating {
@@ -33,12 +31,24 @@
     color: rgb(39, 39, 39);
     background-color: darkgoldenrod;
 }
- .rating-star,
-.rating:hover .rating-star {
+ .rating-star, .rating:hover .rating-star {
   position: relative;
     display: block;
   float: right;
     width: 16px;
     height: 16px;
     background: url('https://www.everythingfrontend.com/samples/star-rating/star.png') 0 -16px;
+}
+
+.requests {
+    color: darkgoldenrod;
+    padding: 50px;
+}
+
+.requests hr {
+    background-color: lightgray;
+}
+
+.requests button {
+    color: lightgray;
 }

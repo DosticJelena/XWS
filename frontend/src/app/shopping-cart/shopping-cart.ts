@@ -100,7 +100,8 @@ export class ShooppingCart {
       this.cartService.createBundlePerOwner(this.userId,start,end).subscribe(
         (data : any) => {
           console.log(data);
-          location.reload()
+          //location.reload();
+          location.replace("cars");
         },
         (err) => {
           console.log(err);
@@ -110,7 +111,8 @@ export class ShooppingCart {
       this.cartService.createRequestPerVehicle(this.userId,start,end).subscribe(
         (data : any) => {
           console.log(data);
-          location.reload()
+          //location.reload();
+          location.replace("cars");
         },
         (err) => {
           console.log(err);
