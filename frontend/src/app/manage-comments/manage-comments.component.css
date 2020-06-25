@@ -1,7 +1,18 @@
+.manage-comments {
+    padding: 50px;
+    color: darkgoldenrod;
+}
+
+.manage-comments hr {
+    background-color: lightgray;
+}
+
+.manage-comments table {
+    margin-top: 30px;
+}
+
 .table {
-    margin: 5em auto;
-    max-width: 500px;
+    color: lightgray;
     border: 2px solid #333333;
-    box-shadow: 2px 2px 2px #444444;
-    color: white;
+    width: 700px;
 }

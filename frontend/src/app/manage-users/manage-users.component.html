@@ -1,6 +1,26 @@
-<div class="users" *ngFor="let user of users">
-    {{user.username}}
-    <button *ngIf="user.status !== 'ACTIVE'" class="btn btn-success btn-sm" (click)="clickActivate(user.id)">Activate</button>
-    <button *ngIf="user.status !== 'BLOCKED'" class="btn btn-dark btn-sm" (click)="clickBlock(user.id)">Block</button>
-    <button class="btn btn-danger btn-sm" (click)="clickDelete(user.id)">Delete</button>
+<div class="manage-users">
+    <h3>Manage Users</h3>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Username</th>         
+                <th scope="col">Block/Activate</th>  
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let user of users">
+                <tr class="users">
+                    <td>{{user.username}}</td>
+                    <td>
+                        <button *ngIf="user.status !== 'ACTIVE'" class="btn btn-success btn-sm" (click)="clickActivate(user.id)">Activate</button>
+                        <button *ngIf="user.status !== 'BLOCKED'" class="btn btn-dark btn-sm" (click)="clickBlock(user.id)">Block</button>
+                    </td>
+                    <td><button class="btn btn-danger btn-sm" (click)="clickDelete(user.id)">Delete</button></td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+    [pored username-a i ime i prezime]
 </div>

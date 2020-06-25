@@ -1,3 +1,3 @@
-insert into application_user(dtype, status, company_name, username, password) values ('C', 0, 'Rent NS', 'Rent1', '123');
-insert into application_user(dtype, status, first_name, last_name, username, password) values ('P', 0, 'Pera', 'Peric', 'Perica', '123');
-insert into application_user(dtype, status, first_name, last_name, username, password) values ('P', 2, 'Marko', 'Markovic', 'Markic', '123');
+insert into application_user(dtype, status, role, company_name, username, password) values ('C', 0, 2, 'Rent NS', 'Rent1', '123');
+insert into application_user(dtype, status, role, first_name, last_name, username, password) values ('A', 0, 0, 'Pera', 'Peric', 'Perica', '123');
+insert into application_user(dtype, status, role, first_name, last_name, username, password) values ('P', 2, 1, 'Marko', 'Markovic', 'Markic', '123');

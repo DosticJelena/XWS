@@ -1,4 +1,6 @@
 insert into cart (user_id) values (1);
+insert into cart (user_id) values (2);
+insert into cart (user_id) values (3);
 
 insert into vehicle_cart(owner_id) values (1);
 insert into vehicle_cart(owner_id) values (1);

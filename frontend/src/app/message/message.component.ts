@@ -15,6 +15,7 @@ export class MessageComponent implements OnInit {
   map = new Map<number, string>();
   counter = 0;
   grade = 0;
+  selected = "pending";
   
   constructor(private MessageService: MessageService,
               private AuthService: AuthService,
@@ -58,7 +59,8 @@ export class MessageComponent implements OnInit {
   reloadReservations() {
     this.MessageService.reload(1)
       .subscribe(
-        (data: any) => {          
+        (data: any) => {   
+          console.log(data);       
           this.reservations = Object.assign([], (data));
         }, (error) => alert(error.text)
       );

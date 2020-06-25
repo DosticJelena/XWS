@@ -17,6 +17,10 @@ public abstract class ApplicationUser {
         ACTIVE, DELETED, BLOCKED
     }
 
+    public enum Role {
+        ADMIN, PERSON, COMPANY
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,4 +33,8 @@ public abstract class ApplicationUser {
 
     @Column(nullable = false)
     private Status status;
+
+    @Column(nullable = false)
+    private Role role;
+
 }

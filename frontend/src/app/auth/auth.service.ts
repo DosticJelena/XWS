@@ -4,62 +4,68 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap, catchError, map } from 'rxjs/operators';
 import { of, throwError } from 'rxjs';
+import { environment } from "../../environments/environment";
 
 @Injectable()
 export class AuthService {
 
     currentUser: IUser;
+    loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
 
     constructor(private router: Router, private http: HttpClient) {
 
     }
 
     isAuthenticated() {
-        return !!this.currentUser;
+        return !!JSON.parse(localStorage.getItem("loggedUser"));
     }
 
     loginUser(formValues) {
         event.preventDefault();
-        console.log("HTTP zastev za login");
-        console.log(formValues);
 
-        //za sad 
-        this.currentUser = {
-            id: 1,
-            firstName: "Privremeni",
-            lastName: "Korisnik",
-            email: "privremenikorisnik@gmail.com"
-        }
-
-        //posle
-        /*
         var loginInfo = {
-            email: formValues.userEmail,
+            username: formValues.userEmail,
             password: formValues.userPassword
         }
-        var options = { headers: new HttpHeaders({"Content-Type:":"application/json"})};
-        this.http.post('/...', loginInfo, options)
-        .pipe(tap(response => {
-            this.currentUser = <IUser>response;
-        }))
-        .pipe(catchError(error => {
-            
-        }))
-        */
-
-        this.router.navigate(['/']);
+        return this.http.post(`${environment.baseUrl}/auth/login`, loginInfo)
+        .pipe(
+            map((res : any) => {
+              const data = res;
+              return data;
+            }),
+            catchError((err : any) => {
+              console.log(err);
+              return throwError(err);
+            })
+          )
     }
 
     registerUser(formValues) {
         event.preventDefault();
-        console.log("HTTP zastev za registraciju");
-        console.log(formValues);
 
-        this.router.navigate(['/']);
+        var regInfo = {
+            username: formValues.username,
+            password: formValues.password,
+            firstName: formValues.firstName,
+            lastName: formValues.lastName
+        }
+        return this.http.post(`${environment.baseUrl}/auth/register`, regInfo)
+        .pipe(
+            map((res : any) => {
+              const data = res;
+              return data;
+            }),
+            catchError((err : any) => {
+              console.log(err);
+              return throwError(err);
+            })
+          )
     }
 
     logoutUser() {
-        this.currentUser = undefined;
+        this.loggedUser = undefined;
+        localStorage.removeItem("loggedUser");
+        localStorage.removeItem("id");
 
         //server
     }

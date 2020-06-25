@@ -1,49 +1,57 @@
-<div class="cars">
+<div class="cart">
+    <h3>Vehicles In Cart</h3>
+    <br/>
     <div class="row">
-        <div *ngFor="let car of cars" class="col-lg-4 col-md-6 col-sm-6 col-12">
-            <div class="background">
-                <div class="carItem">
-                    <h5>{{car.brand}} | {{car.model}} ({{car.price}})</h5>
-                    <h5>{{car.owner_name}}</h5>
-                    <hr style="background-color: gray;" />
-                    <div style="max-height: 150px;"><img height="150" widht="250"
-                            src="https://autorepublika.com/wp-content/uploads/2019/08/bmw-x5-protection2.jpg"></div>
-                    <br />
+        <div class="col-6 cart-vehicles">
+            <div *ngFor="let car of cars" class="col-12">
+                <div class="background">
+                    <div class="carItem">
+                        <h5>{{car.brand}} | {{car.model}} ({{car.price}})</h5>
+                        <h5>{{car.owner_name}}</h5>
+                        <hr style="background-color: gray;" />
+                        <div style="max-height: 150px;"><img height="150" widht="250"
+                                src="https://autorepublika.com/wp-content/uploads/2019/08/bmw-x5-protection2.jpg"></div>
+                        <br />
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="rent-div">
-        <div class="col-2">
-            <div class="dateFrom">
-                <input class="form-control" placeholder="Start date" id="date" name="dp" name="datum"
-                    [(ngModel)]="startDate" [minDate]="minDate" ngbDatepicker #d="ngbDatepicker" required>
-
-                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><img
-                        src="../../assets/images/calendar.png" alt="calendar"
-                        style="width: 1.2rem; height: 1.2rem; cursor: pointer;" /></button>
-
+        <div class="col-6">
+            <div class="rent-div">
+                <div class="row">
+                    <div class="col">
+                        <div class="dateFrom">
+                            <input class="form-control" placeholder="Start date" id="date" name="dp" name="datum"
+                                [(ngModel)]="startDate" [minDate]="minDate" ngbDatepicker #d="ngbDatepicker" required>
+            
+                            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><img
+                                    src="../../assets/images/calendar.png" alt="calendar"
+                                    style="width: 1.2rem; height: 1.2rem; cursor: pointer;" /></button>
+            
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="dateTo">
+                            <input class="form-control" placeholder="End date" id="date" name="dp" name="datum"
+                                [(ngModel)]="endDate" [minDate]="minDateSecond" ngbDatepicker #to="ngbDatepicker" required>
+            
+                            <button class="btn btn-outline-secondary calendar" (click)="to.toggle()" type="button"><img
+                                    src="../../assets/images/calendar.png" alt="calendar"
+                                    style="width: 1.2rem; height: 1.2rem; cursor: pointer;" /></button>
+            
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div>
+                    <div>
+                        <input class="checkbox-input" type="checkbox" id="vehicle1" name="vehicle1" (change)="onChange($event.target.checked)">                    
+                        <label for="vehicle1" class="checkbox"> Create bundle per owner </label>
+                    </div>
+                    <button style="width: 200px; height: 50px;" class="btn details-btn" (click)="reserveCars()">Create Request</button>
+                    <br>
+                </div>
             </div>
-        </div>
-        <div class="col-2">
-            <div class="dateTo">
-                <input class="form-control" placeholder="End date" id="date" name="dp" name="datum"
-                    [(ngModel)]="endDate" [minDate]="minDateSecond" ngbDatepicker #to="ngbDatepicker" required>
-
-                <button class="btn btn-outline-secondary calendar" (click)="to.toggle()" type="button"><img
-                        src="../../assets/images/calendar.png" alt="calendar"
-                        style="width: 1.2rem; height: 1.2rem; cursor: pointer;" /></button>
-
-            </div>
-        </div>
-        <div style="display: flex; flex-direction: column;">
-            <button style="width: 200px; height: 50px;" class="btn details-btn" (click)="reserveCars()">Add to
-                cart</button>
-            <span>
-                <input class="checkbox-input" type="checkbox" id="vehicle1" name="vehicle1" (change)="onChange($event.target.checked)">
-                <label for="vehicle1" class="checkbox"> Create bundle per owner </label><br>
-            </span>
-
         </div>
     </div>
 </div>

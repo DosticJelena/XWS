@@ -45,12 +45,12 @@ public class CartController {
 
     /**
      * Pravljenje nove korpe za korisnika,ova metoda bi trebalo da se pozove kada se registruje novi korisnik te da se u isto vreme napravi i korpa koju ce on koristiti
-     * @param requestDTO
+     * @param id
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST,produces = "application/json",consumes = "application/json")
-    public ResponseEntity<?> addCart(@RequestBody CartRequestDTO requestDTO){
-        return new ResponseEntity<>(cartService.save(requestDTO),HttpStatus.CREATED);
+    @RequestMapping(value="/", method = RequestMethod.POST,produces = "application/json",consumes = "application/json")
+    public ResponseEntity<?> addCart(@RequestBody Long id){
+        return new ResponseEntity<>(cartService.save(id),HttpStatus.CREATED);
     }
 
 
