@@ -9,13 +9,14 @@ import { of, throwError } from 'rxjs';
 export class AuthService {
 
     currentUser: IUser;
+    loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
 
     constructor(private router: Router, private http: HttpClient) {
 
     }
 
     isAuthenticated() {
-        return !!this.currentUser;
+        return !!JSON.parse(localStorage.getItem("loggedUser"));
     }
 
     loginUser(formValues) {
@@ -30,6 +31,8 @@ export class AuthService {
             lastName: "Korisnik",
             email: "privremenikorisnik@gmail.com"
         }
+
+        localStorage.setItem("loggedUser", JSON.stringify(this.currentUser));
 
         //posle
         /*
@@ -60,6 +63,8 @@ export class AuthService {
 
     logoutUser() {
         this.currentUser = undefined;
+        localStorage.removeItem("loggedUser");
+        localStorage.removeItem("id");
 
         //server
     }

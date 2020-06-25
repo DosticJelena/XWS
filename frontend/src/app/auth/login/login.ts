@@ -15,6 +15,10 @@ export class Login {
 
   }
 
+  ngOnInit() {
+    console.log(localStorage);
+  }
+
   loginRequest(formValues:any) {
     this.authService.loginUser(formValues);
   }
