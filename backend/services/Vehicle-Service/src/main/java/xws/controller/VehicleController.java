@@ -42,7 +42,12 @@ public class VehicleController {
     public Vehicle getById(@PathVariable("id") Long id) {
         return vehicleService.getById(id);
     }
-  
+
+    @RequestMapping(value = "/owner/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
+    public List<Vehicle> getByOwnerId(@PathVariable("id") Long id) {
+        return vehicleService.getByOwnerId(id);
+    }
+
     @RequestMapping(value = "/new", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public Vehicle newVehicle(@RequestBody NewVehicleRequestDTO request) {
         return vehicleService.save(request);
