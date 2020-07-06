@@ -10,36 +10,49 @@ import { of, throwError } from 'rxjs';
 export class MessageService {
 
   constructor(private router: Router, private http: HttpClient) { }
-  reload(id:number) {
-    return this.http.get("http://localhost:8080/cart/rentingRequest/"+id)
-        .pipe(
-            map((res: any) => {
-                const data = res;
-                return data;
-            }),
-            catchError((err: any) => {
-                console.log(err);
-                return throwError(err);
-            })
-        )
-}
+  reload(id: number) {
+    return this.http.get("http://localhost:8080/cart/rentingRequest/" + id)
+      .pipe(
+        map((res: any) => {
+          const data = res;
+          return data;
+        }),
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(err);
+        })
+      )
+  }
 
-  sendMess(receiverId: number,senderId: number,content: string ) {
+  getOwnerRequests() {
+    return this.http.get(`http://localhost:8080/cart/rentingRequest/owner/` + JSON.parse(localStorage.getItem("loggedUser")).id)
+      .pipe(
+        map((response: any) => {
+          const cars_data = response;
+          return cars_data;
+        }),
+        catchError((err: any) => {
+          return throwError(err);
+        })
+      )
+  }
+
+  sendMess(receiverId: number, senderId: number, content: string) {
     return this.http.post("http://localhost:8080/message/", {
-      receiverId : receiverId,
+      receiverId: receiverId,
       senderId: senderId,
       content: content
-  })
-        .pipe(
-            map((res: any) => {
-                const data = res;
-                return data;
-            }),
-            catchError((err: any) => {
-                console.log(err);
-                return throwError(err);
-            })
-        )
-}
+    })
+      .pipe(
+        map((res: any) => {
+          const data = res;
+          return data;
+        }),
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(err);
+        })
+      )
+  }
 }
 

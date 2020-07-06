@@ -31,6 +31,7 @@ import { NotifierModule } from "angular-notifier";
 import { ManageCommentsComponent } from './manage-comments/manage-comments.component';
 import { MessageComponent } from './message/message.component';
 import { GradesAndCommentsComponent } from './grades-and-comments/grades-and-comments.component';
+import { Profile } from './profile/profile';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { GradesAndCommentsComponent } from './grades-and-comments/grades-and-com
     CodebookComponent,
     NewFuelTypeComponent,
     ManageCommentsComponent,
+    Profile,
     MessageComponent,
     GradesAndCommentsComponent
   ],

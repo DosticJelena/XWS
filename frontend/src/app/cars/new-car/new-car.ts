@@ -66,7 +66,8 @@ export class NewCar implements OnInit {
             additionalPrice: this.additionalPrice,
             childrenSeats: this.childrenSeats,
             CDWStatus: this.CDWStatus,
-            pictures: this.images
+            pictures: this.images,
+            owner_id: JSON.parse(localStorage.getItem("loggedUser")).id
         }
 
         this.carsService.addNewVehicle(newValues)

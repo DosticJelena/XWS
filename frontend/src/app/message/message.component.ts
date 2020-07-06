@@ -57,7 +57,7 @@ export class MessageComponent implements OnInit {
       );
   }
   reloadReservations() {
-    this.MessageService.reload(1)
+    this.MessageService.reload(JSON.parse(localStorage.getItem("loggedUser")).id)
       .subscribe(
         (data: any) => {   
           console.log(data);       
@@ -67,7 +67,7 @@ export class MessageComponent implements OnInit {
   }
  
   sendMess(receiver,i) {
-    this.MessageService.sendMess(1,receiver,(<HTMLInputElement>document.getElementById(i)).value)
+    this.MessageService.sendMess(JSON.parse(localStorage.getItem("loggedUser")).id,receiver,(<HTMLInputElement>document.getElementById(i)).value)
       .subscribe(
         (data: any) => {
           console.log(data);

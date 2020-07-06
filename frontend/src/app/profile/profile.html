@@ -1,0 +1,23 @@
+<div class="profile row">
+  <div class="col">
+    <div class="personal-info">
+      <h2>Personal Information</h2>
+      <hr />
+      <h4>{{loggedUser.firstName}} {{loggedUser.lastName}}</h4>
+      <p>{{loggedUser.username}}</p>
+    </div>
+  </div>
+  <div class="col">
+    <h2>Your Vehicles</h2>
+    <hr />
+    <div class="vehicle" *ngFor="let car of ownerCars">
+      <p>{{car.brand}} | {{car.model}}</p>
+      <p>Requests:</p>
+      <div *ngFor="let r of requests;let i = index;">
+        <div *ngIf="r.status === 'PENDING'">
+            <p>User:{{r.userId}} | {{r.status}} | [approve?] | [decline?]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

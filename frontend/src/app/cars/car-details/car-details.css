@@ -2,7 +2,7 @@
     background: url('../../../assets/gray2.jpg');
     background-size: cover;
     width: 100%;
-    height: 100vh;
+    height: 100%;
 }
 
 .layer {
@@ -22,14 +22,14 @@
 }
 
 .rent-div {
-    min-height: 20vh;
+    height: 20vh;
     background-color: rgb(39, 39, 39);
     margin-top: 20px;
     padding: 1em;
 }
 
 .details-column-1 {
-    max-height: 50vh;
+    height: 50vh;
     overflow: auto;
 }
 
@@ -45,4 +45,17 @@
 .details-btn:hover {
     color: rgb(39, 39, 39);
     background-color: darkgoldenrod;
+}
+
+.comments h4 {
+    color: darkgoldenrod;
+}
+
+.comments p {
+    color: lightgray;
+}
+
+.comments div {
+    max-height: 15vh;
+    overflow: auto;
 }
