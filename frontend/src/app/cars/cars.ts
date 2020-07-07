@@ -54,7 +54,12 @@ export class Cars implements OnInit {
     setFuelType(fuelType:String){
       this.fuelType = fuelType;
     }
-
+    sortCena(){
+      this.cars.sort((a, b) => a.price - b.price);
+    }
+    sortKm(){
+      this.cars.sort((a, b) => a.distance - b.distance);
+    }
     ngOnInit() {
        
         this.carsService.getCars().subscribe(

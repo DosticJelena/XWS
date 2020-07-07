@@ -43,6 +43,16 @@
                     {{showAdditional ? "Hide" : "More Filters"}}
                 </button>
             </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Sortiranje
+        </button>
+        <div class="dropdown-menu">
+            <a (click) = "sortCena()" class="dropdown-item">Sortiranje po ceni</a> 
+            <a (click) = "sortKm()" class="dropdown-item">Sortiranje po km</a>
+        </div>
+        </div>
             <div class="col-2">
                 <button (click)="filterCars()" class="btn btn-warning btn-filter-click">
                     Filter
@@ -150,7 +160,7 @@
         <div *ngFor="let car of cars" class="col-lg-4 col-md-6 col-sm-6 col-12">
             <div class="background">
                 <div class="carItem">
-                    <h5>{{car.brand}} | {{car.model}} ({{car.price}})</h5>
+                    <h5>{{car.brand}} {{car.model}}|Cena: {{car.price}}, Km:{{car.distance}}</h5>
                     <hr style="background-color: gray;" />
                     <div style="max-height: 150px;"><img height="150" widht="250"
                             src="https://autorepublika.com/wp-content/uploads/2019/08/bmw-x5-protection2.jpg"></div>
