@@ -8,7 +8,6 @@
     background-color: darkgoldenrod;
     color: rgb(39, 39, 39);
     border: 0;
-    margin-right: 20px;
 }
 
 .background {
@@ -29,6 +28,7 @@
 .btn-filter-click {
     background-color: darkgoldenrod;
     border-color: darkgoldenrod;
+    margin-top: 20px;
 }
 
 .carItem {
@@ -37,11 +37,10 @@
     margin-bottom: 20px;
     padding: 30px;
     width: 100%;
-    transition: width 1s;
-    border-radius: 10px 0 0 10px;
 }
-.carItem:hover {
-    width: 95%;
+
+.carItem img {
+    border-radius: 5px;
 }
 
 .details-btn {
@@ -57,5 +56,37 @@
 
 .additional-btns {
     margin-bottom: 15px;
-    margin-left: 20px;
+}
+
+.additional-btns > div {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.dateFrom input, .dateTo input {
+    width: 70%;
+    display: inline;
+}
+
+.dateFrom button, .dateTo button {
+    display: inline;
+}
+
+.cars > button, .cars h2 {
+    display: inline;
+    margin-right: 30px;
+}
+
+.filter-btns {
+    height: 70vh;
+    overflow: auto;
+}
+
+.filter-btns::-webkit-scrollbar {
+    display: none;
+}
+  
+.filter-btns {
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
 }
