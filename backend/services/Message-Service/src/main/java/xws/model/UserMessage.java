@@ -13,7 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Message {
+public class UserMessage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
