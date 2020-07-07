@@ -1,9 +1,8 @@
 package xws.services;
 
-import antlr.debug.MessageAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import xws.model.Message;
+import xws.model.UserMessage;
 import xws.repository.MessageRepository;
 
 import java.util.List;
@@ -14,11 +13,11 @@ public class MessageService {
     @Autowired
     private MessageRepository messageRepository;
 
-    public List<Message> findAllByReceiverIdOrSenderId(Long receiver,Long sender){
+    public List<UserMessage> findAllByReceiverIdOrSenderId(Long receiver, Long sender){
         return messageRepository.findAllByReceiverIdOrSenderId(receiver,sender);
     }
 
-    public Message save(Message m){
+    public UserMessage save(UserMessage m){
         return messageRepository.save(m);
     }
 }

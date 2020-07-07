@@ -37,6 +37,19 @@ export class MessageService {
       )
   }
 
+  getMessages() {
+    return this.http.get(`http://localhost:8080/message/` + JSON.parse(localStorage.getItem("loggedUser")).id)
+      .pipe(
+        map((response: any) => {
+          const data = response;
+          return data;
+        }),
+        catchError((err: any) => {
+          return throwError(err);
+        })
+      )
+  }
+
   sendMess(receiverId: number, senderId: number, content: string) {
     return this.http.post("http://localhost:8080/message/", {
       receiverId: receiverId,

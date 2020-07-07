@@ -10,11 +10,28 @@ import { GradeAndCommentService } from '../services/grade-and-comment/grade-and-
 })
 export class Inbox implements OnInit {
 
-  constructor(private MessageService: MessageService,
-    private AuthService: AuthService,
-    private GradeAndCommentService: GradeAndCommentService) { }
+  messages: [];
+  loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+  visible = -1;
+
+  constructor(private MessageService: MessageService) { }
 
   ngOnInit(): void {
-
+    this.MessageService.getMessages()
+    .subscribe(
+      (data: any) => {
+        console.log(data);
+        this.messages = data;
+      }, (error) => alert(error.text)
+    );
   }
+  
+  showContent(msgId:number) {
+    if (this.visible === msgId){
+      this.visible = -1;
+    } else {
+      this.visible = msgId;
+    }
+  }
+
 }
