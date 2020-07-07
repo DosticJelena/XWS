@@ -6,26 +6,11 @@ import { throwError } from 'rxjs';
 @Injectable()
 export class CarsService {
 
-    constructor(private http: HttpClient) { }
-    cars : any;
+  constructor(private http: HttpClient) { }
+  cars: any;
 
-    getCars() {
-        return this.http.get(`http://localhost:8080/vehicle/`)
-        .pipe(
-          map((response: any) => {
-            this.cars = response.data;
-            const cars_data = response;
-            console.log(cars_data);
-            return cars_data;
-          }),
-          catchError((err: any) => {
-            return throwError(err);
-          })
-        )
-    }
-
-    getOwnerCars() {
-      return this.http.get(`http://localhost:8080/vehicle/owner/` + JSON.parse(localStorage.getItem("loggedUser")).id)
+  getCars() {
+    return this.http.get(`http://localhost:8080/vehicle/`)
       .pipe(
         map((response: any) => {
           this.cars = response.data;
@@ -39,21 +24,50 @@ export class CarsService {
       )
   }
 
-    getCar(id:number) {
-        return this.http.get(`http://localhost:8080/vehicle/`+id)
-        .pipe(
-          map((response: any) => {
-            const cars_data = response;
-            return cars_data;
-          }),
-          catchError((err: any) => {
-            console.log(err);
-            return throwError(err);
-          })
-        )
-    }
-    getImages(id:number) {
-      return this.http.get(`http://localhost:8080/vehicle/pictures/`+id)
+  getOwnerCars() {
+    return this.http.get(`http://localhost:8080/vehicle/owner/` + JSON.parse(localStorage.getItem("loggedUser")).id)
+      .pipe(
+        map((response: any) => {
+          this.cars = response.data;
+          const cars_data = response;
+          console.log(cars_data);
+          return cars_data;
+        }),
+        catchError((err: any) => {
+          return throwError(err);
+        })
+      )
+  }
+
+  getCar(id: number) {
+    return this.http.get(`http://localhost:8080/vehicle/` + id)
+      .pipe(
+        map((response: any) => {
+          const cars_data = response;
+          return cars_data;
+        }),
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(err);
+        })
+      )
+  }
+
+  getImages(id: number) {
+    return this.http.get(`http://localhost:8080/vehicle/pictures/` + id)
+      .pipe(
+        map((response: any) => {
+          const images = response;
+          return images;
+        }),
+        catchError((err: any) => {
+          return throwError(err);
+        })
+      )
+  }
+
+  getAllImages() {
+    return this.http.get(`http://localhost:8080/vehicle/pictures`)
       .pipe(
         map((response: any) => {
           const images = response;
@@ -81,34 +95,34 @@ export class CarsService {
       )
   }
 
-  addNewVehicle(values: any){
+  addNewVehicle(values: any) {
     console.log(values);
     return this.http.post("http://localhost:8080/vehicle/new", {
-            owner_id: values.owner_id,
-            brand: values.brand,
-            model: values.model,
-            location: values.location,
-            fuel_type: values.fuelType,
-            transmission: values.transmission,
-            vehicle_type: values.vehicleType,
-            price: values.price,
-            distance: values.distance,
-            distancePerRentStatus: values.DPRstatus,
-            additionalPricePerKm: values.additionalPrice,
-            childrenSeats: values.childrenSeats,
-            cdwstatus: values.CDWStatus,
-            pictures: values.pictures
+      owner_id: values.owner_id,
+      brand: values.brand,
+      model: values.model,
+      location: values.location,
+      fuel_type: values.fuelType,
+      transmission: values.transmission,
+      vehicle_type: values.vehicleType,
+      price: values.price,
+      distance: values.distance,
+      distancePerRentStatus: values.DPRstatus,
+      additionalPricePerKm: values.additionalPrice,
+      childrenSeats: values.childrenSeats,
+      cdwstatus: values.CDWStatus,
+      pictures: values.pictures
+    })
+      .pipe(
+        map((res: any) => {
+          const data = res;
+          return data;
+        }),
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(err);
         })
-            .pipe(
-                map((res: any) => {
-                    const data = res;
-                    return data;
-                }),
-                catchError((err: any) => {
-                    console.log(err);
-                    return throwError(err);
-                })
-            )
+      )
   }
 
 }

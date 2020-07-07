@@ -49,7 +49,7 @@
                 <h4>Comments:</h4>
                 <div >
                     <p *ngFor="let comment of comments">
-                        <span *ngIf="comment.status === 'ACTIVE'">{{comment.text}} | {{comment.userId}}</span>
+                        <span *ngIf="comment.status === 'ACTIVE'">{{comment.userUsername}} - <em>"{{comment.text}}"</em></span>
                     </p>
                 </div>
             </div>

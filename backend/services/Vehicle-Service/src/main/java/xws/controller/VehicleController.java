@@ -51,8 +51,10 @@ public class VehicleController {
     @RequestMapping(value = "/new", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public Vehicle newVehicle(@RequestBody NewVehicleRequestDTO request) {
         return vehicleService.save(request);
-
     }
+
+    //feign
+
     @RequestMapping(value = "test/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> test(@PathVariable("id") Long id) {
         return new ResponseEntity<>(vehicleService.getById(id), HttpStatus.ACCEPTED);
@@ -62,6 +64,5 @@ public class VehicleController {
     public ResponseEntity<?> getAllvehiclesWithId(@PathVariable("ids") ArrayList<Long> ids) {
         return new ResponseEntity<>(vehicleService.findAllByIds(ids),HttpStatus.ACCEPTED);
     }
-
 
 }
