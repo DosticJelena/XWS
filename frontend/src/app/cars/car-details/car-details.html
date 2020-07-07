@@ -42,13 +42,15 @@
             <div class="col comments">
                 <h4>Average grade:</h4>
                 <div >
-                    <p>[ocena]</p>
+                    <p>{{avgGrade}}</p>
                 </div>
             </div>
             <div class="col comments">
                 <h4>Comments:</h4>
                 <div >
-                    <p *ngFor="let comment of comments">{{comment.text}} | {{comment.userId}} [treba ime]</p>
+                    <p *ngFor="let comment of comments">
+                        <span *ngIf="comment.status === 'ACTIVE'">{{comment.text}} | {{comment.userId}} <em>{{comment.userUsername}}</em></span>
+                    </p>
                 </div>
             </div>
         </div>
