@@ -160,10 +160,10 @@
         <div *ngFor="let car of cars" class="col-lg-4 col-md-6 col-sm-6 col-12">
             <div class="background">
                 <div class="carItem">
-                    <h5>{{car.brand}} {{car.model}}|Cena: {{car.price}}, Km:{{car.distance}}</h5>
+                    <h5>{{car.brand}} | {{car.model}}</h5>
                     <hr style="background-color: gray;" />
                     <div style="max-height: 150px;"><img height="150" widht="250"
-                            src="https://autorepublika.com/wp-content/uploads/2019/08/bmw-x5-protection2.jpg"></div>
+                            src={{map.get(car.id)}}></div>
                     <br />
                     <button [routerLink]="['/car',car.id]" style="display: block;" class="btn details-btn">See
                         details</button>

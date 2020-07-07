@@ -19,7 +19,6 @@ export class ManageUsersComponent implements OnInit {
     this.authService.getUsers()
       .subscribe(
         (data: any) => {
-          console.log('Got registered.');
           console.log(data);
           this.users = Object.assign([], (data));
         }, (error) => alert(error.text)

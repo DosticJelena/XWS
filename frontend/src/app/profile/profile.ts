@@ -13,6 +13,7 @@ export class Profile {
     loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
     ownerCars: [];
     requests: [];
+    visible = -1;
 
     constructor(public authService: AuthService, public carsService: CarsService, private msgService: MessageService) {
 
@@ -36,6 +37,14 @@ export class Profile {
             this.requests = Object.assign([], (data));
           }, (error) => alert(error.text)
         );
+    }
+
+    showRequests(carId:number) {
+      if (this.visible === carId){
+        this.visible = -1;
+      } else {
+        this.visible = carId;
+      }
     }
 
 }

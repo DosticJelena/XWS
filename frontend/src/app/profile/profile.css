@@ -10,9 +10,17 @@
     height: 70vh;
 }
 
+.vehicles {
+    max-height: 40vh;
+}
+
 .vehicle {
     border-bottom: lightgray 1px solid;
     border-top: lightgray 1px solid;
     margin-bottom: 15px;
     padding: 20px;
+}
+
+.vehicle button {
+    color: lightgray;
 }

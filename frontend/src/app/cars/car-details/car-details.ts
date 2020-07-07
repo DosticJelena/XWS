@@ -56,10 +56,8 @@ export class CarDetails {
               data.forEach(grade => {
                 sum += grade.value 
               });
-              console.log("nije nula: " + sum)
               this.avgGrade = Math.round((sum/data.length) * 100) / 100;
             } else {
-              console.log("nula")
               this.avgGrade = 0.0;
             }
           }, (error) => alert(error.text)

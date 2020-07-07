@@ -13,6 +13,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Owner</th>         
+                        <th scope="col">Vehicle</th>         
                         <th scope="col">Status</th>
                         <th scope="col">Cancle</th>
                     </tr>
@@ -21,6 +22,7 @@
                     <ng-container *ngFor="let res of reservations;let i = index;">
                         <tr *ngIf="res.vehicles[0].rentingRequest.status === 'PENDING'">
                             <td>{{map.get(res.vehicles[0].vehicle.ownerId)}}</td>
+                            <td>{{vehicleMap.get(res.vehicles[0].id.vehicle_id)}}</td>
                             <td>{{res.vehicles[0].rentingRequest.status}}</td>
                             <td><button class="btn btn-primary" (click)="cancle(res.vehicles[0].rentingRequest.id)">Cancle</button></td>
                         </tr>
@@ -34,6 +36,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Owner</th>         
+                        <th scope="col">Vehicle</th>         
                         <th scope="col">Status</th>
                     </tr>
                 </thead>
@@ -41,6 +44,7 @@
                     <ng-container *ngFor="let res of reservations;let i = index;">
                         <tr *ngIf="res.vehicles[0].rentingRequest.status === 'DECLINED'">
                             <td>{{map.get(res.vehicles[0].vehicle.ownerId)}}</td>
+                            <td>{{vehicleMap.get(res.vehicles[0].id.vehicle_id)}}</td>
                             <td>{{res.vehicles[0].rentingRequest.status}}</td>
                         </tr>
                     </ng-container>
@@ -52,7 +56,8 @@
                 <caption>Paid</caption>
                 <thead>
                     <tr>
-                        <th scope="col">Text</th>         
+                        <th scope="col">Owner</th>         
+                        <th scope="col">Vehicle</th>         
                         <th scope="col">Content</th>  
                         <th scope="col">Send</th>
                     </tr>
@@ -61,6 +66,7 @@
                     <ng-container *ngFor="let res of reservations;let i = index;">
                         <tr *ngIf="res.vehicles[0].rentingRequest.status === 'PAID'">
                             <td>{{map.get(res.vehicles[0].vehicle.ownerId)}}</td>
+                            <td>{{vehicleMap.get(res.vehicles[0].id.vehicle_id)}}</td>
                             <td><input type="text" id="{{i}}" name="text"  placeholder="Message" required></td>
                             <td><button class="btn details-btn" (click)="sendMess(res.vehicles[0].vehicle.ownerId,i)">Send</button></td>
                         </tr>
@@ -73,7 +79,8 @@
                 <caption>Finished</caption>
                 <thead>
                     <tr>
-                        <th scope="col">Text</th>         
+                        <th scope="col">Owner</th>         
+                        <th scope="col">Vehicle</th>         
                         <th scope="col">Comment</th> 
                         <th scope="col">Grade</th> 
                         <th scope="col">Send</th>
@@ -83,6 +90,7 @@
                     <ng-container *ngFor="let res of reservations;let i = index;">
                         <tr *ngIf="res.vehicles[0].rentingRequest.status === 'FINISHED'">
                             <td>{{map.get(res.vehicles[0].vehicle.ownerId)}}</td>
+                            <td>{{vehicleMap.get(res.vehicles[0].id.vehicle_id)}}</td>
                            <td><input type="text" id="r{{i}}" name="text"  placeholder="Text" required></td>
                             <td><span class="rating"(change)="onItemChange(res.vehicles[0].vehicle.id,$event.target.value)">
                                 <input value ="4" type="radio" class="rating-input"
@@ -105,7 +113,6 @@
             </table>
         </div>
     </div>
-    [za koje vozilo je rezervacija (pored vlasnika)]
 </div>
 
 

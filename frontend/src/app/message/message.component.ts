@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../services/message/message.service'
 import { AuthService } from '../auth/auth.service'
 import { GradeAndCommentService } from '../services/grade-and-comment/grade-and-comment.service'
+import { CarsService } from '../cars/cars.service';
 import { RentingRequestService } from '../services/renting-request/renting-request.service';
 import { ThrowStmt } from '@angular/compiler';
 
@@ -14,8 +15,10 @@ export class MessageComponent implements OnInit {
 
   reservations = [];
   usernames = [];
+  vehicles = [];
   requests : [];
   map = new Map<number, string>();
+  vehicleMap = new Map<number, string>();
   counter = 0;
   grade = 0;
   selected = "pending";
@@ -24,11 +27,13 @@ export class MessageComponent implements OnInit {
   constructor(private MessageService: MessageService,
     private AuthService: AuthService,
     private GradeAndCommentService: GradeAndCommentService,
+    private carsService: CarsService,
     private rentingRequestService : RentingRequestService) { }
 
   ngOnInit(): void {
     this.reloadReservations();
     this.getUsernames();
+    this.getVehicles();
     this.id = JSON.parse(localStorage.getItem("loggedUser")).id;
 
   }
@@ -65,6 +70,16 @@ export class MessageComponent implements OnInit {
       );
   }
 
+  getVehicles() {
+    this.carsService.getCars()
+      .subscribe(
+        (data: any) => {
+          this.vehicles = Object.assign([], (data));
+          this.setCar();
+        }, (error) => alert(error.text)
+      );
+  }
+
   reloadReservations() {
     this.MessageService.reload(JSON.parse(localStorage.getItem("loggedUser")).id)
       .subscribe(
@@ -93,6 +108,13 @@ export class MessageComponent implements OnInit {
     console.log(this.map);
   }
 
+  setCar() {
+    this.vehicles.forEach(vehicle => {
+      this.vehicleMap.set(vehicle.id, vehicle.brand + " | " + vehicle.model);
+    });
+    console.log(this.vehicleMap);
+  }
+
   changeTable() {
     if (this.counter === 0) {
       (<HTMLInputElement>document.getElementById("PENDING")).style.display = "none";
@@ -100,6 +122,7 @@ export class MessageComponent implements OnInit {
 
     }
   }
+  
   changeSelected(info: number) {
     switch (info) {
       case 0: 

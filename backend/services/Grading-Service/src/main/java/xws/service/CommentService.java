@@ -1,8 +1,11 @@
 package xws.service;
 
+import javafx.application.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import xws.dto.CommentDTO;
+import xws.feignClient.AuthServiceProxy;
 import xws.model.Comment;
 import xws.repository.CommentRepository;
 
@@ -15,18 +18,21 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
+    @Autowired
+    private AuthServiceProxy authServiceProxy;
+
     public List<Comment> getByStatus(String status){
         return commentRepository.getAllByStatus(status);
     }
     public List<Comment> getByUser(Long l){
         return commentRepository.getAllByUserId(l);
     }
-    public List<Comment> getByCar(Long l){
+    public List<CommentDTO> getByCar(Long l){
         List<CommentDTO> dtos = new ArrayList();
         for (Comment c : commentRepository.getAllByCarId(l)) {
-            dtos.add(new CommentDTO("username",c.getCarId(),c.getText(),c.getStatus())); //TODO FeignClient getUser
+            dtos.add(new CommentDTO(authServiceProxy.getUsername(c.getUserId()),c.getCarId(),c.getText(),c.getStatus())); //TODO FeignClient getUser
         }
-        return commentRepository.getAllByCarId(l);
+        return dtos;
     }
     public Comment approve(Comment c){
         Comment upDate = commentRepository.findOneById(c.getId());

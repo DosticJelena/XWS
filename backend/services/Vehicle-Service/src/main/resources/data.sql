@@ -7,7 +7,7 @@ INSERT INTO public.vehicle(owner, cdwstatus, additional_price_per_km, brand, chi
 
 INSERT INTO public.picture(url, vehicle_id)	VALUES ('https://autorepublika.com/wp-content/uploads/2020/03/2020-audi-a3-sportback.jpg', 1);
 INSERT INTO public.picture(url, vehicle_id)	VALUES ('https://autorepublika.com/wp-content/uploads/2020/03/2020-audi-a3-sportback-8-780x470.jpg', 1);
-INSERT INTO public.picture(url, vehicle_id)	VALUES ('https://s.aolcdn.com/commerce/autodata/images/USC90AUC016A021001.jpg', 2);
+INSERT INTO public.picture(url, vehicle_id)	VALUES ('https://editorial.pxcrush.net/carsales/general/editorial/audi-a4-45-quattro-17.jpg', 2);
 INSERT INTO public.picture(url, vehicle_id)	VALUES ('https://www.topspeed.rs/gallery/thumb/foto-kia-1/page/1/marker/15956/photo/138458.jpeg', 3);
 
 INSERT INTO public.fuel_type(fuel_type, status) VALUES ('Diesel', 0);
