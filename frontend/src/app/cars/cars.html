@@ -57,46 +57,62 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        Brand
+                        {{brand}}
                     </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">...</a>
+                        <a (click) = "setBrand('BMW')" class="dropdown-item">BMW</a>
+                        <a (click) = "setBrand('AUDI')" class="dropdown-item">Audi</a>
                     </div>
                 </div>
                 <div class="btn-group">
                     <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        Model
+                        {{model}}
                     </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">...</a>
+                        <a  (click) = "setModel('M5')" class="dropdown-item">M5</a>
+                        <a  (click) = "setModel('R8')"  class="dropdown-item">R8</a>
                     </div>
                 </div>
                 <div class="btn-group">
                     <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        Fuel Type
+                        {{fuelType}}
                     </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">...</a>
+                        <a (click) = "setFuelType('Benzin')" class="dropdown-item">Benzin</a>
+                        <a (click) = "setFuelType('Plin')" class="dropdown-item">Plin</a>
+                        <a (click) = "setFuelType('Dizel')" class="dropdown-item">Dizel</a>
                     </div>
                 </div>
                 <div class="btn-group">
                     <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        Transmission
+                        {{transmission}}
                     </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">...</a>
+                        <a (click) = "setTransmission('Manuelni')" class="dropdown-item">Manuelni</a>
+                        <a (click) = "setTransmission('Automatski')" class="dropdown-item">Automatski</a>
                     </div>
                 </div>
                 <div class="btn-group">
                     <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        Vehicle Type
+                        {{CDWStatus}}
                     </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">...</a>
+                        <a (click) = "setCDW('Da')"  class="dropdown-item">Da</a>
+                        <a (click) = "setCDW('Ne')"  class="dropdown-item">Ne</a>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Vehicle type
+                </button>
+                    <div class="dropdown-menu">
+                        <a (click) = "setVehicleType('SUV')"  class="dropdown-item">SUV</a>
+                        <a (click) = "setVehicleType('Limuzina')" class="dropdown-item">Limuzina</a>
                     </div>
                 </div>
             </div>
@@ -104,49 +120,26 @@
         <div class="row">
             <div *ngIf="showAdditional" class="additional-btns">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Price
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">...</a>
-                    </div>
+                    Minimalna cena<input class="form-control" type="number" placeholder="Minimalna cena"
+                        [(ngModel)]="priceFrom" >
+                    Maksimalna cena<input class="form-control" type="number" placeholder="Maksimalna cena"
+                        [(ngModel)]="priceTo" >                       
+                    
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Distance
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">...</a>
-                    </div>
+                    Min kilometraza<input class="form-control" type="number" placeholder="Min kilometraza"
+                    [(ngModel)]="distanceFrom" >
+                    Maks kilometraza<input class="form-control" type="number" placeholder="Maks kilometraza"
+                    [(ngModel)]="distanceTo" >
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Distance (rent)
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">...</a>
-                    </div>
+                    Zeljena kilometraza <input class="form-control" type="number" placeholder="Zeljena kilometraza"
+                    [(ngModel)]="distance" >
                 </div>
+               
                 <div class="btn-group">
-                    <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        CDW Status
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">...</a>
-                    </div>
-                </div>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Children Seats
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">...</a>
-                    </div>
+                    Sedista za decu <input class="form-control" type="number" placeholder="Sedista za decu"
+                    [(ngModel)]="childrenSeats" >
                 </div>
             </div>
         </div>

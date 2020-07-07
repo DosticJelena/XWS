@@ -65,9 +65,14 @@ export class CarsService {
       )
   }
 
-  filter(location: string, startDate: string, endDate: string) {
+  filter(location: string, startDate: string, endDate: string,brand: string,model: string,fuelType: string
+    ,vehicleType: string,transmission: string,priceFrom:number,priceTo: number,
+    distanceFrom: number,distanceTo: number,CDWStatus:any,childrenSeats:number,distance:number) {
     let url = "http://localhost:8080/vehicle/search?location=" + location +
-      "&startDate=" + startDate + "&endDate=" + endDate + "&&brand&model&fuel_type&transmission&type&price=0&distance=0&minPrice=0&maxPrice=0&CDWStatus&childrenSeats=1";
+      "&startDate=" + startDate + "&endDate=" + endDate + 
+      "&brand="+brand+"&model="+model+"&fuel_type="+fuelType+"&transmission="+transmission+
+      "&type="+vehicleType+"&minDistance="+distanceFrom+"&maxDistance="+distanceTo+"&minPrice="+priceFrom+"&maxPrice="+priceTo+
+      "&CDWStatus="+CDWStatus+"&childrenSeats="+childrenSeats;
     console.log(url);
     return this.http.get(url)
       .pipe(

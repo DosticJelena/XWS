@@ -30,23 +30,14 @@ public class VehicleService {
     public List<Vehicle> search(String location,String startDate,String endDate, String brand,
                                 String model,String fuel_type,
                                 String transmission,String type,
-                                double minPrice,double maxPrice,double distance,String CDWStatus,
+                                double minPrice,double maxPrice,double distanceFrom,double distanceTo,String CDWStatus,
                                 int childrenSeats){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime start = LocalDateTime.parse(startDate, formatter);
         LocalDateTime end = LocalDateTime.parse(endDate, formatter);
 
         List<Vehicle> allVehicles = vehicleRepository.findByLocation(location);
-        /*List<Vehicle> advancedSearchVehicles = new ArrayList<Vehicle>();
-        for (Vehicle v : allVehicles){
-            if(!v.getBrand().equals(brand)&&!brand.equals(""))continue;
-            if(!v.getModel().equals(model)&&!model.equals(""))continue;
-            if(!v.getFuel_type().equals(fuel_type)&&!fuel_type.equals(""))continue;
-            if(!v.getTransmission().equals(transmission)&&!transmission.equals(""))continue;
-            if(!v.getType().equals(type)&&!type.equals(""))continue;
-            if(!v.getCDWStatus().equals(CDWStatus)&&!CDWStatus.equals(""))continue;
 
-        }*/
         List<Vehicle> ret = new ArrayList<Vehicle>();
         for (Vehicle v : allVehicles){
             List<RentingRequestCar> requests = rentingRequestCarRepository.findAllById(v.getId());
@@ -64,7 +55,23 @@ public class VehicleService {
                 ret.add(v);
             }
         }
-        return  ret;
+        List<Vehicle> advancedSearchVehicles = new ArrayList<Vehicle>();
+        for (Vehicle v : allVehicles){
+            if(!v.getBrand().equals(brand)&&!brand.equals("Brand"))continue;
+            if(!v.getVehicle_type().equals(type)&&!type.equals("Vehicle type"))continue;
+            if(!v.getModel().equals(model)&&!model.equals("Model"))continue;
+            if(!v.getFuel_type().equals(fuel_type)&&!fuel_type.equals("Fuel type"))continue;
+            if(!v.getTransmission().equals(transmission)&&!transmission.equals("Transmission"))continue;
+            if(!v.getCDWStatus().equals(CDWStatus)&&!CDWStatus.equals("CDW"))continue;
+            if(!(v.getPrice()<maxPrice)&& !(maxPrice ==0))continue;
+            if(!(v.getPrice()>minPrice)&& !(minPrice ==0))continue;
+            if(!(v.getDistance()<distanceFrom)&& !(distanceFrom ==0))continue;
+            if(!(v.getDistance()>distanceTo)&& !(distanceTo ==0))continue;
+            if(!(v.getChildrenSeats()==childrenSeats)&& !(childrenSeats ==0))continue;
+            advancedSearchVehicles.add(v);
+
+        }
+        return  advancedSearchVehicles;
     }
     public List<Vehicle> getAll(){
         List<Vehicle> allVehicles = vehicleRepository.findAll();

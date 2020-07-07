@@ -20,10 +20,13 @@ export class Cars implements OnInit {
   fuelType:any;
   transmission:any;
   vehicleType:any;
-  price:any;
-  distance: any;
+  priceFrom=0;
+  priceTo=0;
+  distanceFrom=0;
+  distance=0;
+  distanceTo=0;
   CDWStatus: any;
-  childrenSeats:any;
+  childrenSeats=0;
       
 
   today: NgbDate;
@@ -32,6 +35,24 @@ export class Cars implements OnInit {
   minDateSecond : any;
     constructor (private carsService:CarsService,private calendar: NgbCalendar,) {
 
+    }
+    setCDW(cdw:String){
+        this.CDWStatus = cdw;
+    }
+    setModel(model:String){
+      this.model = model;
+    }
+    setTransmission(transmission:String){
+      this.transmission = transmission;
+    }
+    setVehicleType(vehicleType:String){
+      this.vehicleType = vehicleType;
+    }
+    setBrand(brand:String){
+      this.brand = brand;
+    }
+    setFuelType(fuelType:String){
+      this.fuelType = fuelType;
     }
 
     ngOnInit() {
@@ -45,6 +66,12 @@ export class Cars implements OnInit {
         this.today = this.calendar.getToday();
         //this.cars = this.carsService.getCars();
         this.location = "Choose location";
+        this.brand = "Brand";
+        this.model = "Model";
+        this.transmission = "Transmission";
+        this.fuelType = "Fuel type";
+        this.vehicleType = "Vehicle type";
+        this.CDWStatus ="CDW";
         this.minDate = new NgbDate(this.today.year,this.today.month,this.today.day+2);
         this.minDateSecond = new NgbDate(this.today.year,this.today.month,this.today.day+2);
     }
@@ -117,7 +144,23 @@ export class Cars implements OnInit {
             
         var start = this.startDate.year+"-"+startMonth+"-"+startDay +" " + startHour+":"+startMin;
         var end = this.endDate.year+"-"+endMonth+"-"+endDay +" " +endHour+":"+endMin;
-        this.carsService.filter(this.location,start,end).subscribe(
+        if(this.priceTo===null){
+          this.priceTo = -1;
+        }
+        if(this.priceFrom===null){
+          this.priceFrom = -1;
+        }
+        if(this.distanceFrom===null){
+          this.distanceFrom = -1;
+        }
+        if(this.distanceTo===null){
+          this.distanceTo = -1;
+        }
+        if(this.childrenSeats===null){
+          this.childrenSeats = -1;
+        }
+        this.carsService.filter(this.location,start,end,this.brand,this.model,this.fuelType,this.vehicleType,this.transmission,
+          this.priceFrom,this.priceTo,this.distanceFrom,this.distanceTo,this.CDWStatus,this.childrenSeats,this.distance).subscribe(
           (data: any) => {
             this.cars = data;
           }, (error) => alert(error.text)
