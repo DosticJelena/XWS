@@ -122,7 +122,7 @@ export class AuthService {
     }
 
     registerCompany(username: string, companyName: string, address: string, PIB: string) {
-        return this.http.post("http://localhost:8080/auth/register-agent", {
+        return this.http.post("http://localhost:8080/auth/register-company", {
             username,
             companyName,
             address,
