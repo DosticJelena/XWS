@@ -10,6 +10,7 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
 
     List<Vehicle> findAll();
     List<Vehicle> findByLocation(String location);
+    List<Vehicle> findByOwner(Long id);
     Vehicle findOneById(Long id);
 
 }

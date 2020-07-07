@@ -13,9 +13,12 @@ public interface ApplicationUserRepository extends JpaRepository<ApplicationUser
 
     List<ApplicationUser> findAll();
     ApplicationUser findOneById(Long id);
+    ApplicationUser findOneByUsername(String username);
 
     @Modifying
     @Transactional
     @Query("update ApplicationUser au set au.status = :status where au.id = :id")
     int updateUserStatus(@Param("status") ApplicationUser.Status status, @Param("id") Long id);
+
+    ApplicationUser save(ApplicationUser user);
 }

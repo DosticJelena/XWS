@@ -10,11 +10,12 @@ import { NewCar } from './cars/new-car/new-car';
 import { CodebookComponent } from './codebook/codebook.component';
 import {ManageCommentsComponent} from './manage-comments/manage-comments.component'
 import {MessageComponent} from './message/message.component'
+import { Profile } from './profile/profile';
 
 export const appRoutes:Routes = [
     {path: "cars", component: Cars},
     {path: "car/:id", component: CarDetails},
-    {path: "requests", component: MessageComponent},
+    {path: "reservations", component: MessageComponent},
     {path: "new", component: NewCar},
     {path: "register", component: Register},
     {path: "login", component: Login},
@@ -22,5 +23,6 @@ export const appRoutes:Routes = [
     {path: "cart", component: ShooppingCart},
     {path: "codebook", component: CodebookComponent},
     {path: "manage-comments", component: ManageCommentsComponent},
+    {path: "profile", component: Profile},
     {path: "", component: HomePage}
 ]

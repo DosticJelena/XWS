@@ -1,73 +1,109 @@
-<table class="table" id = "PENDING">
-    <caption>Pending reservations</caption>
-    <thead>
-        <tr>
-            <th scope="col">Owner</th>         
-            <th scope="col">Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        <ng-container *ngFor="let res of reservations;let i = index;">
-            <tr *ngIf="res.vehicles[0].rentingRequest.status === 'PENDING'">
-                <td>{{map.get(res.vehicles[0].vehicle.ownerId)}}</td>
-                <td>{{res.vehicles[0].rentingRequest.status}}</td>
-            </tr>
-        </ng-container>
-    </tbody>
-</table>
-<table class="table" >
-    <caption>Reserved reservations</caption>
-    <thead>
-        <tr>
-            <th scope="col">Text</th>         
-            <th scope="col">Content</th>  
-            <th scope="col">Send</th>
-        </tr>
-    </thead>
-    <tbody>
-        <ng-container *ngFor="let res of reservations;let i = index;">
-            <tr *ngIf="res.vehicles[0].rentingRequest.status === 'PAID'">
-                <td>{{map.get(res.vehicles[0].vehicle.ownerId)}}</td>
-                <td><input type="text" id="{{i}}" name="text"  placeholder="Message" required></td>
-                <td><button class="btn details-btn" (click)="sendMess(res.vehicles[0].vehicle.ownerId,i)">Send</button></td>
-            </tr>
-        </ng-container>
-    </tbody>
-</table>
+<div class="requests">
+    <h3>Reservations</h3>
+    <hr/>
+    <button class="btn" (click)="selected='pending'">Pending</button>
+    <button class="btn" (click)="selected='declined'">Declined</button>
+    <button class="btn" (click)="selected='paid'">Paid</button>
+    <button class="btn" (click)="selected='finished'">Finished</button>
+    <hr/>
+    <div class="row">
+        <div *ngIf="selected == 'pending'" class="col-6">
+            <table class="table" id = "PENDING">
+                <caption>Pending</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Owner</th>         
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let res of reservations;let i = index;">
+                        <tr *ngIf="res.vehicles[0].rentingRequest.status === 'PENDING'">
+                            <td>{{map.get(res.vehicles[0].vehicle.ownerId)}}</td>
+                            <td>{{res.vehicles[0].rentingRequest.status}}</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="selected == 'declined'" class="col-6">
+            <table class="table" id = "DECLINED">
+                <caption>Declined</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Owner</th>         
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let res of reservations;let i = index;">
+                        <tr *ngIf="res.vehicles[0].rentingRequest.status === 'DECLINED'">
+                            <td>{{map.get(res.vehicles[0].vehicle.ownerId)}}</td>
+                            <td>{{res.vehicles[0].rentingRequest.status}}</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="selected == 'paid'" class="col-7">
+            <table class="table" >
+                <caption>Paid</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Text</th>         
+                        <th scope="col">Content</th>  
+                        <th scope="col">Send</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let res of reservations;let i = index;">
+                        <tr *ngIf="res.vehicles[0].rentingRequest.status === 'PAID'">
+                            <td>{{map.get(res.vehicles[0].vehicle.ownerId)}}</td>
+                            <td><input type="text" id="{{i}}" name="text"  placeholder="Message" required></td>
+                            <td><button class="btn details-btn" (click)="sendMess(res.vehicles[0].vehicle.ownerId,i)">Send</button></td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="selected == 'finished'" class="col-7">
+            <table class="table" id = "FINISHED"> 
+                <caption>Finished</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Text</th>         
+                        <th scope="col">Comment</th> 
+                        <th scope="col">Grade</th> 
+                        <th scope="col">Send</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let res of reservations;let i = index;">
+                        <tr *ngIf="res.vehicles[0].rentingRequest.status === 'FINISHED'">
+                            <td>{{map.get(res.vehicles[0].vehicle.ownerId)}}</td>
+                           <td><input type="text" id="r{{i}}" name="text"  placeholder="Text" required></td>
+                            <td><span class="rating"(change)="onItemChange(res.vehicles[0].vehicle.id,$event.target.value)">
+                                <input value ="4" type="radio" class="rating-input"
+                                    id="rating-input-2-4" name="rating-input-1">
+                                <label for="rating-input-2-4" class="rating-star"></label>
+                                <input value ="3" type="radio" class="rating-input"
+                                    id="rating-input-2-3" name="rating-input-1">
+                                <label for="rating-input-2-3" class="rating-star"></label>
+                                <input value ="2" type="radio" class="rating-input"
+                                    id="rating-input-2-2" name="rating-input-1">
+                                <label for="rating-input-2-2" class="rating-star"></label>
+                                <input value ="1" type="radio" class="rating-input"
+                                    id="rating-input-2-1" name="rating-input-1">
+                                <label for="rating-input-2-1" class="rating-star"></label>
+                            </span></td>
+                            <td><button  class="btn details-btn" (click)="confrim(res.vehicles[0].vehicle.id,res.vehicles[0].vehicle.ownerId,i)">Send</button></td>                           
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    [za koje vozilo je rezervacija (pored vlasnika)]
+</div>
 
 
-<table class="table" id = "FINISHED"> 
-    <caption>Finished reservations</caption>
-    <thead>
-        <tr>
-            <th scope="col">Text</th>         
-            <th scope="col">Comment</th> 
-            <th scope="col">Grade</th> 
-            <th scope="col">Send</th>
-        </tr>
-    </thead>
-    <tbody>
-        <ng-container *ngFor="let res of reservations;let i = index;">
-            <tr *ngIf="res.vehicles[0].rentingRequest.status === 'FINISHED'">
-                <td>{{map.get(res.vehicles[0].vehicle.ownerId)}}</td>
-               <td><input type="text" id="r{{i}}" name="text"  placeholder="Text" required></td>
-                <td><span class="rating"(change)="onItemChange(res.vehicles[0].vehicle.id,$event.target.value)">
-                    <input value ="4" type="radio" class="rating-input"
-                        id="rating-input-2-4" name="rating-input-1">
-                    <label for="rating-input-2-4" class="rating-star"></label>
-                    <input value ="3" type="radio" class="rating-input"
-                        id="rating-input-2-3" name="rating-input-1">
-                    <label for="rating-input-2-3" class="rating-star"></label>
-                    <input value ="2" type="radio" class="rating-input"
-                        id="rating-input-2-2" name="rating-input-1">
-                    <label for="rating-input-2-2" class="rating-star"></label>
-                    <input value ="1" type="radio" class="rating-input"
-                        id="rating-input-2-1" name="rating-input-1">
-                    <label for="rating-input-2-1" class="rating-star"></label>
-                </span></td>
-                <td><button  class="btn details-btn" (click)="confrim(res.vehicles[0].vehicle.id,res.vehicles[0].vehicle.ownerId,i)">Send</button></td>
-               
-            </tr>
-        </ng-container>
-    </tbody>
-</table>

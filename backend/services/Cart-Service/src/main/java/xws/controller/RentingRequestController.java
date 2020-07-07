@@ -75,7 +75,7 @@ public class RentingRequestController {
         return new ResponseEntity<>(rentingRequestService.manualyReserveVehicle(requestDTO),HttpStatus.CREATED);
     }
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 50000)
     public void scheduleFixedRateTask() {
         List<RentingRequest> rentingRequests = rentingRequestService.findAll();
         for(RentingRequest rentingRequest : rentingRequests) {

@@ -1,8 +1,12 @@
 <div class="content">
-    <h2>Codebook</h2>
+    <h3>Codebook</h3>
     <hr />
+    <button class="btn" (click)="selected='models'">Vehicle Models</button>
+    <button class="btn" (click)="selected='classes'">Vehicle Classes</button>
+    <button class="btn" (click)="selected='fuel'">Fuel Types</button>
+    <hr/>
     <div class="row">
-        <div class="col-6">
+        <div *ngIf="selected == 'fuel'" class="col-6">
             <h4>Fuel Types</h4>
             <div class="fuel-types" *ngFor="let fuelType of fuelTypes; let i = index">
                 <input type="text" [attr.disabled]="activeInputFT[i] ? '' : null" [(ngModel)]="fuelTypeNames[i]" />
@@ -17,7 +21,7 @@
             <input type="text" [(ngModel)]="newFT" placeholder="Fuel Type" />
             <button class="btn btn-success btn-sm btn-confirm" (click)="addFuelType()">Add Fuel Type</button>
         </div>
-        <div class="col-6">
+        <div *ngIf="selected == 'classes'" class="col-6">
             <h4>Vehicle Classes</h4>
             <div class="vehicle-classes" *ngFor="let vehicleClass of vehicleClasses; let i = index">
                 <input type="text" [attr.disabled]="activeInputVC[i] ? '' : null" [(ngModel)]="vehicleClassNames[i]" />
@@ -33,10 +37,7 @@
             <input type="text" [(ngModel)]="newVC" placeholder="Vehicle Class" />
             <button class="btn btn-success btn-sm btn-confirm" (click)="addVehicleClass()">Add Vehicle Class</button>
         </div>
-    </div>
-    <hr />
-    <div class="row">
-        <div class="col-12">
+        <div *ngIf="selected == 'models'" class="col-12">
             <h4>Vehicle Models</h4>
             <div class="vehicle-models" *ngFor="let vehicleModel of vehicleModels; let i = index">
                 <input type="text" [attr.disabled]="activeInputVMB[i] ? '' : null" [(ngModel)]="vehicleBrands[i]" />

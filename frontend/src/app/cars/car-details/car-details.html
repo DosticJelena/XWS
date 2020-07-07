@@ -11,6 +11,7 @@
                 <div class="info">
                     <div class="row">
                         <div class="col">
+                            <p>Owner: {{car.owner}} [za sada id]</p>
                             <p>Location: {{car.location}}</p>
                             <p>Fuel Type: {{car.fuel_type}}</p>
                             <p>Transsmission: {{car.transmission}}</p>
@@ -19,8 +20,8 @@
                             <p>Children Seats: {{car.childrenSeats}}</p>
                         </div>
                         <div class="col">
-                            <p>Price: {{car.price}}</p>
-                            <p>Additional price per km: {{car.additionalPricePerKm}}</p>
+                            <p>Price: {{car.price}}€</p>
+                            <p>Additional price per km: {{car.additionalPricePerKm}}€</p>
                         </div>
                     </div>
                 </div>
@@ -33,7 +34,23 @@
         </div>
     </div>
     <div class="rent-div">
-        <button [routerLink]="['/cars']" style="display: block;" class="btn details-btn" (click)="addToCart()">Add to cart</button>
-        
+        <div class="row">
+            <div class="col">
+                <button *ngIf="loggedUser.role !== 'ADMIN'" [routerLink]="['/cart']" style="display: block;"
+                class="btn details-btn" (click)="addToCart()">Add to cart</button>
+            </div>
+            <div class="col comments">
+                <h4>Average grade:</h4>
+                <div >
+                    <p>[ocena]</p>
+                </div>
+            </div>
+            <div class="col comments">
+                <h4>Comments:</h4>
+                <div >
+                    <p *ngFor="let comment of comments">{{comment.text}} | {{comment.userId}} [treba ime]</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

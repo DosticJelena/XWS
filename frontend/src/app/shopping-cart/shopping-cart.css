@@ -1,7 +1,11 @@
-.cars {
-    background-color: lightgray;
+.cart {
     min-height: 90vh;
     padding: 30px;
+    color:lightgray;
+}
+
+.cart hr {
+    background-color: lightgray;
 }
 
 .filter-btn {
@@ -39,8 +43,6 @@
     width: 100%;
     transition: width 1s;
     border-radius: 10px 0 0 10px;
-}
-.carItem:hover {
     width: 95%;
 }
 
@@ -61,11 +63,7 @@
 }
 
 .rent-div {
-    min-height: 20vh;
-    background-color: rgb(39, 39, 39);
-    margin-top: 20px;
-    padding: 1em;
-    display: flex;
+    padding: 30px;
 }
 
 .checkbox {
@@ -74,4 +72,9 @@
 
 .checkbox-input {
     size: 10px;
+}
+
+.cart-vehicles {
+    height: 60vh;
+    overflow: auto;
 }

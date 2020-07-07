@@ -27,11 +27,13 @@ export class CartService {
         })
       )
   }
+
   getCarsInCart(userId : any) {
     return this.http.get(`${environment.baseUrl}/cart/vehicles/${userId}`)
       .pipe(
         map((res : any) => {
           const data = res;
+          console.log(data);
           return data;
         }),
         catchError((err : any) => {
@@ -40,6 +42,7 @@ export class CartService {
         })
       )
   }
+  
   createRequestPerVehicle(userId : any,startDate : any,endDate : any) {
     return this.http.post(`${environment.baseUrl}/cart/rentingRequest/separate`,{
       userId : userId,

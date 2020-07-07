@@ -26,6 +26,8 @@ export class CodebookComponent implements OnInit {
   vehicleBrands = [];
   vehicleModelNames = [];
 
+  selected = "models";
+
   constructor(public dialog: MatDialog,
     private modalService: NgbModal,
     private codebookService: CodebookService) { }

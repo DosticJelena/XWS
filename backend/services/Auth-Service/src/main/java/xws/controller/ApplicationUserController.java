@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import xws.dto.LoginDTO;
+import xws.dto.RegisterDTO;
 import xws.dto.UpdateUserStatusDTO;
 import xws.dto.UserResponseDTO;
 import xws.model.ApplicationUser;
@@ -50,6 +52,33 @@ public class ApplicationUserController {
         }
 
         return new ResponseEntity<>(new UserResponseDTO(), HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(consumes = "application/json", produces= "application/json", value = "login", method = RequestMethod.POST)
+    public ResponseEntity<?> loginUser(@RequestBody LoginDTO loginDto) {
+        ApplicationUser au = applicationUserService.findOneByUsername(loginDto.getUsername());
+
+        if(au != null) {
+            if (!au.getPassword().equals(loginDto.getPassword())){
+                return new ResponseEntity<>(new UserResponseDTO(), HttpStatus.BAD_REQUEST);
+            }
+
+            return new ResponseEntity<>(au, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(new UserResponseDTO(), HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(consumes = "application/json", produces= "application/json", value = "register", method = RequestMethod.POST)
+    public ResponseEntity<?> registerUser(@RequestBody RegisterDTO dto) {
+        ApplicationUser au = applicationUserService.findOneByUsername(dto.getUsername());
+
+        if(au == null) {
+            applicationUserService.save(dto);
+            return new ResponseEntity<>(1, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(0, HttpStatus.BAD_REQUEST);
     }
 
 }
