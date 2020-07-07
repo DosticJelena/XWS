@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../services/message/message.service'
 import { AuthService } from '../auth/auth.service'
 import { GradeAndCommentService } from '../services/grade-and-comment/grade-and-comment.service'
+import { RentingRequestService } from '../services/renting-request/renting-request.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-message',
@@ -12,18 +14,22 @@ export class MessageComponent implements OnInit {
 
   reservations = [];
   usernames = [];
+  requests : [];
   map = new Map<number, string>();
   counter = 0;
   grade = 0;
   selected = "pending";
+  id : number;
 
   constructor(private MessageService: MessageService,
     private AuthService: AuthService,
-    private GradeAndCommentService: GradeAndCommentService) { }
+    private GradeAndCommentService: GradeAndCommentService,
+    private rentingRequestService : RentingRequestService) { }
 
   ngOnInit(): void {
     this.reloadReservations();
     this.getUsernames();
+    this.id = JSON.parse(localStorage.getItem("loggedUser")).id;
 
   }
 
@@ -86,12 +92,34 @@ export class MessageComponent implements OnInit {
     });
     console.log(this.map);
   }
-  
+
   changeTable() {
     if (this.counter === 0) {
       (<HTMLInputElement>document.getElementById("PENDING")).style.display = "none";
       (<HTMLInputElement>document.getElementById("RESERVED")).style.display = "block";
 
     }
+  }
+  changeSelected(info: number) {
+    switch (info) {
+      case 0: 
+        this.selected = 'pending'; break;
+      case 1:
+        this.selected = 'paid'; break;
+      case 2:
+        this.selected = 'declined'; break;
+      case 3:
+        this.selected = 'finished'; break;
+    }
+  }
+  cancle(requestId : number) {
+    this.rentingRequestService.cancle(requestId).subscribe(
+      (data) => {
+        console.log(data);
+        this.reloadReservations();
+      },(error) => {
+        console.log(error);
+      }
+    )
   }
 }

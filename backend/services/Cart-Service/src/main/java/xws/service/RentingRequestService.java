@@ -156,4 +156,20 @@ public class RentingRequestService {
         }
         return response;
     }
+    public List<RentingRequest> getAllByUserIdAndRequestStatus(Long id,int status) {
+        RentingRequest.Status requestStatus = null;
+        switch (status){
+            case 0: requestStatus = RentingRequest.Status.PENDING; break;
+            case 1: requestStatus = RentingRequest.Status.PAID; break;
+            case 2: requestStatus = RentingRequest.Status.DECLINED; break;
+            case 3: requestStatus = RentingRequest.Status.FINISHED; break;
+            case 4: requestStatus = RentingRequest.Status.CANCLED; break;
+        }
+        return rentingRequestRepository.findByUserIdAndStatus(id,requestStatus);
+    }
+    public RentingRequest cancleRentingRequest(Long requestId) {
+        RentingRequest rentingRequest = rentingRequestRepository.getOne(requestId);
+        rentingRequest.setStatus(RentingRequest.Status.CANCLED);
+        return rentingRequestRepository.save(rentingRequest);
+    }
 }

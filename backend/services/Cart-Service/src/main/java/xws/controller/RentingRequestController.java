@@ -37,6 +37,11 @@ public class RentingRequestController {
         return new ResponseEntity<>(rentingRequestService.findAllByUserId(id),HttpStatus.ACCEPTED);
     }
 
+    @RequestMapping(value= "/{id}/{status}",method = RequestMethod.GET,produces = "application/json")
+    public ResponseEntity<?> getallByUserIdAndRequestStatus(@PathVariable("id") Long id,@PathVariable("status") int status) {
+        return new ResponseEntity<>(rentingRequestService.getAllByUserIdAndRequestStatus(id,status),HttpStatus.ACCEPTED);
+    }
+
     /**
      * Pronalazenje svih RentingRequest za jednog ownerna
      * @param id
@@ -73,6 +78,11 @@ public class RentingRequestController {
     @RequestMapping(value = "/status",method = RequestMethod.PUT,produces = "application/json",consumes = "application/json")
     public ResponseEntity<?> manualyReserveVehicle(@RequestBody ManuallyReserveVehicleRequestDTO requestDTO) {
         return new ResponseEntity<>(rentingRequestService.manualyReserveVehicle(requestDTO),HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/cancle/{id}",method = RequestMethod.PUT,produces = "application/json")
+    public ResponseEntity<?> cancleRequest(@PathVariable Long id) {
+        return new ResponseEntity<>(rentingRequestService.cancleRentingRequest(id),HttpStatus.ACCEPTED);
     }
 
     @Scheduled(fixedRate = 50000)
