@@ -24,6 +24,21 @@ export class CarsService {
         )
     }
 
+    getOwnerCars() {
+      return this.http.get(`http://localhost:8080/vehicle/owner/` + JSON.parse(localStorage.getItem("loggedUser")).id)
+      .pipe(
+        map((response: any) => {
+          this.cars = response.data;
+          const cars_data = response;
+          console.log(cars_data);
+          return cars_data;
+        }),
+        catchError((err: any) => {
+          return throwError(err);
+        })
+      )
+  }
+
     getCar(id:number) {
         return this.http.get(`http://localhost:8080/vehicle/`+id)
         .pipe(
@@ -69,7 +84,7 @@ export class CarsService {
   addNewVehicle(values: any){
     console.log(values);
     return this.http.post("http://localhost:8080/vehicle/new", {
-            owner_id: 1,
+            owner_id: values.owner_id,
             brand: values.brand,
             model: values.model,
             location: values.location,

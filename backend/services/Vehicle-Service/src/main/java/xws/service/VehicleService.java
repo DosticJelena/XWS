@@ -79,9 +79,13 @@ public class VehicleService {
         return vehicleRepository.findOneById(id);
     }
 
+    public List<Vehicle> getByOwnerId(Long id) {
+        return vehicleRepository.findByOwner(id);
+    }
+
     public Vehicle save(NewVehicleRequestDTO newVehicle) {
         Vehicle v = new Vehicle();
-        v.setOwner_id(newVehicle.getOwner_id());
+        v.setOwner(newVehicle.getOwner_id());
         v.setBrand(newVehicle.getBrand());
         v.setLocation(newVehicle.getLocation());
         v.setModel(newVehicle.getModel());
