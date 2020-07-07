@@ -1,0 +1,32 @@
+<div class="inbox">
+    <h3>Messages</h3>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <h4>Received</h4>
+            <div *ngFor="let msg of messages">
+                <div class="message" *ngIf="msg.receiverId === loggedUser.id">
+                    [Ime] [Prezime] {{msg.senderId}} |
+                    <button (click)="showContent(msg.id)" class="btn">See Content</button>
+                    <div *ngIf="visible === msg.id">
+                        <hr/>
+                        {{msg.content}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>Sent</h4>
+            <div *ngFor="let msg of messages">
+                <div class="message" *ngIf="msg.senderId === loggedUser.id">
+                    [Ime] [Prezime] {{msg.receiverId}} |
+                    <button (click)="showContent(msg.id)" class="btn">See Content</button>
+                    <div *ngIf="visible === msg.id">
+                        <hr/>
+                        {{msg.content}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

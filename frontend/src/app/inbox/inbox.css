@@ -1,0 +1,10 @@
+.inbox {
+    padding: 50px;
+    color: darkgoldenrod;
+}
+
+.message {
+    background-color: rgb(54, 54, 54);
+    margin-bottom: 10px;
+    padding: 20px;
+}

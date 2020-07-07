@@ -28,16 +28,16 @@ export class AuthService {
             password: formValues.userPassword
         }
         return this.http.post(`${environment.baseUrl}/auth/login`, loginInfo)
-        .pipe(
-            map((res : any) => {
-              const data = res;
-              return data;
-            }),
-            catchError((err : any) => {
-              console.log(err);
-              return throwError(err);
-            })
-          )
+            .pipe(
+                map((res: any) => {
+                    const data = res;
+                    return data;
+                }),
+                catchError((err: any) => {
+                    console.log(err);
+                    return throwError(err);
+                })
+            )
     }
 
     registerUser(formValues) {
@@ -50,16 +50,16 @@ export class AuthService {
             lastName: formValues.lastName
         }
         return this.http.post(`${environment.baseUrl}/auth/register`, regInfo)
-        .pipe(
-            map((res : any) => {
-              const data = res;
-              return data;
-            }),
-            catchError((err : any) => {
-              console.log(err);
-              return throwError(err);
-            })
-          )
+            .pipe(
+                map((res: any) => {
+                    const data = res;
+                    return data;
+                }),
+                catchError((err: any) => {
+                    console.log(err);
+                    return throwError(err);
+                })
+            )
     }
 
     logoutUser() {
@@ -88,6 +88,45 @@ export class AuthService {
         return this.http.put("http://localhost:8080/auth/user/status", {
             id: id,
             status: status
+        })
+            .pipe(
+                map((res: any) => {
+                    const data = res;
+                    return data;
+                }),
+                catchError((err: any) => {
+                    console.log(err);
+                    return throwError(err);
+                })
+            )
+    }
+
+    registerAgent(username: string, firstName: string, lastName: string, address: string, PIB: string) {
+        return this.http.post("http://localhost:8080/auth/register-agent", {
+            username,
+            firstName,
+            lastName,
+            address,
+            PIB
+        })
+            .pipe(
+                map((res: any) => {
+                    const data = res;
+                    return data;
+                }),
+                catchError((err: any) => {
+                    console.log(err);
+                    return throwError(err);
+                })
+            )
+    }
+
+    registerCompany(username: string, companyName: string, address: string, PIB: string) {
+        return this.http.post("http://localhost:8080/auth/register-company", {
+            username,
+            companyName,
+            address,
+            PIB
         })
             .pipe(
                 map((res: any) => {

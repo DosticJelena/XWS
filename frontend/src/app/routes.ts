@@ -11,11 +11,16 @@ import { CodebookComponent } from './codebook/codebook.component';
 import {ManageCommentsComponent} from './manage-comments/manage-comments.component'
 import {MessageComponent} from './message/message.component'
 import { Profile } from './profile/profile';
+import { Inbox } from './inbox/inbox';
+import { RegisterAgentComponent } from './register-agent/register-agent.component';
+import { RegisterCompanyComponent } from './register-company/register-company.component';
 
 export const appRoutes:Routes = [
     {path: "cars", component: Cars},
     {path: "car/:id", component: CarDetails},
     {path: "reservations", component: MessageComponent},
+    {path: "register-agent", component: RegisterAgentComponent},
+    {path: "register-company", component: RegisterCompanyComponent},
     {path: "new", component: NewCar},
     {path: "register", component: Register},
     {path: "login", component: Login},
@@ -24,5 +29,6 @@ export const appRoutes:Routes = [
     {path: "codebook", component: CodebookComponent},
     {path: "manage-comments", component: ManageCommentsComponent},
     {path: "profile", component: Profile},
+    {path: "inbox", component: Inbox},
     {path: "", component: HomePage}
 ]

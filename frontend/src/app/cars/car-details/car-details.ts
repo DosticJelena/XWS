@@ -5,6 +5,7 @@ import { CartService } from 'src/app/services/cart/cart.service';
 import { CloseScrollStrategy } from '@angular/cdk/overlay';
 import { MessageService } from 'src/app/services/message/message.service';
 import { CommentsService } from 'src/app/services/comment/comment.service';
+import { GradeAndCommentService } from 'src/app/services/grade-and-comment/grade-and-comment.service';
 
 @Component({
     selector: 'car-details',
@@ -15,13 +16,16 @@ export class CarDetails {
     car:any;
     images:any;
     comments: [];
+    grades: [];
+    avgGrade: number;
 
     loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
 
     constructor(private route:ActivatedRoute, 
       private carsService:CarsService,
       private cartService : CartService,
-      private commentSrevice: CommentsService){
+      private commentSrevice: CommentsService,
+      private gradingService: GradeAndCommentService){
 
     }
 
@@ -41,6 +45,23 @@ export class CarDetails {
         this.commentSrevice.getVehicleComments(this.route.snapshot.params['id']).subscribe(
           (data: any) => {
             this.comments = data;
+          }, (error) => alert(error.text)
+        );
+
+        this.gradingService.getCarGrades(this.route.snapshot.params['id']).subscribe(
+          (data: any) => {
+            this.grades = data;
+            if (data.length != 0){
+              let sum = 0;
+              data.forEach(grade => {
+                sum += grade.value 
+              });
+              console.log("nije nula: " + sum)
+              this.avgGrade = Math.round((sum/data.length) * 100) / 100;
+            } else {
+              console.log("nula")
+              this.avgGrade = 0.0;
+            }
           }, (error) => alert(error.text)
         );
     }

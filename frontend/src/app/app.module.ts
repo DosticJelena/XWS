@@ -32,6 +32,9 @@ import { ManageCommentsComponent } from './manage-comments/manage-comments.compo
 import { MessageComponent } from './message/message.component';
 import { GradesAndCommentsComponent } from './grades-and-comments/grades-and-comments.component';
 import { Profile } from './profile/profile';
+import { Inbox } from './inbox/inbox';
+import { RegisterAgentComponent } from './register-agent/register-agent.component';
+import { RegisterCompanyComponent } from './register-company/register-company.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,10 @@ import { Profile } from './profile/profile';
     ManageCommentsComponent,
     Profile,
     MessageComponent,
-    GradesAndCommentsComponent
+    GradesAndCommentsComponent,
+    Inbox,
+    RegisterAgentComponent,
+    RegisterCompanyComponent
   ],
   imports: [
     NgbModule,
