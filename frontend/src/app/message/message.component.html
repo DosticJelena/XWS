@@ -26,7 +26,7 @@
     </thead>
     <tbody>
         <ng-container *ngFor="let res of reservations;let i = index;">
-            <tr *ngIf="res.vehicles[0].rentingRequest.status === 'RESERVED'">
+            <tr *ngIf="res.vehicles[0].rentingRequest.status === 'PAID'">
                 <td>{{map.get(res.vehicles[0].vehicle.ownerId)}}</td>
                 <td><input type="text" id="{{i}}" name="text"  placeholder="Message" required></td>
                 <td><button class="btn details-btn" (click)="sendMess(res.vehicles[0].vehicle.ownerId,i)">Send</button></td>

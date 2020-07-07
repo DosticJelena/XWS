@@ -15,10 +15,10 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @FeignClient(name="vehicle")
 public interface VehicleServiceProxy {
-    @RequestMapping(value = "/vehicles/test/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/test/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> test(@PathVariable(value = "id") Long id);
 
-    @RequestMapping(value = "vehicles/all/{ids}",method = RequestMethod.GET,produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/all/{ids}",method = RequestMethod.GET,produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllvehiclesWithId(@PathVariable("ids") ArrayList<Long> ids);
 
 }
