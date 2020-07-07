@@ -1,174 +1,178 @@
 <div class="cars">
     <h2>Browse Car Models</h2>
+    <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        Sort
+    </button>
+    <div class="dropdown-menu">
+        <a (click)="sortCena()" class="dropdown-item">Sortiranje po ceni</a>
+        <a (click)="sortKm()" class="dropdown-item">Sortiranje po km</a>
+    </div>
     <hr style="color: rgb(39, 39, 39)" />
-    <div>
+    <div class="row">
+        <div class="col-10 row">
+            <div *ngFor="let car of cars" class="col-lg-4 col-md-6 col-sm-6 col-12">
+                <div class="background">
+                    <div class="carItem">
+                        <h5>{{car.brand}} | {{car.model}}</h5>
+                        <hr style="background-color: gray;" />
+                        <div style="max-height: 150px;"><img height="150" widht="250" src={{map.get(car.id)}}></div>
+                        <br />
+                        <button [routerLink]="['/car',car.id]" style="display: block;" class="btn details-btn">See
+                            details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-2  filter-btns">
+            <h4>Filter Results</h4>
+            <div class="row">
+                <div class="col-12">
+                    <div class="dateFrom">
+                        <input class="form-control" placeholder="Start date" id="date" name="dp" name="datum"
+                            [(ngModel)]="startDate" [minDate]="minDate" ngbDatepicker #d="ngbDatepicker" required>
 
-        <div class="row">
-            <div class="col-2">
-                <div class="dateFrom">
-                    <input class="form-control" placeholder="Start date" id="date" name="dp" name="datum"
-                        [(ngModel)]="startDate" [minDate]="minDate" ngbDatepicker #d="ngbDatepicker" required>
-    
-                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><img
-                            src="../../assets/images/calendar.png" alt="calendar"
-                            style="width: 1.2rem; height: 1.2rem; cursor: pointer;" /></button>
-                    <ngb-timepicker [(ngModel)]="timeFrom"></ngb-timepicker>
-    
+                        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><img
+                                src="../../assets/images/calendar.png" alt="calendar"
+                                style="width: 1.2rem; height: 1.2rem; cursor: pointer;" /></button>
+                        <ngb-timepicker [(ngModel)]="timeFrom"></ngb-timepicker>
+
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="dateTo">
+                        <input class="form-control" placeholder="End date" id="date" name="dp" name="datum"
+                            [(ngModel)]="endDate" [minDate]="minDateSecond" ngbDatepicker #to="ngbDatepicker" required>
+
+                        <button class="btn btn-outline-secondary calendar" (click)="to.toggle()" type="button"><img
+                                src="../../assets/images/calendar.png" alt="calendar"
+                                style="width: 1.2rem; height: 1.2rem; cursor: pointer;" /></button>
+                        <ngb-timepicker [(ngModel)]="timeTo" show-spinners="false"></ngb-timepicker>
+
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            {{location}}
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class='btn'><i (click)="setLocation('Novi Sad')" class="la la-trash">Novi Sad</i></a><br>
+                            <a class='btn'><i (click)="setLocation('Beograd')" class="la la-trash">Beograd</i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button (click)="filterCars()" class="btn btn-warning btn-filter-click">
+                        Filter
+                    </button>
+                </div>
+                <div class="col-12">
+                    <button (click)="showHideAdditional()" class="btn btn-warning btn-show">
+                        {{showAdditional ? "Hide" : "More Filters"}}
+                    </button>
                 </div>
             </div>
-            <div class="col-2">
-                <div class="dateTo">
-                    <input class="form-control" placeholder="End date" id="date" name="dp" name="datum"
-                        [(ngModel)]="endDate" [minDate]="minDateSecond" ngbDatepicker #to="ngbDatepicker" required>
-    
-                    <button class="btn btn-outline-secondary calendar" (click)="to.toggle()" type="button"><img
-                            src="../../assets/images/calendar.png" alt="calendar"
-                            style="width: 1.2rem; height: 1.2rem; cursor: pointer;" /></button>
-                    <ngb-timepicker [(ngModel)]="timeTo" show-spinners="false"></ngb-timepicker>
-    
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        {{location}}
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class='btn'><i (click)="setLocation('Novi Sad')" class="la la-trash">Novi Sad</i></a><br>
-                        <a class='btn'><i (click)="setLocation('Beograd')" class="la la-trash">Beograd</i></a>
+            <hr *ngIf="showAdditional" />
+            <div class="row">
+                <div *ngIf="showAdditional" class="additional-btns">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            {{brand}}
+                        </button>
+                        <div class="dropdown-menu">
+                            <a (click)="setBrand('BMW')" class="dropdown-item">BMW</a>
+                            <a (click)="setBrand('AUDI')" class="dropdown-item">Audi</a>
+                        </div>
                     </div>
-                </div>
-                <button (click)="showHideAdditional()" class="btn btn-warning btn-show">
-                    {{showAdditional ? "Hide" : "More Filters"}}
-                </button>
-            </div>
-        <div class="col-2">
-            <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Sortiranje
-        </button>
-        <div class="dropdown-menu">
-            <a (click) = "sortCena()" class="dropdown-item">Sortiranje po ceni</a> 
-            <a (click) = "sortKm()" class="dropdown-item">Sortiranje po km</a>
-        </div>
-        </div>
-            <div class="col-2">
-                <button (click)="filterCars()" class="btn btn-warning btn-filter-click">
-                    Filter
-                </button>
-            </div>
-            
-        </div>
-        
-        <hr *ngIf="showAdditional" />
-        <div class="row">
-            <div *ngIf="showAdditional" class="additional-btns">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        {{brand}}
-                    </button>
-                    <div class="dropdown-menu">
-                        <a (click) = "setBrand('BMW')" class="dropdown-item">BMW</a>
-                        <a (click) = "setBrand('AUDI')" class="dropdown-item">Audi</a>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            {{model}}
+                        </button>
+                        <div class="dropdown-menu">
+                            <a (click)="setModel('M5')" class="dropdown-item">M5</a>
+                            <a (click)="setModel('R8')" class="dropdown-item">R8</a>
+                        </div>
                     </div>
-                </div>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        {{model}}
-                    </button>
-                    <div class="dropdown-menu">
-                        <a  (click) = "setModel('M5')" class="dropdown-item">M5</a>
-                        <a  (click) = "setModel('R8')"  class="dropdown-item">R8</a>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            {{fuelType}}
+                        </button>
+                        <div class="dropdown-menu">
+                            <a (click)="setFuelType('Benzin')" class="dropdown-item">Benzin</a>
+                            <a (click)="setFuelType('Plin')" class="dropdown-item">Plin</a>
+                            <a (click)="setFuelType('Dizel')" class="dropdown-item">Dizel</a>
+                        </div>
                     </div>
-                </div>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        {{fuelType}}
-                    </button>
-                    <div class="dropdown-menu">
-                        <a (click) = "setFuelType('Benzin')" class="dropdown-item">Benzin</a>
-                        <a (click) = "setFuelType('Plin')" class="dropdown-item">Plin</a>
-                        <a (click) = "setFuelType('Dizel')" class="dropdown-item">Dizel</a>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            {{transmission}}
+                        </button>
+                        <div class="dropdown-menu">
+                            <a (click)="setTransmission('Manuelni')" class="dropdown-item">Manuelni</a>
+                            <a (click)="setTransmission('Automatski')" class="dropdown-item">Automatski</a>
+                        </div>
                     </div>
-                </div>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        {{transmission}}
-                    </button>
-                    <div class="dropdown-menu">
-                        <a (click) = "setTransmission('Manuelni')" class="dropdown-item">Manuelni</a>
-                        <a (click) = "setTransmission('Automatski')" class="dropdown-item">Automatski</a>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            {{CDWStatus}}
+                        </button>
+                        <div class="dropdown-menu">
+                            <a (click)="setCDW('Da')" class="dropdown-item">Da</a>
+                            <a (click)="setCDW('Ne')" class="dropdown-item">Ne</a>
+                        </div>
                     </div>
-                </div>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        {{CDWStatus}}
-                    </button>
-                    <div class="dropdown-menu">
-                        <a (click) = "setCDW('Da')"  class="dropdown-item">Da</a>
-                        <a (click) = "setCDW('Ne')"  class="dropdown-item">Ne</a>
-                    </div>
-                </div>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Vehicle type
-                </button>
-                    <div class="dropdown-menu">
-                        <a (click) = "setVehicleType('SUV')"  class="dropdown-item">SUV</a>
-                        <a (click) = "setVehicleType('Limuzina')" class="dropdown-item">Limuzina</a>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-warning dropdown-toggle filter-btn" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Vehicle type
+                        </button>
+                        <div class="dropdown-menu">
+                            <a (click)="setVehicleType('SUV')" class="dropdown-item">SUV</a>
+                            <a (click)="setVehicleType('Limuzina')" class="dropdown-item">Limuzina</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div *ngIf="showAdditional" class="additional-btns">
-                <div class="btn-group">
-                    Minimalna cena<input class="form-control" type="number" placeholder="Minimalna cena"
-                        [(ngModel)]="priceFrom" >
-                    Maksimalna cena<input class="form-control" type="number" placeholder="Maksimalna cena"
-                        [(ngModel)]="priceTo" >                       
-                    
-                </div>
-                <div class="btn-group">
-                    Min kilometraza<input class="form-control" type="number" placeholder="Min kilometraza"
-                    [(ngModel)]="distanceFrom" >
-                    Maks kilometraza<input class="form-control" type="number" placeholder="Maks kilometraza"
-                    [(ngModel)]="distanceTo" >
-                </div>
-                <div class="btn-group">
-                    Zeljena kilometraza <input class="form-control" type="number" placeholder="Zeljena kilometraza"
-                    [(ngModel)]="distance" >
-                </div>
-               
-                <div class="btn-group">
-                    Sedista za decu <input class="form-control" type="number" placeholder="Sedista za decu"
-                    [(ngModel)]="childrenSeats" >
+            <div class="row">
+                <div *ngIf="showAdditional" class="additional-btns">
+                    <div class="btn-group">
+                        <label>Minimalna cena</label>
+                        <input class="form-control" type="number" placeholder="Minimalna cena" [(ngModel)]="priceFrom">
+                    </div>
+                    <div class="btn-group">
+                        <label>Maksimalna cena</label>
+                        <input class="form-control" type="number" placeholder="Maksimalna cena" [(ngModel)]="priceTo">
+                    </div>
+                    <div class="btn-group">
+                        <label>Minimalna Kilometraza</label>
+                        <input class="form-control" type="number" placeholder="Min kilometraza"
+                            [(ngModel)]="distanceFrom">
+                    </div>
+                    <div class="btn-group">
+                        <label>Maksimalna Kilometraza</label>
+                        <input class="form-control" type="number" placeholder="Maks kilometraza"
+                            [(ngModel)]="distanceTo">
+                    </div>
+                    <div class="btn-group">
+                        <label>Zeljena Kilometraza</label>
+                        <input class="form-control" type="number" placeholder="Zeljena kilometraza"
+                            [(ngModel)]="distance">
+                    </div>
+                    <div class="btn-group">
+                        <label>Sedista za decu</label>
+                        <input class="form-control" type="number" placeholder="Sedista za decu"
+                            [(ngModel)]="childrenSeats">
+                    </div>
                 </div>
             </div>
         </div>
         <hr />
-
-    </div>
-    <div class="row">
-        <div *ngFor="let car of cars" class="col-lg-4 col-md-6 col-sm-6 col-12">
-            <div class="background">
-                <div class="carItem">
-                    <h5>{{car.brand}} | {{car.model}}</h5>
-                    <hr style="background-color: gray;" />
-                    <div style="max-height: 150px;"><img height="150" widht="250"
-                            src={{map.get(car.id)}}></div>
-                    <br />
-                    <button [routerLink]="['/car',car.id]" style="display: block;" class="btn details-btn">See
-                        details</button>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
