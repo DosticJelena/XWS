@@ -33,6 +33,8 @@ import { MessageComponent } from './message/message.component';
 import { GradesAndCommentsComponent } from './grades-and-comments/grades-and-comments.component';
 import { Profile } from './profile/profile';
 import { Inbox } from './inbox/inbox';
+import { RegisterAgentComponent } from './register-agent/register-agent.component';
+import { RegisterCompanyComponent } from './register-company/register-company.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { Inbox } from './inbox/inbox';
     Profile,
     MessageComponent,
     GradesAndCommentsComponent,
-    Inbox
+    Inbox,
+    RegisterAgentComponent,
+    RegisterCompanyComponent
   ],
   imports: [
     NgbModule,

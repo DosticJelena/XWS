@@ -3,6 +3,8 @@ import { MessageService } from '../services/message/message.service'
 import { AuthService } from '../auth/auth.service'
 import { GradeAndCommentService } from '../services/grade-and-comment/grade-and-comment.service'
 import { CarsService } from '../cars/cars.service';
+import { RentingRequestService } from '../services/renting-request/renting-request.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-message',
@@ -14,21 +16,25 @@ export class MessageComponent implements OnInit {
   reservations = [];
   usernames = [];
   vehicles = [];
+  requests : [];
   map = new Map<number, string>();
   vehicleMap = new Map<number, string>();
   counter = 0;
   grade = 0;
   selected = "pending";
+  id : number;
 
   constructor(private MessageService: MessageService,
     private AuthService: AuthService,
     private GradeAndCommentService: GradeAndCommentService,
-    private carsService: CarsService) { }
+    private carsService: CarsService,
+    private rentingRequestService : RentingRequestService) { }
 
   ngOnInit(): void {
     this.reloadReservations();
     this.getUsernames();
     this.getVehicles();
+    this.id = JSON.parse(localStorage.getItem("loggedUser")).id;
 
   }
 
@@ -115,5 +121,28 @@ export class MessageComponent implements OnInit {
       (<HTMLInputElement>document.getElementById("RESERVED")).style.display = "block";
 
     }
+  }
+  
+  changeSelected(info: number) {
+    switch (info) {
+      case 0: 
+        this.selected = 'pending'; break;
+      case 1:
+        this.selected = 'paid'; break;
+      case 2:
+        this.selected = 'declined'; break;
+      case 3:
+        this.selected = 'finished'; break;
+    }
+  }
+  cancle(requestId : number) {
+    this.rentingRequestService.cancle(requestId).subscribe(
+      (data) => {
+        console.log(data);
+        this.reloadReservations();
+      },(error) => {
+        console.log(error);
+      }
+    )
   }
 }

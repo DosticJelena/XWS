@@ -11,6 +11,7 @@ import xml.model.RentingRequestVehicle;
 import xml.model.Vehicle;
 import xml.repository.RentingRequestRepository;
 import xml.repository.RentingRequestVehicleRepository;
+import xml.repository.VehicleRepository;
 import xml.service.RentingRequestService;
 import xml.service.VehicleService;
 
@@ -31,6 +32,9 @@ public class RentingRequestController {
     @Autowired
     private VehicleService vehicleService;
 
+    @Autowired
+    private VehicleRepository vehicleRepository;
+
     @RequestMapping(value = "/{id}",method = RequestMethod.GET,produces = "application/json")
     public ResponseEntity<?> getAllByUserId(@PathVariable Long id) {
         return new ResponseEntity<>(rentingRequestRepository.findByUserId(id), HttpStatus.ACCEPTED);
@@ -41,6 +45,11 @@ public class RentingRequestController {
         List<RentingRequestVehicle> lista = rentingRequestVehicleRepository.findAll();
 
         RentingRequestVehicle rrv = null;
+
+        Vehicle v = vehicleService.findOneById(request.getVid());
+        Double d = v.getDistance();
+        v.setDistance(d+request.getDistance());
+        vehicleRepository.save(v);
 
         for(RentingRequestVehicle a:lista) {
             System.out.println(request.getVid() + "    " + request.getRid());

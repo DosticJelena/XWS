@@ -18,9 +18,9 @@ insert into cart_vehicles(carts_id,vehicles_id) values (5,1);
 insert into cart_vehicles(carts_id,vehicles_id) values (5,2);
 insert into cart_vehicles(carts_id,vehicles_id) values (5,3);
 
-insert into renting_request(user_id,status,created_at) values (4,1,'2020-1-11');
-insert into renting_request(user_id,status,created_at) values (4,1,'2020-1-11');
-insert into renting_request(user_id,status,created_at) values (4,2,'2020-1-11');
+insert into renting_request(user_id,status,created_at) values (4,0,'2021-1-11');
+insert into renting_request(user_id,status,created_at) values (4,1,'2021-1-11');
+insert into renting_request(user_id,status,created_at) values (4,3,'2021-1-11');
 
 
 insert into renting_request_vehicle(vehicle_id,renting_request_id,start_date,end_date,price,distance)

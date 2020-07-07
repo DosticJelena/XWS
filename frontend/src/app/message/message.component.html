@@ -1,10 +1,10 @@
 <div class="requests">
     <h3>Reservations</h3>
     <hr/>
-    <button class="btn" (click)="selected='pending'">Pending</button>
-    <button class="btn" (click)="selected='declined'">Declined</button>
-    <button class="btn" (click)="selected='paid'">Paid</button>
-    <button class="btn" (click)="selected='finished'">Finished</button>
+    <button class="btn" (click)="changeSelected(0)">Pending</button>
+    <button class="btn" (click)="changeSelected(1)">Paid</button>
+    <button class="btn" (click)="changeSelected(2)">Declined</button>
+    <button class="btn" (click)="changeSelected(3)">Finished</button>
     <hr/>
     <div class="row">
         <div *ngIf="selected == 'pending'" class="col-6">
@@ -15,6 +15,7 @@
                         <th scope="col">Owner</th>         
                         <th scope="col">Vehicle</th>         
                         <th scope="col">Status</th>
+                        <th scope="col">Cancle</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,6 +24,7 @@
                             <td>{{map.get(res.vehicles[0].vehicle.ownerId)}}</td>
                             <td>{{vehicleMap.get(res.vehicles[0].id.vehicle_id)}}</td>
                             <td>{{res.vehicles[0].rentingRequest.status}}</td>
+                            <td><button class="btn btn-primary" (click)="cancle(res.vehicles[0].rentingRequest.id)">Cancle</button></td>
                         </tr>
                     </ng-container>
                 </tbody>

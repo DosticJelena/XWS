@@ -15,4 +15,10 @@ public class Company extends ApplicationUser {
 
     @Column
     private String companyName;
+
+    @Column
+    private String address;
+
+    @Column
+    private String PIB;
 }

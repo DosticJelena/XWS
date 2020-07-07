@@ -5,11 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import xws.dto.LoginDTO;
-import xws.dto.RegisterDTO;
-import xws.dto.UpdateUserStatusDTO;
-import xws.dto.UserResponseDTO;
+import xws.dto.*;
+import xws.model.Agent;
 import xws.model.ApplicationUser;
+import xws.model.Company;
+import xws.repository.ApplicationUserRepository;
 import xws.service.ApplicationUserService;
 
 import java.util.ArrayList;
@@ -21,6 +21,9 @@ public class ApplicationUserController {
 
     @Autowired
     private ApplicationUserService applicationUserService;
+
+    @Autowired
+    private ApplicationUserRepository applicationUserRepository;
 
     @RequestMapping(value = "users", method = RequestMethod.GET)
     public ResponseEntity<?> getAll() {
@@ -80,6 +83,41 @@ public class ApplicationUserController {
 
         if(au == null) {
             applicationUserService.save(dto);
+            return new ResponseEntity<>(1, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(0, HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(consumes = "application/json", produces= "application/json", value = "register-agent", method = RequestMethod.POST)
+    public ResponseEntity<?> registerAgent(@RequestBody RegisterAgentDTO dto) {
+        ApplicationUser au = applicationUserService.findOneByUsername(dto.getUsername());
+
+        if(au == null) {
+            Agent a = new Agent();
+            a.setUsername(dto.getUsername());
+            a.setAddress(dto.getAddress());
+            a.setFirstName(dto.getFirstName());
+            a.setLastName(dto.getLastName());
+            a.setPIB(dto.getPIB());
+            applicationUserRepository.save(a);
+            return new ResponseEntity<>(1, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(0, HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(consumes = "application/json", produces= "application/json", value = "register-company", method = RequestMethod.POST)
+    public ResponseEntity<?> registerCompany(@RequestBody RegisterCompanyDTO dto) {
+        ApplicationUser au = applicationUserService.findOneByUsername(dto.getUsername());
+
+        if(au == null) {
+            Company a = new Company();
+            a.setUsername(dto.getUsername());
+            a.setAddress(dto.getAddress());
+            a.setCompanyName(dto.getCompanyName());
+            a.setPIB(dto.getPIB());
+            applicationUserRepository.save(a);
             return new ResponseEntity<>(1, HttpStatus.OK);
         }
 
