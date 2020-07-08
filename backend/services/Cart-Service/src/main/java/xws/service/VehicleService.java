@@ -2,6 +2,7 @@ package xws.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import xws.dto.request.NewVehicleDTO;
 import xws.model.VehicleCart;
 import xws.repository.VehicleRepository;
 
@@ -19,5 +20,10 @@ public class VehicleService {
             e.printStackTrace();
             return null;
         }
+    }
+    public VehicleCart newVehicle(NewVehicleDTO request) {
+        VehicleCart vehicle = new VehicleCart();
+        vehicle.setOwnerId(request.getOwnerId());
+        return vehicleRepository.save(vehicle);
     }
 }

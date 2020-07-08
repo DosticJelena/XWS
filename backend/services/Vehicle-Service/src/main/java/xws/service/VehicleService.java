@@ -2,8 +2,10 @@ package xws.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import xws.dto.request.NewVehicleDTO;
 import xws.dto.request.NewVehicleRequestDTO;
 import xws.dto.response.VehicleForCartDTOResponse;
+import xws.feignClients.CartServiceProxy;
 import xws.model.Picture;
 import xws.model.RentingRequestCar;
 import xws.model.Vehicle;
@@ -26,6 +28,9 @@ public class VehicleService {
     VehicleRepository vehicleRepository;
     @Autowired
     RentingRequestCarRepository rentingRequestCarRepository;
+
+    @Autowired
+    CartServiceProxy cartServiceProxy;
 
     public List<Vehicle> search(String location,String startDate,String endDate, String brand,
                                 String model,String fuel_type,
@@ -108,12 +113,17 @@ public class VehicleService {
         v.setDistancePerRentStatus(newVehicle.getDistancePerRentStatus());
         v.setDistancePerRent(newVehicle.getDistancePerRent());
 
+
+
         for (String pictureUrl: newVehicle.getPictures()) {
             Picture p = new Picture();
             p.setVehicle(v); // suvisno...error?
             p.setUrl(pictureUrl);
             v.getPictures().add(p);
         }
+        NewVehicleDTO vehicleDTO = new NewVehicleDTO();
+        vehicleDTO.setOwnerId(newVehicle.getOwner_id());
+        cartServiceProxy.createNewVehicle(vehicleDTO);
 
         return vehicleRepository.save(v);
 

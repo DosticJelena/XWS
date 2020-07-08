@@ -15,4 +15,5 @@ public interface CartServiceProxy {
     @RequestMapping(value = "/",method = RequestMethod.POST,produces = APPLICATION_JSON_VALUE)
     ResponseEntity<?> addCart(Long id);
 
+
 }
