@@ -60,7 +60,7 @@ public class VehicleController {
     }
 
     @RequestMapping(value = "/all/{ids}",method = RequestMethod.GET,produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getAllvehiclesWithId(@PathVariable("ids") ArrayList<Long> ids) {
+    public ResponseEntity<?> getAllVehiclesWithId(@PathVariable("ids") ArrayList<Long> ids) {
         return new ResponseEntity<>(vehicleService.findAllByIds(ids),HttpStatus.ACCEPTED);
     }
 

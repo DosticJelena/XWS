@@ -118,5 +118,8 @@ public class VehicleService {
         return vehicleRepository.save(v);
 
     }
+    public Vehicle save(Vehicle v) {
+        return vehicleRepository.save(v);
+    }
 
 }

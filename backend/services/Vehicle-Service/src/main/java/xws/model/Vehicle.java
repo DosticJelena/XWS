@@ -1,6 +1,7 @@
 package xws.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -67,6 +68,10 @@ public class Vehicle {
     @JsonBackReference
     @OneToMany(mappedBy = "vehicle",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Picture> pictures = new HashSet<>();
+
+    @JsonManagedReference
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Discount discount;
 
 
 }
