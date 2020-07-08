@@ -1,1 +1,24 @@
-<p>add-discount works!</p>
+<div class="form-group row">
+    <label for="vehicle" class="col-sm-2 col-form-label" style="color: blanchedalmond;">Ime vozila</label>
+    <div class="col-sm-3">
+        <select name="vehicle" id="vehicle" (change)="changeSelectedVehicle($event.target.value)" class="form-control">
+            <option value={{null}}></option>
+            <option *ngFor="let vehicle of vehicles" value="{{vehicle.id}}">
+                {{vehicle.brand}} {{vehicle.model}}
+            </option>
+        </select>
+    </div>
+</div>
+<div class="form-group row">
+    <label for="discount" class="col-sm-2 col-form-label" style="color: blanchedalmond;">Kolicina popusta</label>
+    <div class="col-sm-3">
+        <select name="discount" id="discount" (change)="changeSelectedDiscount($event.target.value)"
+            class="form-control">
+            <option value={{null}}></option>
+            <option *ngFor="let discount of discounts" value="{{discount.id}}">
+                {{discount.amount}}
+            </option>
+        </select>
+    </div>
+</div>
+<button class="btn btn-primary" (click)="submitNewDiscount()">Submit</button>

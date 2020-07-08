@@ -1,1 +1,7 @@
-<p>new-discount works!</p>
+<form>
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input type="text" class="form-control" id="amount" aria-describedby="amount" placeholder="Amount" [(ngModel)]="amount" name="ammount">
+    </div>
+    <button class="btn btn-primary" (click)="submitNewAmmount()">Submit</button>
+  </form>
