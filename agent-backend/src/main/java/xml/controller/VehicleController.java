@@ -1,6 +1,10 @@
 package xml.controller;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 import xml.dto.request.NewVehicleRequestDTO;
 import xml.model.CarGrade;
@@ -9,6 +13,8 @@ import xml.model.Vehicle;
 import xml.repository.CarGradeRepository;
 import xml.repository.CommentRepository;
 import xml.service.VehicleService;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +44,10 @@ public class VehicleController {
     @Autowired
     CommentRepository commentRepository;
 
+    @RequestMapping(value="/location/{id}",method = RequestMethod.GET,produces = "application/json")
+    public Vehicle getLocations(@PathVariable Long id){
+        return vehicleService.changeLocation(id);
+    }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public Vehicle newVehicle(@RequestBody NewVehicleRequestDTO request) {
