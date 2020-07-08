@@ -1,4 +1,9 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import * as SockJS from 'sockjs-client';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { tap, catchError, map } from 'rxjs/operators';
+import { of, throwError } from 'rxjs';
+var Stomp = require('stompjs');
 
 @Component({
   selector: 'app-map',
@@ -19,11 +24,10 @@ export class MapComponent implements AfterViewInit, OnInit {
   public locations: Array<any>;
   id = 0;
 
-  host = "ws://localhost:8090/ws/";
-  socket: any;
+    
 
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   coordinates = new google.maps.LatLng(this.lat, this.lng);
 
@@ -36,36 +40,35 @@ export class MapComponent implements AfterViewInit, OnInit {
     position: this.coordinates,
     map: this.map,
   });
-
+  
   ngOnInit() {
     var t = window.location.href.split("/");
     this.id = parseInt(t[t.length-1]);
     console.log(this.id);
-
-    try {
-      this.socket = new WebSocket(this.host);
-      var self = this;
-      //console.log('connect: Socket Status: '+ this.socket.readyState);
-
-      this.socket.onopen = function () {
-        //console.log('onopen: Socket Status: '+ this.socket.readyState+' (open)');
-        //console.log('onopen: LogedUser: '+user+'');
-      }
-
-      this.socket.onmessage = function (msg) {
-        console.log('onmessage: Received: ' + msg.data);
-
-        
-      }
-
-      this.socket.onclose = function () {
-        this.socket = null;
-      }
-
-    } catch (exception) {
-      console.log('Error' + exception);
-    }
+    this.changeLocation();
+   
+    
   }
+  
+  private async changeLocation(){
+    while(1){
+    console.log("Usao");
+    this.reload().subscribe(
+      (data: any) => {          
+        var returnValue = Object.assign([], (data));
+        this.position = returnValue.gps;
+        console.log(this.position);
+        this.eventHandler();
+        //this.reloadMap();
+      }, (error) => alert(error.text)
+    );
+    await this.delay(10000);}
+  }
+  
+  private delay(ms: number)
+{
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
   ngAfterViewInit() { 
     this.mapInitializer();
@@ -79,9 +82,9 @@ export class MapComponent implements AfterViewInit, OnInit {
   }
 
   eventHandler() {
-    //this.lat = parseFloat(this.adresa.split('-')[0]);
-    //this.lng = parseFloat(this.adresa.split('-')[1]);
-    console.log(this.lat, this.lng);
+    this.lat = parseFloat(this.position.split(',')[0]);
+    this.lng = parseFloat(this.position.split(',')[1]);
+    console.log("Event handler "+ this.lat, this.lng);
     this.coordinates = new google.maps.LatLng(this.lat, this.lng);
 
     this.mapOptions.center = this.coordinates;
@@ -91,4 +94,29 @@ export class MapComponent implements AfterViewInit, OnInit {
 
     this.mapInitializer();
   }
+  reloadMap(){
+    this.lat = parseFloat(this.position.split(',')[0]);
+    this.lng = parseFloat(this.position.split(',')[1]);
+    console.log("Event handler "+ this.lat, this.lng);
+    this.coordinates = new google.maps.LatLng(this.lat, this.lng);
+
+    this.mapOptions.center = this.coordinates;
+
+    this.marker.setPosition(this.coordinates);
+    this.marker.setMap(this.map);
+  }
+
+  reload() {
+    return this.http.get("http://localhost:8090/vehicle/location/"+this.id)
+        .pipe(
+            map((res: any) => {
+                const data = res;
+                return data;
+            }),
+            catchError((err: any) => {
+                console.log(err);
+                return throwError(err);
+            })
+        )
+}
 }

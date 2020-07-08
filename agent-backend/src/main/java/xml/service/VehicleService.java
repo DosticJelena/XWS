@@ -1,6 +1,10 @@
 package xml.service;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import xml.dto.request.NewVehicleRequestDTO;
 import xml.model.Picture;
@@ -14,6 +18,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -27,6 +32,24 @@ public class VehicleService {
 
     @Autowired
     RentingRequestCarRepository rentingRequestCarRepository;
+
+    public Vehicle changeLocation(Long id) {
+        Vehicle v = vehicleRepository.findOneById(id);
+        String loc = v.getGps();
+        String loc1 = loc.split(",")[0];
+        String loc2 = loc.split(",")[1];
+        double loc1F = Float.parseFloat(loc1);
+        double loc2F = Float.parseFloat(loc2);
+        double min = -0.01;
+        double max = 0.01;
+        double random_double = Math.random() * (max - min + 1) + min;
+        loc1F += random_double;
+        loc2F += random_double;
+        loc = String.valueOf(loc1F) + "," + String.valueOf(loc2F);
+        v.setGps(loc);
+        vehicleRepository.save(v);
+        return v;
+    }
 
     public Vehicle findOneById(Long id) {
         return this.vehicleRepository.findOneById(id);
