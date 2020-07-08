@@ -9,10 +9,12 @@ import {ManageCommentsComponent} from './manage-comments/manage-comments.compone
 import {MessageComponent} from './message/message.component'
 import { Statistics } from './statistics/statistics';
 import { RentingRequests } from './renting-requests/renting-requests';
+import { MapComponent } from './map/map.component';
 
 export const appRoutes:Routes = [
     {path: "cars", component: Cars},
     {path: "car/:id", component: CarDetails},
+    {path: "map/:id", component: MapComponent},
     {path: "message", component: MessageComponent},
     {path: "new", component: NewCar},
     {path: "register", component: Register},

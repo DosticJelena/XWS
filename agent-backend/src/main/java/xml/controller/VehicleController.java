@@ -126,6 +126,11 @@ public class VehicleController {
         return ret;
     }
 
+    @RequestMapping(value = "/coordinates/{id}", method = RequestMethod.GET, produces = "application/json")
+    public String gpsCoordinates(@PathVariable Long id) {
+        return vehicleService.findOneById(id).getGps();
+    }
+
     public static class Id {
         public Long id;
     }

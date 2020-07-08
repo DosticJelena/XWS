@@ -31,6 +31,7 @@ import { Statistics } from './statistics/statistics';
 import { RentingRequests } from './renting-requests/renting-requests';
 import { StatisticsService } from './services/statistics/statistics.service';
 import { RentingRequestsService } from './services/renting-requests/renting-requests.service';
+import { MapComponent } from './map/map.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { RentingRequestsService } from './services/renting-requests/renting-requ
     MessageComponent,
     GradesAndCommentsComponent,
     Statistics,
-    RentingRequests
+    RentingRequests,
+    MapComponent
   ],
   imports: [
     NgbModule,
