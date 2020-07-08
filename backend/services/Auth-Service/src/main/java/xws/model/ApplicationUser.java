@@ -18,7 +18,7 @@ public abstract class ApplicationUser {
     }
 
     public enum Role {
-        ADMIN, PERSON, COMPANY
+        ADMIN, PERSON, COMPANY, AGENT
     }
 
     @Id

@@ -99,9 +99,12 @@ public class ApplicationUserController {
             a.setAddress(dto.getAddress());
             a.setFirstName(dto.getFirstName());
             a.setLastName(dto.getLastName());
+            a.setPassword("123");
+            a.setRole(ApplicationUser.Role.AGENT);
+            a.setStatus(ApplicationUser.Status.ACTIVE);
             a.setPIB(dto.getPIB());
             applicationUserRepository.save(a);
-            return new ResponseEntity<>(1, HttpStatus.OK);
+            return new ResponseEntity<>(a, HttpStatus.OK);
         }
 
         return new ResponseEntity<>(0, HttpStatus.BAD_REQUEST);
@@ -116,9 +119,12 @@ public class ApplicationUserController {
             a.setUsername(dto.getUsername());
             a.setAddress(dto.getAddress());
             a.setCompanyName(dto.getCompanyName());
+            a.setPassword("123");
+            a.setRole(ApplicationUser.Role.COMPANY);
+            a.setStatus(ApplicationUser.Status.ACTIVE);
             a.setPIB(dto.getPIB());
             applicationUserRepository.save(a);
-            return new ResponseEntity<>(1, HttpStatus.OK);
+            return new ResponseEntity<>(a, HttpStatus.OK);
         }
 
         return new ResponseEntity<>(0, HttpStatus.BAD_REQUEST);

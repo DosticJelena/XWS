@@ -63,6 +63,12 @@ public class Vehicle {
     @Column
     private int childrenSeats;
 
+    @Column
+    private int track;
+
+    @Column
+    private String gps;
+
     @JsonBackReference
     @OneToMany(mappedBy = "vehicle",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Picture> pictures = new HashSet<>();
