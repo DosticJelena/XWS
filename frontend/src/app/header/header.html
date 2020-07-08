@@ -17,6 +17,7 @@
         <a *ngIf="authService.isAuthenticated() && authService.loggedUser.role=='ADMIN'" [routerLink]="['/codebook']" class="mr-3">Codebook</a>
         <a *ngIf="authService.isAuthenticated() && authService.loggedUser.role=='ADMIN'" [routerLink]="['/manage-comments']" class="mr-3">Manage Comments</a>
         <a *ngIf="authService.isAuthenticated() && authService.loggedUser.role=='ADMIN'" [routerLink]="['/manage-users']" class="mr-3">Manage Users</a>
+        <a *ngIf="authService.isAuthenticated() && authService.loggedUser.role=='ADMIN'" [routerLink]="['/new-discount']" class="mr-3">Add new discount</a>
         
         <a *ngIf="authService.isAuthenticated() && authService.loggedUser.role=='PERSON'" [routerLink]="['/reservations']" class="mr-3">Reservations</a>
         <a *ngIf="authService.isAuthenticated() && authService.loggedUser.role=='PERSON'" [routerLink]="['/new']" class="mr-3">New Ad</a>
@@ -24,6 +25,7 @@
         <a *ngIf="!authService.isAuthenticated()" [routerLink]="['/login']">Log In</a>
         <a *ngIf="authService.isAuthenticated()" [routerLink]="['/profile']" class="mr-3">{{authService.loggedUser.firstName}}'s Profile</a>
         <a *ngIf="authService.isAuthenticated() && authService.loggedUser.role=='PERSON'" [routerLink]="['/inbox']" class="mr-3">[inbox]</a>
+        <a *ngIf="authService.isAuthenticated() && authService.loggedUser.role=='PERSON'" [routerLink]="['/apply-discount']" class="mr-3">Apply discount</a>
         <a *ngIf="authService.isAuthenticated()" (click)="logoutUser()" [routerLink]="['/']">Log Out</a>
       </form>
     </div>

@@ -35,6 +35,8 @@ import { Profile } from './profile/profile';
 import { Inbox } from './inbox/inbox';
 import { RegisterAgentComponent } from './register-agent/register-agent.component';
 import { RegisterCompanyComponent } from './register-company/register-company.component';
+import { NewDiscountComponent } from './new-discount/new-discount.component';
+import { AddDiscountComponent } from './add-discount/add-discount.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { RegisterCompanyComponent } from './register-company/register-company.co
     GradesAndCommentsComponent,
     Inbox,
     RegisterAgentComponent,
-    RegisterCompanyComponent
+    RegisterCompanyComponent,
+    NewDiscountComponent,
+    AddDiscountComponent
   ],
   imports: [
     NgbModule,

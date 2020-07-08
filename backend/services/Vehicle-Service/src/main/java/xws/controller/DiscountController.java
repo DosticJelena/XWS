@@ -12,6 +12,8 @@ import xws.dto.request.DiscountDTO;
 import xws.dto.request.VehicleDiscountDTO;
 import xws.service.DiscountService;
 
+import javax.xml.ws.Response;
+
 @RestController
 @RequestMapping(value = "/discount",produces = "application/json")
 public class DiscountController {
@@ -27,5 +29,9 @@ public class DiscountController {
     @RequestMapping(value="new", method = RequestMethod.POST,consumes = "application/json")
     public ResponseEntity<?> createNewDiscount(@RequestBody DiscountDTO request) {
         return new ResponseEntity<>(discountService.addNewDiscount(request),HttpStatus.CREATED);
+    }
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<?> getAllDiscounts() {
+        return new ResponseEntity<>(discountService.findAll(),HttpStatus.ACCEPTED);
     }
 }

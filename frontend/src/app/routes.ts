@@ -14,6 +14,8 @@ import { Profile } from './profile/profile';
 import { Inbox } from './inbox/inbox';
 import { RegisterAgentComponent } from './register-agent/register-agent.component';
 import { RegisterCompanyComponent } from './register-company/register-company.component';
+import { NewDiscountComponent } from './new-discount/new-discount.component';
+import { AddDiscountComponent } from './add-discount/add-discount.component';
 
 export const appRoutes:Routes = [
     {path: "cars", component: Cars},
@@ -30,5 +32,8 @@ export const appRoutes:Routes = [
     {path: "manage-comments", component: ManageCommentsComponent},
     {path: "profile", component: Profile},
     {path: "inbox", component: Inbox},
-    {path: "", component: HomePage}
+    {path: "new-discount",component : NewDiscountComponent},
+    {path: "apply-discount",component : AddDiscountComponent},
+    {path: "", component: HomePage},
+    
 ]
