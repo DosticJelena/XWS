@@ -15,7 +15,7 @@
                         <th scope="col">Owner</th>         
                         <th scope="col">Vehicle</th>         
                         <th scope="col">Status</th>
-                        <th scope="col">Cancle</th>
+                        <th scope="col">Cancel</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,7 +24,7 @@
                             <td>{{map.get(res.vehicles[0].vehicle.ownerId)}}</td>
                             <td>{{vehicleMap.get(res.vehicles[0].id.vehicle_id)}}</td>
                             <td>{{res.vehicles[0].rentingRequest.status}}</td>
-                            <td><button class="btn btn-primary" (click)="cancle(res.vehicles[0].rentingRequest.id)">Cancle</button></td>
+                            <td><button class="btn btn-cancel" (click)="cancle(res.vehicles[0].rentingRequest.id)">Cancel</button></td>
                         </tr>
                     </ng-container>
                 </tbody>

@@ -52,3 +52,9 @@
 .requests button {
     color: lightgray;
 }
+
+.btn-cancel {
+    border: 1px solid red;
+    color: red;
+    background-color: transparent;
+}

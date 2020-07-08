@@ -22,6 +22,13 @@ export class ShooppingCart {
   minDate: any;
   minDateSecond: any;
 
+  totalDays = 0;
+  totalPrice = 0;
+  discountPrice = 0;
+  totalSum = 0;
+  cdwSum = 0;
+  discount = 0;
+
   constructor(private route: ActivatedRoute,
     private carsService: CarsService,
     private cartService: CartService,
@@ -40,6 +47,13 @@ export class ShooppingCart {
         this.authService.getUsers().subscribe(
           (data1: any) => {
             this.cars = data;
+            this.cars.forEach(c => {
+              this.totalSum = this.totalSum + c.price;
+              if (c.cdwstatus === 'Yes'){
+                this.cdwSum = this.cdwSum + 5;
+              }
+            });
+            console.log(this.cars);
             this.cars = this.cars.map((car) => {
               return {
                 ...car,
@@ -94,6 +108,7 @@ export class ShooppingCart {
 
     var start = this.startDate.year + "-" + startMonth + "-" + startDay + " 00:00";
     var end = this.endDate.year + "-" + endMonth + "-" + endDay + " 00:00";
+    this.totalDays = endDay - startDay;
     console.log(start);
     console.log(end);
     if(this.bundle === true) {
@@ -101,7 +116,12 @@ export class ShooppingCart {
         (data : any) => {
           console.log(data);
           //location.reload();
-          location.replace("cars");
+          if(data.statusCodeValue === 400) {
+            alert(data.body);
+          }
+          else {
+            location.replace("cars");
+          }
         },
         (err) => {
           console.log(err);
@@ -112,10 +132,15 @@ export class ShooppingCart {
         (data : any) => {
           console.log(data);
           //location.reload();
-          location.replace("cars");
+          if(data.statusCodeValue === 400) {
+            alert(data.body);
+          }
+          else {
+            location.replace("cars");
+          }
         },
         (err) => {
-          console.log(err);
+          alert(err.body);
         }
       )
     }
@@ -130,6 +155,33 @@ export class ShooppingCart {
     }
   }
 
+  dateChanged() {
+    if (this.startDate !== undefined && this.endDate !== undefined) {     
 
+      const oneDay = 24 * 60 * 60 * 1000;
+      const start = new Date(this.startDate.year, this.startDate.month, this.startDate.day);
+      const end = new Date(this.endDate.year, this.endDate.month, this.endDate.day);
+      this.totalDays = Math.round(Math.abs((end.getTime() - start.getTime()) / oneDay));
+
+      this.totalPrice = this.totalDays*(this.totalSum) + this.cdwSum;
+      if (this.totalDays < 10){
+        this.discount = 0;
+        this.discountPrice = this.totalPrice
+      }
+      if (this.totalDays >= 10 && this.totalDays < 20) {
+        this.discount = 10;
+        this.discountPrice = this.totalPrice - (this.totalPrice*(this.discount/100));
+      }
+      if (this.totalDays >= 20 && this.totalDays < 30) {
+        this.discount = 20;
+        this.discountPrice = this.totalPrice - (this.totalPrice*(this.discount/100));
+      }
+      if (this.totalDays >= 30) {
+        this.discount = 30;
+        this.discountPrice = this.totalPrice - (this.totalPrice*(this.discount/100));
+      }
+
+    }
+  }
 
 }

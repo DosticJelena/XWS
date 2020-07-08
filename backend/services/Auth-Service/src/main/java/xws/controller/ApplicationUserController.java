@@ -48,6 +48,12 @@ public class ApplicationUserController {
         return applicationUserService.findOneById(id).getUsername();
     }
 
+
+    @RequestMapping(value = "blocked/{id}", method = RequestMethod.GET)
+    public Boolean getBlocked(@PathVariable Long id) {
+        return applicationUserService.findOneById(id).getStatus().equals(ApplicationUser.Status.BLOCKED);
+    }
+
     @RequestMapping(consumes = "application/json", value = "user/status", method = RequestMethod.PUT)
     public ResponseEntity<?> updateUserStatus(@RequestBody UpdateUserStatusDTO updateUserStatusDTO) {
         ApplicationUser au = applicationUserService.findOneById(updateUserStatusDTO.getId());

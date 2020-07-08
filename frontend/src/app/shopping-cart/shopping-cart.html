@@ -1,8 +1,8 @@
 <div class="cart">
     <h3>Vehicles In Cart</h3>
-    <hr/>
+    <hr />
     <div class="row">
-        <div class="col-6 cart-vehicles">
+        <div class="col-4 cart-vehicles">
             <div *ngFor="let car of cars" class="col-12">
                 <div class="background">
                     <div class="carItem">
@@ -16,41 +16,74 @@
                 </div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-3">
             <div class="rent-div">
+                <h4>Choose Time:</h4>
+                <hr />
                 <div class="row">
-                    <div class="col">
+                    <div class="col-12">
                         <div class="dateFrom">
-                            <input class="form-control" placeholder="Start date" id="date" name="dp" name="datum"
-                                [(ngModel)]="startDate" [minDate]="minDate" ngbDatepicker #d="ngbDatepicker" required>
-            
+                            <input (change)="dateChanged()" class="form-control" placeholder="Start date"
+                                id="date" name="dp" name="datum" [(ngModel)]="startDate" [minDate]="minDate"
+                                ngbDatepicker #d="ngbDatepicker" required>
+
                             <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><img
                                     src="../../assets/images/calendar.png" alt="calendar"
                                     style="width: 1.2rem; height: 1.2rem; cursor: pointer;" /></button>
-            
+
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-12">
                         <div class="dateTo">
-                            <input class="form-control" placeholder="End date" id="date" name="dp" name="datum"
-                                [(ngModel)]="endDate" [minDate]="minDateSecond" ngbDatepicker #to="ngbDatepicker" required>
-            
+                            <input (change)="dateChanged()" class="form-control" placeholder="End date" id="date"
+                                name="dp" name="datum" [(ngModel)]="endDate" [minDate]="minDateSecond" ngbDatepicker
+                                #to="ngbDatepicker" required>
+
                             <button class="btn btn-outline-secondary calendar" (click)="to.toggle()" type="button"><img
                                     src="../../assets/images/calendar.png" alt="calendar"
                                     style="width: 1.2rem; height: 1.2rem; cursor: pointer;" /></button>
-            
+
                         </div>
                     </div>
                 </div>
-                <br/>
+                <br />
+                <h5>Total days: {{totalDays}}</h5>
+                <p>Discount: {{discount}}%</p>
+                <br />
                 <div>
                     <div>
-                        <input class="checkbox-input" type="checkbox" id="vehicle1" name="vehicle1" (change)="onChange($event.target.checked)">                    
+                        <input class="checkbox-input" type="checkbox" id="vehicle1" name="vehicle1"
+                            (change)="onChange($event.target.checked)">
                         <label for="vehicle1" class="checkbox"> Create bundle per owner </label>
                     </div>
-                    <button style="width: 200px; height: 50px;" class="btn details-btn" (click)="reserveCars()">Create Request</button>
+                    <button style="width: 200px; height: 50px;" class="btn details-btn" (click)="reserveCars()">Create
+                        Request</button>
                     <br>
                 </div>
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="rent-div">
+                <h4>Price List:</h4>
+                <hr />
+                <table class="table1">
+                    <th>Vehicle</th>
+                    <th>Price per day</th>
+                    <th>CDW</th>
+                    <th>Additional Km</th>
+                    <tr *ngFor="let car of cars" class="col-12">
+                        <td>{{car.brand}} | {{car.model}}</td>
+                        <td>{{car.price}}€</td>
+                        <td>{{car.cdwstatus}} <span *ngIf="car.cdwstatus==='Yes'">(+5€)</span></td>
+                        <td>( {{car.additionalPricePerKm}}€ )</td>
+                    </tr>
+                </table>
+                <br>
+                <h5>Total: {{totalPrice}}€</h5>
+                <h6>( {{totalDays}} days * {{totalSum}}€ + {{cdwSum}}€ (cdw) )</h6>
+                <hr/>
+                <h5>Discount price: {{discountPrice}}€</h5>
+                <h6>Discount: {{discount}}%</h6>
             </div>
         </div>
     </div>

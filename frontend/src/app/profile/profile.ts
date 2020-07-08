@@ -47,4 +47,12 @@ export class Profile {
       }
     }
 
+    approve() {
+      console.log("Approved");
+    }
+
+    decline() {
+      console.log("Declined");
+    }
+
 }
