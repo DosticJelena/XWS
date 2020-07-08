@@ -2,12 +2,15 @@ package xws.service;
 
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import rx.schedulers.Schedulers;
 import xws.dto.request.CreateRentingRequestRequestDTO;
 import xws.dto.request.ManuallyReserveVehicleRequestDTO;
 import xws.dto.response.RentingRequestResponseDTO;
+import xws.feignClients.UserServiceProxy;
 import xws.model.Cart;
 import xws.model.RentingRequest;
 import xws.model.RentingRequestVehicle;
@@ -33,6 +36,9 @@ public class RentingRequestService {
     @Autowired
     private VehicleService vehicleService;
 
+    @Autowired
+    private UserServiceProxy userServiceProxy;
+
     public List<RentingRequest> findAll() { return rentingRequestRepository.findAll(); }
     public List<RentingRequestResponseDTO> findAllByUserId(Long id) {
         List<RentingRequest> rentingRequests = rentingRequestRepository.findByUserId(id);
@@ -47,7 +53,10 @@ public class RentingRequestService {
         }
         return response;
     }
-    public List<RentingRequest> createOneRequestPerVehicle(CreateRentingRequestRequestDTO requestDTO) {
+    public ResponseEntity<?> createOneRequestPerVehicle(CreateRentingRequestRequestDTO requestDTO) {
+        if(userServiceProxy.getBlocked(requestDTO.getUserId())) {
+            return new ResponseEntity<>("Blokirani ste", HttpStatus.BAD_REQUEST);
+        }
         Cart cart = cartService.findOneByUserId(requestDTO.getUserId());
         List<RentingRequest> response = new ArrayList<>();
         for(VehicleCart v : cart.getVehicles()){
@@ -70,7 +79,7 @@ public class RentingRequestService {
         }
         cart.setVehicles(new HashSet<>());
         cartService.save(cart);
-        return response;
+        return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
 
     }
     public List<RentingRequest> createBundlePerOwner(CreateRentingRequestRequestDTO requestDTO) {
