@@ -18,7 +18,9 @@
           <div *ngFor="let r of requests;let i = index;">
             <hr />
             <div *ngIf="r.status === 'PENDING'">
-              <p>User:{{r.userId}} | {{r.status}} | [approve?] | [decline?]</p>
+              <p>User:{{r.userId}} | {{r.status}} | 
+                <button (click)="approve()" class="approve">Approve</button>  
+                <button (click)="decline()" class="decline">Decline</button></p>
             </div>
           </div>
         </div>

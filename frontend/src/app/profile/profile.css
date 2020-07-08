@@ -24,3 +24,19 @@
 .vehicle button {
     color: lightgray;
 }
+
+.approve, .decline {
+    background-color: transparent;
+    color:lightgray;
+    border-radius: 3px;
+    padding: 3px 5px;
+    margin-right: 5px;
+}
+
+.approve {
+    border: 1px solid green;
+}
+
+.decline {
+    border: 1px solid red;
+}
