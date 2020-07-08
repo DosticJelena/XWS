@@ -1,5 +1,6 @@
 package xws.service;
 
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,7 @@ import xws.repository.RentingRequestRepository;
 import xws.repository.RentingRequestVehicleRepository;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class RentingRequestService {
@@ -116,6 +114,7 @@ public class RentingRequestService {
         VehicleCart v = vehicleService.findOneById(requestDTO.getVehicleId());
         RentingRequest r = new RentingRequest();
         r.setStatus(RentingRequest.Status.PAID);
+        rentingRequestRepository.save(r);
         RentingRequestVehicle rrv = new RentingRequestVehicle();
         rrv.setId(new RentingRequestVehicle.RentingRequestVehicleId(r.getId(),v.getId()));
         rrv.setRentingRequest(r);
@@ -136,9 +135,34 @@ public class RentingRequestService {
                 rentingRequestVehicleRepository.save(rentingRequestVehicle);
             }
         }
-        rentingRequestRepository.save(r);
+
         rentingRequestVehicleRepository.save(rrv);
         return r;
+    }
+    public RentingRequest reserveVehicleAsOwner(Long id) {
+        RentingRequest r = rentingRequestRepository.getOne(id);
+        r.setStatus(RentingRequest.Status.PAID);
+        rentingRequestRepository.save(r);
+        Set<RentingRequestVehicle> rentingRequestVehicles = r.getVehicles();
+        LocalDateTime startDate = null;
+        LocalDateTime endDate = null;
+        for(RentingRequestVehicle temp : rentingRequestVehicles) {
+            startDate = temp.getStartDate();
+            endDate = temp.getEndDate();
+            List<RentingRequestVehicle> rentingRequestVehicles1 = rentingRequestVehicleRepository.findByVehicleId(temp.getVehicle().getId());
+            for(RentingRequestVehicle rentingRequestVehicle : rentingRequestVehicles1){
+                if(rentingRequestVehicle.getRentingRequest().getStatus().equals(RentingRequest.Status.PENDING) &&
+                        (((rentingRequestVehicle.getStartDate().isAfter(startDate) || startDate.isEqual(startDate)) && rentingRequestVehicle.getStartDate().isBefore(endDate)) ||
+                                (rentingRequestVehicle.getEndDate().isAfter(startDate) && (rentingRequestVehicle.getEndDate().isBefore(endDate) || rentingRequestVehicle.getEndDate().isEqual(endDate))) ||
+                                ((rentingRequestVehicle.getStartDate().isAfter(startDate) || rentingRequestVehicle.getStartDate().isEqual(startDate)) && (rentingRequestVehicle.getEndDate().isBefore(endDate) || rentingRequestVehicle.getEndDate().isEqual(endDate))))){
+                    rentingRequestVehicle.getRentingRequest().setStatus(RentingRequest.Status.DECLINED);
+                    rentingRequestVehicleRepository.save(rentingRequestVehicle);
+                }
+            }
+        }
+        return r;
+
+
     }
     public RentingRequest save(RentingRequest r) {
         return rentingRequestRepository.save(r);

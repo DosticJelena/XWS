@@ -6,13 +6,12 @@ INSERT INTO public.vehicle(owner, cdwstatus, additional_price_per_km, brand, chi
 	VALUES (3, 'Yes', 10, 'AUDI', 1,100, 0, 'No', 'Diesel', 'Novi Sad', 'A3', 100, 'Manual', 'A',1);
 INSERT INTO public.vehicle(owner, cdwstatus, additional_price_per_km, brand, children_seats, distance, distance_per_rent, distance_per_rent_status, fuel_type, location, model, price, transmission, vehicle_type,discount_id)
 	VALUES (3, 'Yes', 10, 'AUDI', 1,100, 10, 'Yes', 'Diesel', 'Beograd', 'A4', 150, 'Manual', 'B',2);
-INSERT INTO public.vehicle(owner, cdwstatus, additional_price_per_km, brand, children_seats, distance, distance_per_rent, distance_per_rent_status, fuel_type, location, model, price, transmission, vehicle_typeINSERT INTO public.vehicle(owner, cdwstatus, additional_price_per_km, brand, children_seats, distance, distance_per_rent, distance_per_rent_status, fuel_type, location, model, price, transmission, vehicle_type)
-)
+INSERT INTO public.vehicle(owner, cdwstatus, additional_price_per_km, brand, children_seats, distance, distance_per_rent, distance_per_rent_status, fuel_type, location, model, price, transmission, vehicle_type,discount_id)
 	VALUES (3, 'No', 10, 'Kia', 1,100, 20, 'Yes', 'Diesel', 'Novi Sad', 'Ceed', 130, 'Manual', 'C',3);
-INSERT INTO public.vehicle(owner, cdwstatus, additional_price_per_km, brand, children_seats, distance, distance_per_rent, distance_per_rent_status, fuel_type, location, model, price, transmission, vehicle_type)
-	VALUES (4, 'Yes', 15, 'Mazda', 2,150, 50, 'Yes', 'Diesel', 'Beograd', 'CX-5', 160, 'Automatic', 'C');
-INSERT INTO public.vehicle(owner, cdwstatus, additional_price_per_km, brand, children_seats, distance, distance_per_rent, distance_per_rent_status, fuel_type, location, model, price, transmission, vehicle_type)
-	VALUES (5, 'Yes', 12, 'Fiat', 0,130, 40, 'Yes', 'Diesel', 'Beograd', '500', 160, 'Automatic', 'C');
+INSERT INTO public.vehicle(owner, cdwstatus, additional_price_per_km, brand, children_seats, distance, distance_per_rent, distance_per_rent_status, fuel_type, location, model, price, transmission, vehicle_type,discount_id)
+	VALUES (4, 'Yes', 15, 'Mazda', 2,150, 50, 'Yes', 'Diesel', 'Beograd', 'CX-5', 160, 'Automatic', 'C',3);
+INSERT INTO public.vehicle(owner, cdwstatus, additional_price_per_km, brand, children_seats, distance, distance_per_rent, distance_per_rent_status, fuel_type, location, model, price, transmission, vehicle_type,discount_id)
+	VALUES (5, 'Yes', 12, 'Fiat', 0,130, 40, 'Yes', 'Diesel', 'Beograd', '500', 160, 'Automatic', 'C',3);
 
 INSERT INTO public.picture(url, vehicle_id)	VALUES ('https://autorepublika.com/wp-content/uploads/2020/03/2020-audi-a3-sportback.jpg', 1);
 INSERT INTO public.picture(url, vehicle_id)	VALUES ('https://autorepublika.com/wp-content/uploads/2020/03/2020-audi-a3-sportback-8-780x470.jpg', 1);

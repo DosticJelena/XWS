@@ -70,7 +70,7 @@ public class Vehicle {
     private Set<Picture> pictures = new HashSet<>();
 
     @JsonManagedReference
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Discount discount;
 
 

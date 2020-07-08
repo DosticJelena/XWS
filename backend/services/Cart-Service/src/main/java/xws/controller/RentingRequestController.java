@@ -13,6 +13,7 @@ import xws.model.RentingRequest;
 import xws.model.RentingRequestVehicle;
 import xws.service.RentingRequestService;
 
+import javax.websocket.server.PathParam;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -81,8 +82,13 @@ public class RentingRequestController {
     }
 
     @RequestMapping(value = "/cancle/{id}",method = RequestMethod.PUT,produces = "application/json")
-    public ResponseEntity<?> cancleRequest(@PathVariable Long id) {
+    public ResponseEntity<?> cancelRequest(@PathVariable Long id) {
         return new ResponseEntity<>(rentingRequestService.cancleRentingRequest(id),HttpStatus.ACCEPTED);
+    }
+
+    @RequestMapping(value = "reserver/{id}",method = RequestMethod.POST,produces = "application/json")
+    public ResponseEntity<?> reserveAsOwner(@PathVariable Long id) {
+        return new ResponseEntity<>(rentingRequestService.reserveVehicleAsOwner(id),HttpStatus.ACCEPTED);
     }
 
     @Scheduled(fixedRate = 50000)
