@@ -26,8 +26,8 @@ public class WSocket {
         List<Vehicle> allVehicles = vehicleRepository.findAll();
         List<Vehicle> trackableVehicles = new ArrayList<>();
         for(Vehicle v : allVehicles){
-            /*if(v.getTrackable()==1){
-                String loc = v.getCoord();
+            if(v.getTrack()==1){
+                String loc = v.getGps();
                 String loc1 = loc.split(",")[0];
                 String loc2 = loc.split(",")[1];
                 double loc1F = Float.parseFloat(loc1);
@@ -38,9 +38,9 @@ public class WSocket {
                 loc1F += random_double;
                 loc2F += random_double;
                 loc = String.valueOf(loc1F) + "," + String.valueOf(loc2F);
-                v.setCoord(loc);
+                v.setGps(loc);
                 trackableVehicles.add(v);
-            }*/
+            }
         }
         ObjectMapper mapper = new ObjectMapper();
         String msg = null;

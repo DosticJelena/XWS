@@ -17,6 +17,7 @@ export class MapComponent implements AfterViewInit, OnInit {
   public query: string;
   public position: string;
   public locations: Array<any>;
+  id = 0;
 
   host = "ws://localhost:8090/ws/";
   socket: any;
@@ -37,6 +38,10 @@ export class MapComponent implements AfterViewInit, OnInit {
   });
 
   ngOnInit() {
+    var t = window.location.href.split("/");
+    this.id = parseInt(t[t.length-1]);
+    console.log(this.id);
+
     try {
       this.socket = new WebSocket(this.host);
       var self = this;
@@ -49,6 +54,8 @@ export class MapComponent implements AfterViewInit, OnInit {
 
       this.socket.onmessage = function (msg) {
         console.log('onmessage: Received: ' + msg.data);
+
+        
       }
 
       this.socket.onclose = function () {
