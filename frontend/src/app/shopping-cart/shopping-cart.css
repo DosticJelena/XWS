@@ -78,3 +78,23 @@
     height: 60vh;
     overflow: auto;
 }
+
+.dateFrom, .dateTo {
+    margin-bottom: 15px;
+}
+
+.dateFrom  input, .dateTo input {
+    width: 70%;
+    display: inline;
+}
+
+.table1 th {
+    border-bottom: rgb(102, 102, 102) 2px solid;
+    color: lightgray;
+}
+
+.table1 td {
+    padding: 5px;
+    border-bottom: rgb(102, 102, 102) 0.5px solid;
+    width: 25%;
+}
