@@ -53,9 +53,10 @@ public class RentingRequestService {
         }
         return response;
     }
+
     public ResponseEntity<?> createOneRequestPerVehicle(CreateRentingRequestRequestDTO requestDTO) {
         if(userServiceProxy.getBlocked(requestDTO.getUserId())) {
-            return new ResponseEntity<>("Blokirani ste", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Ne mozete da rezervisete jer ste blokirani!", HttpStatus.BAD_REQUEST);
         }
         Cart cart = cartService.findOneByUserId(requestDTO.getUserId());
         List<RentingRequest> response = new ArrayList<>();
@@ -82,7 +83,11 @@ public class RentingRequestService {
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
 
     }
-    public List<RentingRequest> createBundlePerOwner(CreateRentingRequestRequestDTO requestDTO) {
+
+    public ResponseEntity<?> createBundlePerOwner(CreateRentingRequestRequestDTO requestDTO) {
+        if(userServiceProxy.getBlocked(requestDTO.getUserId())) {
+            return new ResponseEntity<>("Ne mozete da rezervisete jer ste blokirani!", HttpStatus.BAD_REQUEST);
+        }
         Cart cart = cartService.findOneByUserId(requestDTO.getUserId());
         HashMap<Long,ArrayList<VehicleCart>> hashMap = new HashMap<>();
         List<RentingRequest> response = new ArrayList<>();
@@ -117,7 +122,7 @@ public class RentingRequestService {
         }
         cart.setVehicles(new HashSet<>());
         cartService.save(cart);
-        return response;
+        return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
     public RentingRequest manualyReserveVehicle(ManuallyReserveVehicleRequestDTO requestDTO) {
         VehicleCart v = vehicleService.findOneById(requestDTO.getVehicleId());
