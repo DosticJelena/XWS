@@ -101,7 +101,12 @@ export class ShooppingCart {
         (data : any) => {
           console.log(data);
           //location.reload();
-          location.replace("cars");
+          if(data.statusCodeValue === 400) {
+            alert(data.body);
+          }
+          else {
+            location.replace("cars");
+          }
         },
         (err) => {
           console.log(err);
@@ -112,10 +117,15 @@ export class ShooppingCart {
         (data : any) => {
           console.log(data);
           //location.reload();
-          location.replace("cars");
+          if(data.statusCodeValue === 400) {
+            alert(data.body);
+          }
+          else {
+            location.replace("cars");
+          }
         },
         (err) => {
-          console.log(err);
+          alert(err.body);
         }
       )
     }
