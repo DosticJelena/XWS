@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../services/message/message.service'
 import { AuthService } from '../auth/auth.service'
 import { GradeAndCommentService } from '../services/grade-and-comment/grade-and-comment.service'
+import { CarsService } from '../cars/cars.service';
+import { RentingRequestService } from '../services/renting-request/renting-request.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-message',
@@ -12,18 +15,26 @@ export class MessageComponent implements OnInit {
 
   reservations = [];
   usernames = [];
+  vehicles = [];
+  requests : [];
   map = new Map<number, string>();
+  vehicleMap = new Map<number, string>();
   counter = 0;
   grade = 0;
   selected = "pending";
+  id : number;
 
   constructor(private MessageService: MessageService,
     private AuthService: AuthService,
-    private GradeAndCommentService: GradeAndCommentService) { }
+    private GradeAndCommentService: GradeAndCommentService,
+    private carsService: CarsService,
+    private rentingRequestService : RentingRequestService) { }
 
   ngOnInit(): void {
     this.reloadReservations();
     this.getUsernames();
+    this.getVehicles();
+    this.id = JSON.parse(localStorage.getItem("loggedUser")).id;
 
   }
 
@@ -59,6 +70,16 @@ export class MessageComponent implements OnInit {
       );
   }
 
+  getVehicles() {
+    this.carsService.getCars()
+      .subscribe(
+        (data: any) => {
+          this.vehicles = Object.assign([], (data));
+          this.setCar();
+        }, (error) => alert(error.text)
+      );
+  }
+
   reloadReservations() {
     this.MessageService.reload(JSON.parse(localStorage.getItem("loggedUser")).id)
       .subscribe(
@@ -86,12 +107,42 @@ export class MessageComponent implements OnInit {
     });
     console.log(this.map);
   }
-  
+
+  setCar() {
+    this.vehicles.forEach(vehicle => {
+      this.vehicleMap.set(vehicle.id, vehicle.brand + " | " + vehicle.model);
+    });
+    console.log(this.vehicleMap);
+  }
+
   changeTable() {
     if (this.counter === 0) {
       (<HTMLInputElement>document.getElementById("PENDING")).style.display = "none";
       (<HTMLInputElement>document.getElementById("RESERVED")).style.display = "block";
 
     }
+  }
+  
+  changeSelected(info: number) {
+    switch (info) {
+      case 0: 
+        this.selected = 'pending'; break;
+      case 1:
+        this.selected = 'paid'; break;
+      case 2:
+        this.selected = 'declined'; break;
+      case 3:
+        this.selected = 'finished'; break;
+    }
+  }
+  cancle(requestId : number) {
+    this.rentingRequestService.cancle(requestId).subscribe(
+      (data) => {
+        console.log(data);
+        this.reloadReservations();
+      },(error) => {
+        console.log(error);
+      }
+    )
   }
 }

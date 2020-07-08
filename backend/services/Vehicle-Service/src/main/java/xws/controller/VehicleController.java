@@ -27,10 +27,11 @@ public class VehicleController {
                                 @RequestParam("endDate") String endDate,@RequestParam("brand") String brand,
                                 @RequestParam("model") String model,@RequestParam("fuel_type") String fuel_type,
                                 @RequestParam("transmission") String transmission,@RequestParam("type") String type,
-                                @RequestParam("minPrice") double minPrice,@RequestParam("maxPrice") double maxPrice,@RequestParam("distance") double distance,
+                                @RequestParam("minPrice") double minPrice,@RequestParam("maxPrice") double maxPrice,@RequestParam("minDistance") double distanceFrom,
+                                @RequestParam("maxDistance") double distanceTo,
                                 @RequestParam("CDWStatus") String CDWStatus,@RequestParam("childrenSeats") int childrenSeats) {
 
-        return vehicleService.search( location,startDate,endDate, brand, model, fuel_type, transmission, type, minPrice,maxPrice, distance, CDWStatus,childrenSeats);
+        return vehicleService.search( location,startDate,endDate, brand, model, fuel_type, transmission, type, minPrice,maxPrice, distanceFrom,distanceTo, CDWStatus,childrenSeats);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
@@ -51,8 +52,10 @@ public class VehicleController {
     @RequestMapping(value = "/new", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public Vehicle newVehicle(@RequestBody NewVehicleRequestDTO request) {
         return vehicleService.save(request);
-
     }
+
+    //feign
+
     @RequestMapping(value = "test/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> test(@PathVariable("id") Long id) {
         return new ResponseEntity<>(vehicleService.getById(id), HttpStatus.ACCEPTED);
@@ -62,6 +65,5 @@ public class VehicleController {
     public ResponseEntity<?> getAllvehiclesWithId(@PathVariable("ids") ArrayList<Long> ids) {
         return new ResponseEntity<>(vehicleService.findAllByIds(ids),HttpStatus.ACCEPTED);
     }
-
 
 }

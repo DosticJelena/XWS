@@ -43,6 +43,11 @@ public class ApplicationUserController {
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
 
+    @RequestMapping(value = "users/{id}", method = RequestMethod.GET)
+    public String getById(@PathVariable Long id) {
+        return applicationUserService.findOneById(id).getUsername();
+    }
+
     @RequestMapping(consumes = "application/json", value = "user/status", method = RequestMethod.PUT)
     public ResponseEntity<?> updateUserStatus(@RequestBody UpdateUserStatusDTO updateUserStatusDTO) {
         ApplicationUser au = applicationUserService.findOneById(updateUserStatusDTO.getId());

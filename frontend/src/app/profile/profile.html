@@ -8,14 +8,19 @@
     </div>
   </div>
   <div class="col">
-    <h2>Your Vehicles</h2>
-    <hr />
-    <div class="vehicle" *ngFor="let car of ownerCars">
-      <p>{{car.brand}} | {{car.model}}</p>
-      <p>Requests:</p>
-      <div *ngFor="let r of requests;let i = index;">
-        <div *ngIf="r.status === 'PENDING'">
-            <p>User:{{r.userId}} | {{r.status}} | [approve?] | [decline?]</p>
+    <div class="vehicles" *ngIf="loggedUser.role === 'PERSON'">
+      <h2>Your Vehicles</h2>
+      <hr />
+      <div class="vehicle" *ngFor="let car of ownerCars">
+        {{car.brand}} | {{car.model}}
+        <button (click)="showRequests(car.id)" class="btn">See Requests</button>
+        <div *ngIf="visible === car.id">
+          <div *ngFor="let r of requests;let i = index;">
+            <hr />
+            <div *ngIf="r.status === 'PENDING'">
+              <p>User:{{r.userId}} | {{r.status}} | [approve?] | [decline?]</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
