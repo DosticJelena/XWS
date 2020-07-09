@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { AuthService } from '../auth/auth.service';
 import { CarsService } from '../cars/cars.service';
 import { MessageService } from '../services/message/message.service';
+import { RentingRequestService } from '../services/renting-request/renting-request.service';
 
 @Component({
     selector: 'profile',
@@ -14,8 +15,11 @@ export class Profile {
     ownerCars: [];
     requests: [];
     visible = -1;
+    users = [];
+    map = new Map<number, string>();
 
-    constructor(public authService: AuthService, public carsService: CarsService, private msgService: MessageService) {
+    constructor(public authService: AuthService, public carsService: CarsService, private msgService: MessageService,
+      private rrService: RentingRequestService) {
 
     }
 
@@ -27,6 +31,7 @@ export class Profile {
           );
 
           this.getOwnerRequests();
+          this.getUsernames();
     }
 
     getOwnerRequests() {
@@ -47,12 +52,42 @@ export class Profile {
       }
     }
 
-    approve() {
+    approve(reqId:number) {
       console.log("Approved");
+      this.rrService.approve(reqId)
+        .subscribe(
+          (data: any) => {
+            console.log(data);
+          }, (error) => alert(error.text)
+        );
     }
 
-    decline() {
+    decline(reqId:number) {
       console.log("Declined");
+      this.rrService.decline(reqId)
+        .subscribe(
+          (data: any) => {
+            console.log(data);
+          }, (error) => alert(error.text)
+        );
+    }
+
+    getUsernames() {
+      this.authService.getUsers()
+        .subscribe(
+          (data: any) => {
+            this.users = Object.assign([], (data));
+            this.setUserName();
+          }, (error) => alert(error.text)
+        );
+    }
+
+    setUserName() {
+      this.users.forEach(user => {
+        console.log(user)
+        this.map.set(user.id, user.username);
+      });
+      console.log(this.map);
     }
 
 }

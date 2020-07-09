@@ -91,7 +91,7 @@ export class MessageComponent implements OnInit {
   }
 
   sendMess(receiver, i) {
-    this.MessageService.sendMess(JSON.parse(localStorage.getItem("loggedUser")).id, receiver, (<HTMLInputElement>document.getElementById(i)).value)
+    this.MessageService.sendMess(receiver, JSON.parse(localStorage.getItem("loggedUser")).id, (<HTMLInputElement>document.getElementById(i)).value)
       .subscribe(
         (data: any) => {
           console.log(data);

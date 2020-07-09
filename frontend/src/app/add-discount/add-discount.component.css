@@ -1,0 +1,13 @@
+.add-discount {
+    margin: 0;
+    padding: 50px;
+    color: darkgoldenrod;
+}
+
+.btn-add {
+    margin-left: 10px;
+    color: lightgray;
+    border: 1px solid darkgoldenrod;
+    padding-left: 3px 5px;
+    border-radius: 3px;
+}

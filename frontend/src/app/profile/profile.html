@@ -10,17 +10,20 @@
   <div class="col">
     <div class="vehicles" *ngIf="loggedUser.role === 'PERSON'">
       <h2>Your Vehicles</h2>
+      <button [routerLink]="['/apply-discount']" class="ml-3 apply-btn">Apply discount</button>
       <hr />
       <div class="vehicle" *ngFor="let car of ownerCars">
         {{car.brand}} | {{car.model}}
         <button (click)="showRequests(car.id)" class="btn">See Requests</button>
         <div *ngIf="visible === car.id">
+          <hr *ngIf="requests.length === 0"/>
+          <p *ngIf="requests.length === 0">There are no requests for this vehicle.</p>
           <div *ngFor="let r of requests;let i = index;">
             <hr />
             <div *ngIf="r.status === 'PENDING'">
-              <p>User:{{r.userId}} | {{r.status}} | 
-                <button (click)="approve()" class="approve">Approve</button>  
-                <button (click)="decline()" class="decline">Decline</button></p>
+              <p>{{map.get(r.userId)}} | {{r.createdAt | slice:0:10}} | 
+                <button (click)="approve(r.id)" class="approve">Approve</button>  
+                <button (click)="decline(r.id)" class="decline">Decline</button></p>
             </div>
           </div>
         </div>

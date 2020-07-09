@@ -13,8 +13,10 @@ export class Inbox implements OnInit {
   messages: [];
   loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
   visible = -1;
+  map = new Map<number, string>();
+  users= [];
 
-  constructor(private MessageService: MessageService) { }
+  constructor(private MessageService: MessageService, private AuthService:AuthService) { }
 
   ngOnInit(): void {
     this.MessageService.getMessages()
@@ -24,6 +26,8 @@ export class Inbox implements OnInit {
         this.messages = data;
       }, (error) => alert(error.text)
     );
+
+    this.getUsers();
   }
   
   showContent(msgId:number) {
@@ -32,6 +36,24 @@ export class Inbox implements OnInit {
     } else {
       this.visible = msgId;
     }
+  }
+
+  getUsers() {
+    this.AuthService.getUsers()
+      .subscribe(
+        (data: any) => {
+          this.users = Object.assign([], (data));
+          this.setUserName();
+        }, (error) => alert(error.text)
+      );
+  }
+
+  setUserName() {
+    this.users.forEach(user => {
+      console.log(user)
+      this.map.set(user.id, user.username);
+    });
+    console.log(this.map);
   }
 
 }

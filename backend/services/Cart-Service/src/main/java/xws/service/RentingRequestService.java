@@ -74,6 +74,7 @@ public class RentingRequestService {
             LocalDateTime end = LocalDateTime.parse(requestDTO.getEndDate(), formatter);
             rrv.setStartDate(start);
             rrv.setEndDate(end);
+            r.setCreatedAt(LocalDateTime.now());
             rentingRequestRepository.save(r);
             rentingRequestVehicleRepository.save(rrv);
             response.add(r);
@@ -117,6 +118,7 @@ public class RentingRequestService {
                 rentingRequestVehicleRepository.save(rrv);
 
             }
+            r.setCreatedAt(LocalDateTime.now());
             rentingRequestRepository.save(r);
             response.add(r);
         }
@@ -153,6 +155,13 @@ public class RentingRequestService {
         rentingRequestVehicleRepository.save(rrv);
         return r;
     }
+
+    public RentingRequest declineRequestAsOwner(Long id){
+        RentingRequest r = rentingRequestRepository.getOne(id);
+        r.setStatus(RentingRequest.Status.DECLINED);
+        return rentingRequestRepository.save(r);
+    }
+
     public RentingRequest reserveVehicleAsOwner(Long id) {
         RentingRequest r = rentingRequestRepository.getOne(id);
         r.setStatus(RentingRequest.Status.PAID);
