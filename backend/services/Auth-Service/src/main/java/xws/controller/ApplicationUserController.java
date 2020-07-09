@@ -11,6 +11,7 @@ import xws.model.ApplicationUser;
 import xws.model.Company;
 import xws.repository.ApplicationUserRepository;
 import xws.service.ApplicationUserService;
+import xws.util.QueueProducer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,9 @@ public class ApplicationUserController {
 
     @Autowired
     private ApplicationUserRepository applicationUserRepository;
+
+    @Autowired
+    private QueueProducer queueProducer;
 
     @RequestMapping(value = "users", method = RequestMethod.GET)
     public ResponseEntity<?> getAll() {
@@ -88,6 +92,18 @@ public class ApplicationUserController {
         ApplicationUser au = applicationUserService.findOneByUsername(dto.getUsername());
 
         if(au == null) {
+            System.out.println("Slanje emaila...");
+
+            MailDTO mail = new MailDTO();
+            mail.setUsername(dto.getUsername());
+            mail.setName(dto.getFirstName());
+            try {
+                queueProducer.produce(mail);
+            } catch (Exception e) {
+                System.out.println("Nisam poslao agent mail");
+                e.printStackTrace();
+            }
+
             applicationUserService.save(dto);
             return new ResponseEntity<>(1, HttpStatus.OK);
         }
