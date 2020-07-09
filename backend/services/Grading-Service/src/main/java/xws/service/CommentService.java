@@ -48,4 +48,12 @@ public class CommentService {
         c.setStatus("PENDING");
         return commentRepository.save(c);
     }
+    public Comment save(com.baeldung.springsoap.gen.Comment c){
+        Comment newComm = new Comment();
+        newComm.setText(c.getText());
+        newComm.setCarId(c.getCarId());
+        newComm.setUserId(c.getUserId());
+        newComm.setStatus("PENDING");
+        return commentRepository.save(newComm);
+    }
 }

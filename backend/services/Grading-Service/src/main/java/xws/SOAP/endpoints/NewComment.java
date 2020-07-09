@@ -1,37 +1,42 @@
 package xws.SOAP.endpoints;
 
+import com.baeldung.springsoap.gen.Comment;
+import com.baeldung.springsoap.gen.CommentRequestId;
 import com.baeldung.springsoap.gen.Grade;
-import com.baeldung.springsoap.gen.GradeRequestId;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import xws.model.CarGrade;
-import xws.model.Comment;
 import xws.repository.CarGradeRepository;
 import xws.repository.CommentRepository;
 import xws.service.CarGradeService;
+import xws.service.CommentService;
 
 import javax.transaction.Transactional;
 
+
 @Endpoint
 @Transactional
-public class NewCarGrade {
-    private static final String NAMESPACE_URI = "http://www.baeldung.com/springsoap/gen";
+public class NewComment {
     @Autowired
-    private CarGradeService carGradeService;
+    private CommentService service;
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "grade")
+    private static ModelMapper modelMapper = new ModelMapper();
+
+    private static final String NAMESPACE_URI = "http://www.baeldung.com/springsoap/gen";
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "comment")
     @ResponsePayload
-    public Grade getGrades(@RequestPayload Grade request) {
-        Grade response = new Grade();
-        CarGrade cg = carGradeService.save(request);
+    public Comment getComment(@RequestPayload Comment request) {
+        Comment response = new Comment();
+        xws.model.Comment cg = service.save(request);
         response.setCarId(cg.getCarId());
         response.setId(cg.getId());
         response.setUserId(cg.getUserId());
-        response.setValue(cg.getValue());
+        response.setText(cg.getText());
         return response;
     }
-
 }

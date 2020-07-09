@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.baeldung.com/springsoap/gen"
+           targetNamespace="http://www.baeldung.com/springsoap/gen" elementFormDefault="qualified">
+
+    <xs:element name="vehicle">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="owner_id" type="xs:long"/>
+                <xs:element name="location" type="xs:string"/>
+                <xs:element name="fuel_type" type="xs:string"/>
+                <xs:element name="brand" type="xs:string"/>
+                <xs:element name="transmission" type="xs:string"/>
+                <xs:element name="vehicle_type" type="xs:string"/>
+                <xs:element name="price" type="xs:double"/>
+                <xs:element name="distance" type="xs:double"/>
+                <xs:element name="distancePerRent" type="xs:double"/>
+                <xs:element name="distancePerRentStatus" type="xs:string"/>
+                <xs:element name="additionalPricePerKm" type="xs:double"/>
+                <xs:element name="CDWStatus" type="xs:string"/>
+                <xs:element name="childrenSeats" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

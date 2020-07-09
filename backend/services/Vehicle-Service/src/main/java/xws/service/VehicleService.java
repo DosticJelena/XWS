@@ -132,4 +132,16 @@ public class VehicleService {
         return vehicleRepository.save(v);
     }
 
+    public Vehicle save(com.baeldung.springsoap.gen.Vehicle v) {
+        Vehicle newV = new Vehicle();
+        newV.setAdditionalPricePerKm(v.getAdditionalPricePerKm());
+        newV.setBrand(v.getBrand());
+        newV.setCDWStatus(v.getCDWStatus());
+        newV.setDistance(v.getDistance());
+        newV.setLocation(v.getLocation());
+        return vehicleRepository.save(newV);
+    }
+
+
+
 }
