@@ -10,6 +10,7 @@ package com.baeldung.springsoap.gen;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -27,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="carId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="value" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="text" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -41,15 +42,16 @@ import javax.xml.bind.annotation.XmlType;
     "id",
     "userId",
     "carId",
-    "value"
+    "text"
 })
-@XmlRootElement(name = "grade")
-public class Grade {
+@XmlRootElement(name = "comment")
+public class Comment {
 
     protected long id;
     protected long userId;
     protected long carId;
-    protected int value;
+    @XmlElement(required = true)
+    protected String text;
 
     /**
      * Gets the value of the id property.
@@ -100,19 +102,27 @@ public class Grade {
     }
 
     /**
-     * Gets the value of the value property.
+     * Gets the value of the text property.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public int getValue() {
-        return value;
+    public String getText() {
+        return text;
     }
 
     /**
-     * Sets the value of the value property.
+     * Sets the value of the text property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setValue(int value) {
-        this.value = value;
+    public void setText(String value) {
+        this.text = value;
     }
 
 }

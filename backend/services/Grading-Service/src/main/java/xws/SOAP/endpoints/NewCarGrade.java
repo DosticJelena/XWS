@@ -8,7 +8,9 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import xws.model.CarGrade;
+import xws.model.Comment;
 import xws.repository.CarGradeRepository;
+import xws.repository.CommentRepository;
 import xws.service.CarGradeService;
 
 import javax.transaction.Transactional;
@@ -19,6 +21,8 @@ public class NewCarGrade {
     private static final String NAMESPACE_URI = "http://www.baeldung.com/springsoap/gen";
     @Autowired
     private CarGradeService carGradeService;
+    @Autowired
+    private CommentRepository commentRepository;
     @Autowired
     private CarGradeRepository carGradeRepository;
 
@@ -33,4 +37,5 @@ public class NewCarGrade {
         response.setValue(cg.getValue());
         return response;
     }
+
 }

@@ -29,6 +29,8 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 
     @Bean XsdSchema gradesSchema() {return new SimpleXsdSchema(new ClassPathResource("grades.xsd"));}
 
+    @Bean XsdSchema commentSchema() {return new SimpleXsdSchema(new ClassPathResource("comments.xsd"));}
+
 
 
     @Bean(name = "countries")
@@ -48,6 +50,15 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         wsdl11Definition.setLocationUri("/grades");
         wsdl11Definition.setTargetNamespace("http://www.baeldung.com/springsoap/gen");
         wsdl11Definition.setSchema(gradesSchema);
+        return wsdl11Definition;
+    }
+    @Bean(name = "comments")
+    public DefaultWsdl11Definition defaultWsdl11Definition4(XsdSchema commentSchema) {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("CountriesPort");
+        wsdl11Definition.setLocationUri("/comments");
+        wsdl11Definition.setTargetNamespace("http://www.baeldung.com/springsoap/gen");
+        wsdl11Definition.setSchema(commentSchema);
         return wsdl11Definition;
     }
 
