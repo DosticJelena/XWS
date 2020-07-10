@@ -11,11 +11,10 @@
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <a *ngIf="authService.isAuthenticated()" [routerLink]="['/renting-requests']" class="mr-3">Renting Requests</a>
+        <a *ngIf="authService.isAuthenticated()" [routerLink]="['/renting-requests']" class="mr-3">Vehicle Reports</a>
         <a *ngIf="authService.isAuthenticated()" [routerLink]="['/statistics']" class="mr-3">Statistics</a>
         <a *ngIf="authService.isAuthenticated()" [routerLink]="['/new']" class="mr-3">New Ad</a>
         <a *ngIf="!authService.isAuthenticated()" [routerLink]="['/login']">Log In</a>
-        <a *ngIf="authService.isAuthenticated()" class="mr-3">{{authService.currentUser.firstName}}'s Profile</a>
         <a *ngIf="authService.isAuthenticated()" (click)="logoutUser()" [routerLink]="['/']">Log Out</a>
       </form>
     </div>

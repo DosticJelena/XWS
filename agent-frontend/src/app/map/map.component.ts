@@ -3,6 +3,7 @@ import * as SockJS from 'sockjs-client';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap, catchError, map } from 'rxjs/operators';
 import { of, throwError } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 var Stomp = require('stompjs');
 
 @Component({
@@ -27,7 +28,8 @@ export class MapComponent implements AfterViewInit, OnInit {
     
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private route: ActivatedRoute) { }
 
   coordinates = new google.maps.LatLng(this.lat, this.lng);
 
@@ -107,7 +109,8 @@ export class MapComponent implements AfterViewInit, OnInit {
   }
 
   reload() {
-    return this.http.get("http://localhost:8090/vehicle/location/"+this.id)
+    console.log(this.id);
+    return this.http.get("http://localhost:8090/vehicle/location/"+ this.route.snapshot.params['id'])
         .pipe(
             map((res: any) => {
                 const data = res;

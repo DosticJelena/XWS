@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouteConfigLoadEnd, Router } from '@angular/router';
 import { CarsService } from '../cars.service';
-import { CloseScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
     selector: 'car-details',
@@ -11,9 +10,10 @@ import { CloseScrollStrategy } from '@angular/cdk/overlay';
 export class CarDetails {
     car:any;
     images:any;
+    mathPath= "[/map/"+this.route.snapshot.params['id'] + "]";
 
     constructor(private route:ActivatedRoute, 
-      private carsService:CarsService){
+      private carsService:CarsService, private router:Router){
 
     }
 
@@ -29,5 +29,8 @@ export class CarDetails {
           }, (error) => alert(error.text)
         );
     }
-    
+
+    routeMap() {
+      this.router.navigate(['/map/' + this.route.snapshot.params['id'] ]);
+    }    
 }

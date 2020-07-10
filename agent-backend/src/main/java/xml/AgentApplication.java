@@ -14,10 +14,6 @@ public class AgentApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AgentApplication.class, args);
-		AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(GradeConfig.class);
-		GradeClient gc = annotationConfigApplicationContext.getBean(GradeClient.class);
-		Grade g = gc.getGrade(1);
-		System.out.println(g.getCarId() + " "+ g.getId()+" " + g.getUserId() + " " + g.getValue());
-	}
+		}
 
 }

@@ -114,6 +114,8 @@ public class VehicleService {
         v.setTransmission(newVehicle.getTransmission());
         v.setPrice(newVehicle.getPrice());
         v.setVehicle_type(newVehicle.getVehicle_type());
+        v.setTrack(1);
+        v.setGps("45.858075,19.113003");
 
         v.setAdditionalPricePerKm(newVehicle.getAdditionalPricePerKm());
         v.setCDWStatus(newVehicle.getCDWStatus());

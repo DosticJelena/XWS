@@ -1,10 +1,13 @@
+INSERT INTO person(username, password, first_name, last_name) values ('prvi', '123', 'Prvi', 'Korisnik');
+INSERT INTO person(username, password, first_name, last_name) values ('drugi', '123', 'Drugi', 'Korisnik');
+
 INSERT INTO public.vehicle(owner, cdwstatus, additional_price_per_km, brand, children_seats, distance, distance_per_rent, distance_per_rent_status, fuel_type, location, model, price, transmission, vehicle_type, track, gps)
 	VALUES (1, 'Yes', 10, 'Prvi', 1,100, 0, 'No', 'ben', 'Novi Sad', '123', 100, 'Manual', 'A', 1, '45.258075,19.813003');
 INSERT INTO public.vehicle(owner, cdwstatus, additional_price_per_km, brand, children_seats, distance, distance_per_rent, distance_per_rent_status, fuel_type, location, model, price, transmission, vehicle_type, track, gps)
 	VALUES (1, 'Yes', 10, 'Drugi', 1,1000, 10, 'Yes', 'ben', 'Beograd', '124', 150, 'Manual', 'B', 1, '45.253475,19.844703');
 
 INSERT INTO public.picture(url, vehicle_id)	VALUES ('https://autorepublika.com/wp-content/uploads/2019/08/bmw-x5-protection2.jpg', 1);
-INSERT INTO public.picture(url, vehicle_id)	VALUES ('https://autorepublika.com/wp-content/uploads/2019/10/20.jpg', 1);
+INSERT INTO public.picture(url, vehicle_id)	VALUES ('https://autorepublika.com/wp-content/uploads/2019/10/20.jpg', 2);
 
 insert into vehicle_cart(owner_id) values (1);
 insert into vehicle_cart(owner_id) values (1);
