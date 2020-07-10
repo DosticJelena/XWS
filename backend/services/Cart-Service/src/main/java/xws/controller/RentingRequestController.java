@@ -53,6 +53,11 @@ public class RentingRequestController {
         return new ResponseEntity<>(rentingRequestService.getAllByVehicleOwnerId(id),HttpStatus.ACCEPTED);
     }
 
+    @RequestMapping(value = "vehicles/{requestId}",method = RequestMethod.GET,produces = "application/json")
+    public ResponseEntity<?> getAllVehiclesByOwnerIdAndRequestId(@PathVariable Long requestId){
+        return new ResponseEntity<>(rentingRequestService.findAllVehiclesByRequestId(requestId),HttpStatus.ACCEPTED);
+    }
+
     /**
      * Pravljenje pojedinacnog zahveta za svako vozilo iz korpe,koristi se id korpe,pocetni i krajnji datum svih zahveta
      * @param requestDTO

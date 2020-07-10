@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface RentingRequestRepository extends JpaRepository<RentingRequest,Long> {
 
+    RentingRequest findOneById(Long id);
     List<RentingRequest> findByUserId(Long id);
     List<RentingRequest> findByUserIdAndStatus(Long id,RentingRequest.Status status);
 }

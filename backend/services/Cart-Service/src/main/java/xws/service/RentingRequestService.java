@@ -54,6 +54,11 @@ public class RentingRequestService {
         return response;
     }
 
+    public Set<RentingRequestVehicle> findAllVehiclesByRequestId(Long requestId){
+        RentingRequest r = rentingRequestRepository.findOneById(requestId);
+        return r.getVehicles();
+    }
+
     public ResponseEntity<?> createOneRequestPerVehicle(CreateRentingRequestRequestDTO requestDTO) {
         if(userServiceProxy.getBlocked(requestDTO.getUserId())) {
             return new ResponseEntity<>("Ne mozete da rezervisete jer ste blokirani!", HttpStatus.BAD_REQUEST);
