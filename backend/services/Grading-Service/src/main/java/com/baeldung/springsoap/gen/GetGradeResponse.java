@@ -10,7 +10,6 @@ package com.baeldung.springsoap.gen;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -28,7 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="carId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="text" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="value" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -42,16 +41,15 @@ import javax.xml.bind.annotation.XmlType;
     "id",
     "userId",
     "carId",
-    "text"
+    "value"
 })
-@XmlRootElement(name = "comment")
-public class Comment {
+@XmlRootElement(name = "GetGradeResponse")
+public class GetGradeResponse {
 
     protected long id;
     protected long userId;
     protected long carId;
-    @XmlElement(required = true)
-    protected String text;
+    protected int value;
 
     /**
      * Gets the value of the id property.
@@ -102,27 +100,19 @@ public class Comment {
     }
 
     /**
-     * Gets the value of the text property.
+     * Gets the value of the value property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getText() {
-        return text;
+    public int getValue() {
+        return value;
     }
 
     /**
-     * Sets the value of the text property.
+     * Sets the value of the value property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
-    public void setText(String value) {
-        this.text = value;
+    public void setValue(int value) {
+        this.value = value;
     }
 
 }

@@ -16,6 +16,7 @@ import xws.repository.CommentRepository;
 import xws.service.CarGradeService;
 
 import javax.transaction.Transactional;
+import javax.xml.bind.JAXBElement;
 
 @Endpoint
 @Transactional
@@ -39,6 +40,8 @@ public class GetGradeEndpoint {
         response.setValue(cg.getValue());
         return response;
     }
+
+
 
 
 }
