@@ -40,3 +40,15 @@
 .decline {
     border: 1px solid red;
 }
+
+.apply-btn {
+    background-color: transparent;
+    color:lightgray;
+    border: 1px solid darkgoldenrod;
+    border-radius: 3px;
+    padding: 3px 5px;
+}
+
+h2 {
+    display: inline;
+}

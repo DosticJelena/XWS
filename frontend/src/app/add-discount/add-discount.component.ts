@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarsService } from '../cars/cars.service';
 import { DiscountService } from '../services/discount/discount.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-discount',
@@ -15,7 +16,8 @@ export class AddDiscountComponent implements OnInit {
   vehicle: any;
   discount : any;
   constructor(private carService : CarsService,
-    private discountService :DiscountService) { }
+    private discountService :DiscountService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.userId = JSON.parse(localStorage.getItem("loggedUser")).id;
@@ -42,6 +44,7 @@ export class AddDiscountComponent implements OnInit {
     this.discountService.applyDiscountToVehicle(this.vehicle,this.discount).subscribe(
       (data : any) => {
         console.log(data);
+        this.router.navigate(["/profile"]);
       }
     )
   }

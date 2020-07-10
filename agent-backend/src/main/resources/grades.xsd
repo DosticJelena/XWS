@@ -3,22 +3,22 @@
            targetNamespace="http://www.baeldung.com/springsoap/gen" elementFormDefault="qualified">
 
     <xs:element name="gradeRequestId">
-    <xs:complexType>
-        <xs:sequence>
-            <xs:element name="id" type="xs:int"/>
-        </xs:sequence>
-    </xs:complexType>
-</xs:element>
-    <xs:element name="GetGradeResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="id" type="xs:long"/>
-                <xs:element name="userId" type="xs:long"/>
-                <xs:element name="carId" type="xs:long"/>
-                <xs:element name="value" type="xs:int"/>
+                <xs:element name="id" type="xs:int"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+    <xs:element name="getGradeRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
 
     <xs:element name="grade">
         <xs:complexType>

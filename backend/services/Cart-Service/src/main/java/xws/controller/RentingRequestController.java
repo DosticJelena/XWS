@@ -91,6 +91,11 @@ public class RentingRequestController {
         return new ResponseEntity<>(rentingRequestService.reserveVehicleAsOwner(id),HttpStatus.ACCEPTED);
     }
 
+    @RequestMapping(value = "decline/{id}",method = RequestMethod.PUT,produces = "application/json")
+    public ResponseEntity<?> declineAsOwner(@PathVariable Long id) {
+        return new ResponseEntity<>(rentingRequestService.declineRequestAsOwner(id),HttpStatus.ACCEPTED);
+    }
+
     @Scheduled(fixedRate = 50000)
     public void scheduleFixedRateTask() {
         logger.info("Izvrsavam scheduled task da stavlja statuse na declined i finished");
