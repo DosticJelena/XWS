@@ -98,6 +98,7 @@ public class RentingRequestController {
 
     @Scheduled(fixedRate = 50000)
     public void scheduleFixedRateTask() {
+        logger.info("Izvrsavam scheduled task da stavlja statuse na declined i finished");
         List<RentingRequest> rentingRequests = rentingRequestService.findAll();
         for(RentingRequest rentingRequest : rentingRequests) {
             if(rentingRequest.getStatus().equals(RentingRequest.Status.PENDING) && rentingRequest.getCreatedAt().isBefore(LocalDateTime.now().minusDays(1L))) {
