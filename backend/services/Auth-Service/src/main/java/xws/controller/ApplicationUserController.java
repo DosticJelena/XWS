@@ -1,10 +1,16 @@
 package xws.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
+import xws.Exceptions.UserCantBeCreated;
 import xws.dto.*;
 import xws.model.Agent;
 import xws.model.ApplicationUser;
@@ -18,12 +24,15 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ApplicationUserController {
+    Logger logger = LoggerFactory.getLogger(ApplicationUserController.class);
 
     @Autowired
     private ApplicationUserService applicationUserService;
 
     @Autowired
     private ApplicationUserRepository applicationUserRepository;
+
+
 
     @RequestMapping(value = "users", method = RequestMethod.GET)
     public ResponseEntity<?> getAll() {
@@ -88,7 +97,11 @@ public class ApplicationUserController {
         ApplicationUser au = applicationUserService.findOneByUsername(dto.getUsername());
 
         if(au == null) {
-            applicationUserService.save(dto);
+            try {
+                applicationUserService.save(dto);
+            } catch (UserCantBeCreated userCantBeCreated) {
+                return new ResponseEntity<>(userCantBeCreated.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+            }
             return new ResponseEntity<>(1, HttpStatus.OK);
         }
 
@@ -135,5 +148,4 @@ public class ApplicationUserController {
 
         return new ResponseEntity<>(0, HttpStatus.BAD_REQUEST);
     }
-
 }
