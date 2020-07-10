@@ -93,7 +93,8 @@ public class RentingRequestController {
 
     @RequestMapping(value = "reserver/{id}",method = RequestMethod.POST,produces = "application/json")
     public ResponseEntity<?> reserveAsOwner(@PathVariable Long id) {
-        return new ResponseEntity<>(rentingRequestService.reserveVehicleAsOwner(id),HttpStatus.ACCEPTED);
+        RentingRequest ret = rentingRequestService.reserveVehicleAsOwner(id);
+        return new ResponseEntity<>(null,HttpStatus.ACCEPTED);
     }
 
     @RequestMapping(value = "decline/{id}",method = RequestMethod.PUT,produces = "application/json")

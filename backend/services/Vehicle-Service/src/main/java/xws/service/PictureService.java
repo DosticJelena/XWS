@@ -15,7 +15,6 @@ public class PictureService {
     PictureRepository pictureRepository;
 
     public List<String> getPictures(Long id){
-        System.out.println("EVO GA i oovde "+id);
         List<Picture> pictures = pictureRepository.findAllByVehicleId(id);
         List<String> ret = new ArrayList<String>();
         for(Picture p : pictures){

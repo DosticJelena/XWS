@@ -34,7 +34,7 @@ public class VehicleCart {
     private Set<Cart> carts = new HashSet<>();
 
     @JsonBackReference
-    @OneToMany(mappedBy = "vehicle",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "vehicle",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     Set<RentingRequestVehicle> rentingRequests = new HashSet<>();
 
 
