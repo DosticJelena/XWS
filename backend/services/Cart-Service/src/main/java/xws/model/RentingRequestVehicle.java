@@ -1,6 +1,7 @@
 package xws.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +14,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
+@JsonSerialize
 public class RentingRequestVehicle {
     @EmbeddedId
     private RentingRequestVehicleId id = new RentingRequestVehicleId();

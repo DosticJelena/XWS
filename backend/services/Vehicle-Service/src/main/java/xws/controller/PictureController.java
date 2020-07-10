@@ -25,7 +25,6 @@ public class PictureController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     public List<String> getById(@PathVariable("id") Long id) {
-        System.out.println("EVO GA "+id);
         return pictureService.getPictures(id);
     }
 

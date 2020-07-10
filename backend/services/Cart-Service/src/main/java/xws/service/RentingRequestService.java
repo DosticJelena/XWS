@@ -1,6 +1,8 @@
 package xws.service;
 
 import org.apache.tomcat.jni.Local;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,7 @@ import java.util.*;
 
 @Service
 public class RentingRequestService {
+    Logger logger = LoggerFactory.getLogger(RentingRequestService.class);
 
     @Autowired
     private RentingRequestRepository rentingRequestRepository;
@@ -131,6 +134,7 @@ public class RentingRequestService {
         RentingRequest r = new RentingRequest();
         r.setStatus(RentingRequest.Status.PAID);
         rentingRequestRepository.save(r);
+
         RentingRequestVehicle rrv = new RentingRequestVehicle();
         rrv.setId(new RentingRequestVehicle.RentingRequestVehicleId(r.getId(),v.getId()));
         rrv.setRentingRequest(r);
@@ -166,20 +170,25 @@ public class RentingRequestService {
         RentingRequest r = rentingRequestRepository.getOne(id);
         r.setStatus(RentingRequest.Status.PAID);
         rentingRequestRepository.save(r);
+        logger.info("Upravo sam sacuvao renting request sa PAID statusom");
         Set<RentingRequestVehicle> rentingRequestVehicles = r.getVehicles();
         LocalDateTime startDate = null;
         LocalDateTime endDate = null;
         for(RentingRequestVehicle temp : rentingRequestVehicles) {
+            logger.info("Radim za vozilo:  " + temp.getVehicle().getId());
             startDate = temp.getStartDate();
             endDate = temp.getEndDate();
-            List<RentingRequestVehicle> rentingRequestVehicles1 = rentingRequestVehicleRepository.findByVehicleId(temp.getVehicle().getId());
+            VehicleCart vc = temp.getVehicle();
+            List<RentingRequestVehicle> rentingRequestVehicles1 = rentingRequestVehicleRepository.findByVehicleId(vc.getId());
             for(RentingRequestVehicle rentingRequestVehicle : rentingRequestVehicles1){
+                logger.info("Radim za renting request: " + rentingRequestVehicle.getRentingRequest().getId() +  " zbog vozila: " + rentingRequestVehicle.getVehicle().getId());
                 if(rentingRequestVehicle.getRentingRequest().getStatus().equals(RentingRequest.Status.PENDING) &&
                         (((rentingRequestVehicle.getStartDate().isAfter(startDate) || startDate.isEqual(startDate)) && rentingRequestVehicle.getStartDate().isBefore(endDate)) ||
                                 (rentingRequestVehicle.getEndDate().isAfter(startDate) && (rentingRequestVehicle.getEndDate().isBefore(endDate) || rentingRequestVehicle.getEndDate().isEqual(endDate))) ||
                                 ((rentingRequestVehicle.getStartDate().isAfter(startDate) || rentingRequestVehicle.getStartDate().isEqual(startDate)) && (rentingRequestVehicle.getEndDate().isBefore(endDate) || rentingRequestVehicle.getEndDate().isEqual(endDate))))){
-                    rentingRequestVehicle.getRentingRequest().setStatus(RentingRequest.Status.DECLINED);
-                    rentingRequestVehicleRepository.save(rentingRequestVehicle);
+                    RentingRequest temp123 = rentingRequestVehicle.getRentingRequest();
+                    temp123.setStatus(RentingRequest.Status.DECLINED);
+                    rentingRequestRepository.save(temp123);
                 }
             }
         }
