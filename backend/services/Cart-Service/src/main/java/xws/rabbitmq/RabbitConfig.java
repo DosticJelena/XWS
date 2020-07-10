@@ -13,10 +13,19 @@ public class RabbitConfig {
     public Queue queue() {
         return new Queue("tut.rpc.requests");
     }
+    @Bean
+    public Queue queue2() {
+        return new Queue("tut.rpr.requests");
+    }
 
     @Bean
     public DirectExchange exchange() {
         return new DirectExchange("tut.rpc");
+    }
+
+    @Bean
+    public DirectExchange exchange2() {
+        return new DirectExchange("tut.rpr");
     }
 
     @Bean
@@ -25,6 +34,13 @@ public class RabbitConfig {
         return BindingBuilder.bind(queue)
                 .to(exchange)
                 .with("rpc");
+    }
+    @Bean
+    public Binding binding2(DirectExchange exchange2,
+                           Queue queue2) {
+        return BindingBuilder.bind(queue2)
+                .to(exchange2)
+                .with("rpr");
     }
 
     @Bean
