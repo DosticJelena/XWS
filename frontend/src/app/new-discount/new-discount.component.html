@@ -1,8 +1,24 @@
-<form>
-  <div class="form-group">
-    <label for="amount">Amount</label>
-    <input type="text" class="form-control" id="amount" aria-describedby="amount" placeholder="Amount"
-      [(ngModel)]="amount" name="ammount">
+<div class="new-discount">
+  <div class="row">
+    <div class="col-3">
+      <h2>Add New Discount</h2>
+      <hr />
+      <form>
+        <div class="form-group">
+          <label for="amount">Amount</label>
+          <input type="text" class="form-control" id="amount" aria-describedby="amount" placeholder="Amount"
+            [(ngModel)]="amount" name="ammount">
+        </div>
+        <button class="btn btn-primary" (click)="submitNewAmmount()">Submit</button>
+      </form>
+    </div>
+    <div class="col-9">
+      <h3>Current Discounts</h3>
+      <hr/>
+      <div>
+        <p *ngFor="let d of discounts">{{d.amount}}%</p>
+      </div>
+    </div>
   </div>
-  <button class="btn btn-primary" (click)="submitNewAmmount()">Submit</button>
-</form>
+
+</div>

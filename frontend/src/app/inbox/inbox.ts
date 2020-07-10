@@ -55,5 +55,15 @@ export class Inbox implements OnInit {
     });
     console.log(this.map);
   }
+  
+  sendMess(receiver, i) {
+    this.MessageService.sendMess(receiver, JSON.parse(localStorage.getItem("loggedUser")).id, (<HTMLInputElement>document.getElementById(i)).value)
+      .subscribe(
+        (data: any) => {
+          console.log(data);
+          (<HTMLInputElement>document.getElementById(i)).value = "";
+        }, (error) => alert(error.text)
+      );
+  }
 
 }

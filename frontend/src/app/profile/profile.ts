@@ -13,7 +13,7 @@ export class Profile {
 
     loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
     ownerCars: [];
-    requests: [];
+    requests= [];
     visible = -1;
     users = [];
     map = new Map<number, string>();
@@ -58,6 +58,15 @@ export class Profile {
         .subscribe(
           (data: any) => {
             console.log(data);
+            let index = -1;
+            this.requests.forEach(r => {
+              if (r.id === data.id){
+                  index = this.requests.indexOf(r);
+              }
+            });
+            if (index !== -1){
+              this.requests.splice(index,1);
+            }
           }, (error) => alert(error.text)
         );
     }
@@ -68,6 +77,15 @@ export class Profile {
         .subscribe(
           (data: any) => {
             console.log(data);
+            let index = -1;
+            this.requests.forEach(r => {
+              if (r.id === data.id){
+                  index = this.requests.indexOf(r);
+              }
+            });
+            if (index !== -1){
+              this.requests.splice(index,1);
+            }
           }, (error) => alert(error.text)
         );
     }

@@ -23,6 +23,7 @@ export class MessageComponent implements OnInit {
   grade = 0;
   selected = "pending";
   id : number;
+  loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
 
   constructor(private MessageService: MessageService,
     private AuthService: AuthService,
@@ -51,7 +52,7 @@ export class MessageComponent implements OnInit {
 
   confrim(car: number, receiver: number, i) {
     console.log()
-    this.GradeAndCommentService.postComment(car, receiver, (<HTMLInputElement>document.getElementById("r" + i)).value)
+    this.GradeAndCommentService.postComment(car, this.loggedUser.id, (<HTMLInputElement>document.getElementById("r" + i)).value)
       .subscribe(
         (data: any) => {
           console.log(data);

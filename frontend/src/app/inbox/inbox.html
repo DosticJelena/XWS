@@ -12,6 +12,11 @@
                         <hr/>
                         {{msg.content}}
                     </div>
+                    <div class="reply" *ngIf="visible === msg.id">
+                        <hr/>
+                        Reply: <input id="reply" type="text"/> 
+                        <button (click)="sendMess(msg.senderId,'reply')" >Send</button>
+                    </div>
                 </div>
             </div>
         </div>
