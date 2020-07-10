@@ -1,10 +1,18 @@
 package xws.service;
 
+import com.google.gson.Gson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import xws.dto.request.NewVehicleDTO;
 import xws.dto.request.NewVehicleRequestDTO;
+import xws.dto.request.NewVehicleSagaDTO;
 import xws.dto.response.VehicleForCartDTOResponse;
+import xws.exceptions.VehicleCantBeCreatedException;
 import xws.feignClients.CartServiceProxy;
 import xws.model.Picture;
 import xws.model.RentingRequestCar;
@@ -23,14 +31,24 @@ import java.util.List;
 
 @Service
 public class VehicleService {
+    Logger logger = LoggerFactory.getLogger(VehicleService.class);
 
     @Autowired
     VehicleRepository vehicleRepository;
+
     @Autowired
     RentingRequestCarRepository rentingRequestCarRepository;
 
     @Autowired
     CartServiceProxy cartServiceProxy;
+
+    @Autowired
+    private RabbitTemplate template;
+
+    @Autowired
+    private DirectExchange exchange;
+
+
 
     public List<Vehicle> search(String location,String startDate,String endDate, String brand,
                                 String model,String fuel_type,
@@ -95,7 +113,8 @@ public class VehicleService {
         return vehicleRepository.findByOwner(id);
     }
 
-    public Vehicle save(NewVehicleRequestDTO newVehicle) {
+    @Transactional
+    public Vehicle save(NewVehicleRequestDTO newVehicle) throws VehicleCantBeCreatedException {
         Vehicle v = new Vehicle();
         v.setOwner(newVehicle.getOwner_id());
         v.setBrand(newVehicle.getBrand());
@@ -123,9 +142,21 @@ public class VehicleService {
         }
         NewVehicleDTO vehicleDTO = new NewVehicleDTO();
         vehicleDTO.setOwnerId(newVehicle.getOwner_id());
-        cartServiceProxy.createNewVehicle(vehicleDTO);
+        Vehicle vehicle = vehicleRepository.save(v);
 
-        return vehicleRepository.save(v);
+        logger.info(" [x] Sending vehicle info to make vehicle in cart service");
+        NewVehicleSagaDTO req = new NewVehicleSagaDTO();
+        req.setOwnerId(v.getOwner());
+        Boolean sucess = (Boolean) this.template.convertSendAndReceive(exchange.getName(),"rpr", new Gson().toJson(req));
+        logger.info("Task status: " + sucess);
+        if(sucess == true) {
+            return vehicle;
+        }else {
+            throw new VehicleCantBeCreatedException("user cant be created");
+        }
+
+
+
 
     }
     public Vehicle save(Vehicle v) {

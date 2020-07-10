@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import xws.dto.request.NewVehicleRequestDTO;
+import xws.exceptions.VehicleCantBeCreatedException;
 import xws.model.Vehicle;
 import xws.service.VehicleService;
 
@@ -51,7 +52,11 @@ public class VehicleController {
 
     @RequestMapping(value = "/new", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public Vehicle newVehicle(@RequestBody NewVehicleRequestDTO request) {
-        return vehicleService.save(request);
+        try {
+            return vehicleService.save(request);
+        } catch (VehicleCantBeCreatedException e) {
+            return null;
+        }
     }
 
     //feign

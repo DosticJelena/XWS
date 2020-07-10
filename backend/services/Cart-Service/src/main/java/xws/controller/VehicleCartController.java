@@ -19,7 +19,6 @@ public class VehicleCartController {
 
     @RequestMapping(method = RequestMethod.POST,value="/new")
     public ResponseEntity<?> createNewVehicle(@RequestBody NewVehicleDTO request) {
-        System.out.println("HAJDE DOSAO SAM DA DODAJEM NOVA KOLAAAAAAAAAAA");
         return new ResponseEntity<>(vehicleService.newVehicle(request), HttpStatus.ACCEPTED);
     }
 

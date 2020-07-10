@@ -7,7 +7,9 @@ import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import xws.dto.request.NewCartDTO;
+import xws.dto.request.NewVehicleSagaDTO;
 import xws.service.CartService;
+import xws.service.VehicleService;
 
 import javax.transaction.Transactional;
 
@@ -17,6 +19,9 @@ public class Reciver {
 
     @Autowired
     private CartService cartService;
+
+    @Autowired
+    private VehicleService vehicleService;
 
     @RabbitListener(queues = "tut.rpc.requests")
     public boolean receive(String in) {
@@ -29,8 +34,18 @@ public class Reciver {
             logger.error("Cannont make NewCartDTO from message");
             return false;
         }
+    }
+    @RabbitListener(queues = "tut.rpr.requests")
+    public boolean recieve2(String in) {
+        try {
+            NewVehicleSagaDTO newVehicle = new Gson().fromJson(in,NewVehicleSagaDTO.class);
+            System.out.println(" [x] Received '" + newVehicle.getOwnerId() + "'");
+            vehicleService.save(newVehicle);
+            return true;
 
-
-
+        }catch (Exception e){
+            logger.error("Can not save Vehicle in cart");
+            return false;
+        }
     }
 }
