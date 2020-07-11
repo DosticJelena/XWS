@@ -59,7 +59,7 @@ public class RentingRequestController {
                 break;
             }
         }
-
+        System.out.println(rrv.getDistance());
         rrv.setDistance(request.getDistance());
         rrv.setAdditionalInfo(request.getAdditionalInfo());
 

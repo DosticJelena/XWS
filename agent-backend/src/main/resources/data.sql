@@ -18,15 +18,11 @@ insert into vehicle_cart(owner_id) values (3);
 
 insert into renting_request(user_id,status,created_at) values (1,1,'2020-1-11');
 insert into renting_request(user_id,status,created_at) values (1,1,'2020-1-11');
-insert into renting_request(user_id,status,created_at) values (1,2,'2020-1-11');
-
 
 insert into renting_request_vehicle(vehicle_id,renting_request_id,start_date,end_date,price,distance)
 values(1,1,'2020-1-11','2020-1-20',1000,100);
 insert into renting_request_vehicle(vehicle_id,renting_request_id,start_date,end_date,price,distance)
 values(1,2,'2020-1-1','2020-1-20',1000,100);
-insert into renting_request_vehicle(vehicle_id,renting_request_id,start_date,end_date,price,distance)
-values(2,3,'2020-1-5','2020-1-15',1000,100);
 
 insert into comment(user_id, car_id, text, status) values(1,1,'asdsa','asdsadasd');
 insert into comment(user_id, car_id, text, status) values(1,1,'asdsa','asdsadasd');
