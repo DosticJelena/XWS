@@ -1,4 +1,4 @@
-package xws.util;
+/*package xws.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -21,4 +21,4 @@ public class QueueProducer {
         rabbitTemplate.setExchange(fanoutExchange);
         rabbitTemplate.convertAndSend(new ObjectMapper().writeValueAsString(mailDTO));
     }
-}
+}*/

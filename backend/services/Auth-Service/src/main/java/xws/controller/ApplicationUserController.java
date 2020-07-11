@@ -17,7 +17,7 @@ import xws.model.ApplicationUser;
 import xws.model.Company;
 import xws.repository.ApplicationUserRepository;
 import xws.service.ApplicationUserService;
-import xws.util.QueueProducer;
+//import xws.util.QueueProducer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +33,8 @@ public class ApplicationUserController {
     @Autowired
     private ApplicationUserRepository applicationUserRepository;
   
-    @Autowired
-    private QueueProducer queueProducer;
+    //@Autowired
+    //private QueueProducer queueProducer;
 
 
     @RequestMapping(value = "users", method = RequestMethod.GET)
@@ -106,7 +106,7 @@ public class ApplicationUserController {
             } catch (UserCantBeCreated userCantBeCreated) {
                 return new ResponseEntity<>(userCantBeCreated.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
             }
-            System.out.println("Slanje emaila...");
+            /*System.out.println("Slanje emaila...");
 
             MailDTO mail = new MailDTO();
             mail.setUsername(dto.getUsername());
@@ -116,7 +116,7 @@ public class ApplicationUserController {
             } catch (Exception e) {
                 System.out.println("Nisam poslao agent mail");
                 e.printStackTrace();
-            }
+            }*/
             return new ResponseEntity<>(1, HttpStatus.OK);
         }
 

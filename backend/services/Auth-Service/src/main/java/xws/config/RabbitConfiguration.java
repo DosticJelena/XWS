@@ -1,4 +1,4 @@
-package xws.config;
+/*package xws.config;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -39,4 +39,4 @@ public class RabbitConfiguration {
         return connectionFactory;
 
     }
-}
+}*/
